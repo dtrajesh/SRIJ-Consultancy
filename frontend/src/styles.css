@@ -1,0 +1,621 @@
+:root {
+  --bg: #f5f5ef;
+  --surface: #fffdf8;
+  --surface-strong: #12343b;
+  --surface-muted: #e8efe9;
+  --text: #142326;
+  --text-soft: #516264;
+  --line: #d5ddd7;
+  --accent: #c97843;
+  --accent-dark: #8e4c21;
+  --highlight: #e0b04a;
+  --shadow: 0 16px 40px rgba(20, 35, 38, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(224, 176, 74, 0.18), transparent 28%),
+    linear-gradient(180deg, #f7f6f0 0%, #f2eee6 100%);
+  color: var(--text);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+li,
+input,
+textarea,
+select,
+button {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(247, 246, 240, 0.88);
+  border-bottom: 1px solid rgba(213, 221, 215, 0.9);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.brand strong {
+  display: block;
+  font-size: 1.1rem;
+}
+
+.brand p {
+  margin: 0.2rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: var(--surface-strong);
+  color: #fff;
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  color: var(--text-soft);
+  transition: 150ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(18, 52, 59, 0.08);
+  color: var(--text);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--surface-strong);
+  border: 1px solid rgba(18, 52, 59, 0.25);
+}
+
+.button-danger {
+  background: #a84034;
+  color: #fff;
+}
+
+.button-small {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.88rem;
+}
+
+.hero,
+.section {
+  padding: 4.5rem 0;
+}
+
+.hero-grid,
+.contact-layout,
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.hero h1 {
+  margin: 0.45rem 0 1rem;
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  line-height: 0.96;
+  max-width: 10ch;
+}
+
+.hero p {
+  max-width: 42rem;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.7rem;
+}
+
+.hero-card,
+.content-card,
+.feature-panel,
+.form-card,
+.highlight-panel,
+.stat-card,
+.cta-panel {
+  background: var(--surface);
+  border: 1px solid rgba(213, 221, 215, 0.9);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  padding: 1.7rem;
+  background:
+    linear-gradient(135deg, rgba(18, 52, 59, 0.98), rgba(29, 78, 89, 0.96)),
+    var(--surface-strong);
+  color: #fff;
+}
+
+.hero-card p {
+  margin-top: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.85rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.eyebrow {
+  display: inline-block;
+  color: var(--accent-dark);
+  font-size: 0.84rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+  max-width: 44rem;
+}
+
+.section-header h2 {
+  margin: 0.5rem 0 0.85rem;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.05;
+}
+
+.section-header p,
+.content-copy p,
+.contact-info p {
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.stats-band {
+  padding-bottom: 1rem;
+}
+
+.stats-grid,
+.card-grid {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.stats-grid,
+.three-up {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stat-card {
+  padding: 1.5rem;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 2.2rem;
+  color: var(--surface-strong);
+}
+
+.stat-card span {
+  color: var(--text-soft);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.content-card,
+.feature-panel,
+.highlight-panel,
+.form-card {
+  padding: 1.5rem;
+}
+
+.content-card h3,
+.highlight-panel h3,
+.feature-panel h3 {
+  margin-top: 0;
+}
+
+.content-card p,
+.feature-panel p,
+.testimonial-card span,
+.testimonial-card strong {
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+.content-card a,
+.cta-inline p,
+.feature-meta span {
+  font-family: "Segoe UI", sans-serif;
+}
+
+.content-card a {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.section-muted {
+  background: rgba(255, 255, 255, 0.45);
+  border-top: 1px solid rgba(213, 221, 215, 0.65);
+  border-bottom: 1px solid rgba(213, 221, 215, 0.65);
+}
+
+.tag-grid {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.industry-tag {
+  padding: 0.85rem 1rem;
+  border-radius: 999px;
+  background: rgba(18, 52, 59, 0.08);
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 600;
+}
+
+.testimonial-card strong,
+.testimonial-card span {
+  display: block;
+}
+
+.testimonial-card strong {
+  margin-top: 1rem;
+  color: var(--text);
+}
+
+.cta-section {
+  padding-top: 0;
+}
+
+.cta-panel {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background:
+    linear-gradient(120deg, rgba(18, 52, 59, 0.97), rgba(31, 88, 95, 0.93)),
+    var(--surface-strong);
+  color: #fff;
+}
+
+.cta-panel h2,
+.cta-panel p {
+  margin: 0.4rem 0;
+}
+
+.cta-panel p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.page-intro {
+  padding-top: 3.5rem;
+}
+
+.stack-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.feature-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.feature-meta {
+  min-width: 12rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.feature-meta span {
+  padding: 0.6rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(201, 120, 67, 0.1);
+  color: var(--accent-dark);
+  text-align: center;
+  font-weight: 700;
+}
+
+.cta-inline {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.highlight-panel ul {
+  padding-left: 1.2rem;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.compact {
+  margin-top: 1.5rem;
+}
+
+.form-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.45rem;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 600;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  color: var(--text);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-status {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 600;
+}
+
+.form-status.success {
+  color: #1b6f46;
+}
+
+.form-status.error {
+  color: #9f2d2d;
+}
+
+.form-status.loading {
+  color: var(--text-soft);
+}
+
+.site-footer {
+  border-top: 1px solid rgba(213, 221, 215, 0.9);
+  padding: 2rem 0 3rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.site-footer h3,
+.site-footer h4 {
+  margin-top: 0;
+}
+
+.site-footer p,
+.site-footer a {
+  display: block;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-shell,
+.admin-dashboard {
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  background:
+    radial-gradient(circle at top right, rgba(201, 120, 67, 0.18), transparent 24%),
+    linear-gradient(180deg, #f7f4ed 0%, #ece6da 100%);
+}
+
+.admin-card,
+.admin-panel {
+  background: rgba(255, 253, 248, 0.96);
+  border: 1px solid rgba(213, 221, 215, 0.9);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.admin-card {
+  width: min(34rem, 100%);
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-topbar h1 {
+  margin: 0.4rem 0;
+}
+
+.admin-topbar p {
+  margin: 0;
+  color: var(--text-soft);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.admin-panel {
+  padding: 1.5rem;
+}
+
+.admin-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-panel-header h2 {
+  margin: 0;
+}
+
+.admin-panel-header span {
+  min-width: 2.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(18, 52, 59, 0.08);
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.9rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(213, 221, 215, 0.9);
+}
+
+.admin-table th {
+  color: var(--accent-dark);
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-table td {
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+.admin-table .button {
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .hero-grid,
+  .contact-layout,
+  .about-grid,
+  .footer-grid,
+  .stats-grid,
+  .three-up,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-row,
+  .feature-panel,
+  .cta-panel,
+  .admin-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    width: 100%;
+  }
+}
