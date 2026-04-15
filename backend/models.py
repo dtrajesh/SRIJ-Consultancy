@@ -77,7 +77,8 @@ class JobApplication(db.Model, TimestampMixin):
     __tablename__ = "job_applications"
 
     id = db.Column(db.Integer, primary_key=True)
-    job_id = db.Column(db.Integer, db.ForeignKey("job_openings.id"), nullable=False)
+    job_id = db.Column(db.Integer, db.ForeignKey("job_openings.id"), nullable=True)
+    job_title = db.Column(db.String(160), nullable=False)
     full_name = db.Column(db.String(160), nullable=False)
     email = db.Column(db.String(160), nullable=False)
     phone = db.Column(db.String(40), nullable=False)

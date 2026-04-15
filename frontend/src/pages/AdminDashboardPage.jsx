@@ -43,6 +43,16 @@ export default function AdminDashboardPage() {
   const navigate = useNavigate();
   const username = localStorage.getItem("adminUsername") || "admin";
 
+  async function loadDashboardData(token, options = {}) {
+    const { loadingMessage = "Loading submissions..." } = options;
+
+    setStatus({ type: "loading", message: loadingMessage });
+    const response = await getAdminSubmissions(token);
+    setData(response);
+    setStatus({ type: "success", message: "" });
+    return response;
+  }
+
   useEffect(() => {
     async function load() {
       const token = localStorage.getItem("adminToken");
@@ -53,9 +63,7 @@ export default function AdminDashboardPage() {
       }
 
       try {
-        const response = await getAdminSubmissions(token);
-        setData(response);
-        setStatus({ type: "success", message: "" });
+        await loadDashboardData(token);
       } catch (error) {
         localStorage.removeItem("adminToken");
         localStorage.removeItem("adminUsername");
@@ -96,10 +104,7 @@ export default function AdminDashboardPage() {
     try {
       setDeletingKey(`contact-${submissionId}`);
       const response = await deleteAdminContact(token, submissionId);
-      setData((current) => ({
-        ...current,
-        contacts: current.contacts.filter((item) => item.id !== submissionId)
-      }));
+      await loadDashboardData(token, { loadingMessage: "Refreshing dashboard..." });
       setActionMessage(response.message);
     } catch (error) {
       setActionMessage(error.message || "Unable to delete contact submission.");
@@ -123,10 +128,7 @@ export default function AdminDashboardPage() {
     try {
       setDeletingKey(`consultation-${submissionId}`);
       const response = await deleteAdminConsultation(token, submissionId);
-      setData((current) => ({
-        ...current,
-        consultations: current.consultations.filter((item) => item.id !== submissionId)
-      }));
+      await loadDashboardData(token, { loadingMessage: "Refreshing dashboard..." });
       setActionMessage(response.message);
     } catch (error) {
       setActionMessage(error.message || "Unable to delete consultation request.");
@@ -143,7 +145,7 @@ export default function AdminDashboardPage() {
     }
 
     const confirmed = window.confirm(
-      "Delete this job opening? This will also delete applications for this role."
+      "Delete this job opening? The posting will be removed, but existing applications will be kept."
     );
     if (!confirmed) {
       return;
@@ -152,11 +154,7 @@ export default function AdminDashboardPage() {
     try {
       setDeletingKey(`job-${jobId}`);
       const response = await deleteAdminJob(token, jobId);
-      setData((current) => ({
-        ...current,
-        jobs: current.jobs.filter((item) => item.id !== jobId),
-        applications: current.applications.filter((item) => item.job_id !== jobId)
-      }));
+      await loadDashboardData(token, { loadingMessage: "Refreshing dashboard..." });
       setActionMessage(response.message);
     } catch (error) {
       setActionMessage(error.message || "Unable to delete job opening.");
@@ -180,19 +178,7 @@ export default function AdminDashboardPage() {
     try {
       setDeletingKey(`application-${applicationId}`);
       const response = await deleteAdminApplication(token, applicationId);
-      const deletedApplication = data.applications.find((item) => item.id === applicationId);
-      setData((current) => ({
-        ...current,
-        applications: current.applications.filter((item) => item.id !== applicationId),
-        jobs: current.jobs.map((job) =>
-          job.id === deletedApplication?.job_id
-            ? {
-                ...job,
-                application_count: Math.max(0, (job.application_count || 0) - 1)
-              }
-            : job
-        )
-      }));
+      await loadDashboardData(token, { loadingMessage: "Refreshing dashboard..." });
       setActionMessage(response.message);
     } catch (error) {
       setActionMessage(error.message || "Unable to delete job application.");

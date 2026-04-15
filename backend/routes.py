@@ -29,6 +29,20 @@ def allowed_resume(filename):
     return extension in {"pdf", "doc", "docx"}
 
 
+def remove_resume_file(file_name):
+    if not file_name:
+        return
+
+    resume_path = os.path.join(current_app.config["UPLOAD_FOLDER"], file_name)
+    if not os.path.exists(resume_path):
+        return
+
+    try:
+        os.remove(resume_path)
+    except OSError:
+        current_app.logger.warning("Could not delete resume file: %s", resume_path)
+
+
 def serialize_job(job):
     return {
         "id": job.id,
@@ -128,6 +142,7 @@ def apply_to_job(job_id):
 
     application = JobApplication(
         job_id=job.id,
+        job_title=job.title,
         full_name=form["full_name"].strip(),
         email=form["email"].strip(),
         phone=form["phone"].strip(),
@@ -220,7 +235,7 @@ def admin_submissions():
                 {
                     "id": item.id,
                     "job_id": item.job_id,
-                    "job_title": item.job.title if item.job else "",
+                    "job_title": item.job.title if item.job else item.job_title,
                     "full_name": item.full_name,
                     "email": item.email,
                     "phone": item.phone,
@@ -280,15 +295,13 @@ def delete_job_opening(job_id):
         return jsonify({"message": "Job opening not found."}), 404
 
     for application in job.applications:
-        resume_path = os.path.join(current_app.config["UPLOAD_FOLDER"], application.resume_file_name)
-        if application.resume_file_name and os.path.exists(resume_path):
-            os.remove(resume_path)
-        db.session.delete(application)
+        application.job_title = job.title
+        application.job_id = None
 
     db.session.delete(job)
     db.session.commit()
 
-    return jsonify({"message": "Job opening deleted successfully."})
+    return jsonify({"message": "Job opening deleted successfully. Applications were kept."})
 
 
 @api.delete("/admin/contacts/<int:submission_id>")
@@ -327,10 +340,7 @@ def delete_job_application(application_id):
     if application is None:
         return jsonify({"message": "Job application not found."}), 404
 
-    resume_path = os.path.join(current_app.config["UPLOAD_FOLDER"], application.resume_file_name)
-    if application.resume_file_name and os.path.exists(resume_path):
-        os.remove(resume_path)
-
+    remove_resume_file(application.resume_file_name)
     db.session.delete(application)
     db.session.commit()
 
