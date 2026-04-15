@@ -19,6 +19,7 @@ This workspace now contains a full-stack consultancy website scaffold based on t
 - About
 - Contact
 - Get Started
+- Careers
 - Admin Login
 - Admin Dashboard
 
@@ -30,17 +31,32 @@ This workspace now contains a full-stack consultancy website scaffold based on t
 - `GET /api/testimonials`
 - `POST /api/contact`
 - `POST /api/consultations`
+- `GET /api/careers/jobs`
+- `GET /api/careers/jobs/:id`
+- `POST /api/careers/jobs/:id/apply`
 - `POST /api/admin/login`
 - `GET /api/admin/submissions`
+- `POST /api/admin/jobs`
+- `DELETE /api/admin/jobs/:id`
+- `DELETE /api/admin/applications/:id`
+- `GET /api/admin/applications/:id/resume`
 
 ## Admin access
 
 - Admin login page: `/admin/login`
 - Admin dashboard: `/admin/dashboard`
+- Careers page: `/careers`
 - Default username: `admin`
 - Default password: `admin123`
 
 Update these in `backend/.env` before using this outside local development.
+
+## Careers flow
+
+- If there are no job openings, the public careers page shows a "No openings right now" message.
+- Admin can post jobs from the dashboard.
+- Candidates can open a job, apply, and upload a resume.
+- Applications and resumes are stored and visible in the admin dashboard.
 
 ## Run locally
 

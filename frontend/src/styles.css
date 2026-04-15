@@ -596,6 +596,49 @@ textarea {
   white-space: nowrap;
 }
 
+.empty-state {
+  padding: 2rem;
+  background: rgba(255, 253, 248, 0.96);
+  border: 1px solid rgba(213, 221, 215, 0.9);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.empty-state h3 {
+  margin-top: 0;
+}
+
+.job-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.job-card-top {
+  display: grid;
+  gap: 1rem;
+}
+
+.job-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.job-meta span {
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(18, 52, 59, 0.08);
+  color: var(--surface-strong);
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+.lead-text {
+  color: var(--text-soft);
+  line-height: 1.7;
+  font-family: "Segoe UI", sans-serif;
+}
+
 @media (max-width: 900px) {
   .hero-grid,
   .contact-layout,

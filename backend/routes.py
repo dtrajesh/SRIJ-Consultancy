@@ -1,15 +1,47 @@
 from functools import wraps
+import os
+import uuid
 
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, jsonify, request, send_from_directory
 from itsdangerous import BadSignature, URLSafeSerializer
+from werkzeug.utils import secure_filename
 
-from models import ConsultationRequest, ContactSubmission, Industry, Service, Testimonial, db
+from models import (
+    ConsultationRequest,
+    ContactSubmission,
+    Industry,
+    JobApplication,
+    JobOpening,
+    Service,
+    Testimonial,
+    db,
+)
 
 api = Blueprint("api", __name__, url_prefix="/api")
 
 
 def missing_fields(payload, required_fields):
     return [field for field in required_fields if not str(payload.get(field, "")).strip()]
+
+
+def allowed_resume(filename):
+    extension = filename.rsplit(".", 1)[-1].lower() if "." in filename else ""
+    return extension in {"pdf", "doc", "docx"}
+
+
+def serialize_job(job):
+    return {
+        "id": job.id,
+        "title": job.title,
+        "department": job.department,
+        "location": job.location,
+        "employment_type": job.employment_type,
+        "summary": job.summary,
+        "responsibilities": job.responsibilities,
+        "requirements": job.requirements,
+        "is_active": job.is_active,
+        "created_at": job.created_at.isoformat(),
+    }
 
 
 def admin_serializer():
@@ -51,6 +83,67 @@ def health_check():
     return jsonify({"status": "ok"})
 
 
+@api.get("/careers/jobs")
+def get_public_jobs():
+    jobs = JobOpening.query.filter_by(is_active=True).order_by(JobOpening.created_at.desc()).all()
+    return jsonify([serialize_job(job) for job in jobs])
+
+
+@api.get("/careers/jobs/<int:job_id>")
+def get_public_job(job_id):
+    job = JobOpening.query.filter_by(id=job_id, is_active=True).first()
+
+    if job is None:
+        return jsonify({"message": "Job opening not found."}), 404
+
+    return jsonify(serialize_job(job))
+
+
+@api.post("/careers/jobs/<int:job_id>/apply")
+def apply_to_job(job_id):
+    job = JobOpening.query.filter_by(id=job_id, is_active=True).first()
+
+    if job is None:
+        return jsonify({"message": "Job opening not found."}), 404
+
+    form = request.form
+    required_fields = ["full_name", "email", "phone"]
+    missing = [field for field in required_fields if not str(form.get(field, "")).strip()]
+
+    resume = request.files.get("resume")
+    if missing:
+        return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
+
+    if resume is None or not resume.filename:
+        return jsonify({"message": "Resume upload is required."}), 400
+
+    if not allowed_resume(resume.filename):
+        return jsonify({"message": "Resume must be a PDF, DOC, or DOCX file."}), 400
+
+    original_name = secure_filename(resume.filename)
+    extension = original_name.rsplit(".", 1)[-1].lower()
+    stored_name = f"{uuid.uuid4().hex}.{extension}"
+    upload_path = os.path.join(current_app.config["UPLOAD_FOLDER"], stored_name)
+    resume.save(upload_path)
+
+    application = JobApplication(
+        job_id=job.id,
+        full_name=form["full_name"].strip(),
+        email=form["email"].strip(),
+        phone=form["phone"].strip(),
+        current_company=form.get("current_company", "").strip(),
+        years_of_experience=form.get("years_of_experience", "").strip(),
+        linkedin_url=form.get("linkedin_url", "").strip(),
+        cover_letter=form.get("cover_letter", "").strip(),
+        resume_file_name=stored_name,
+        resume_original_name=original_name,
+    )
+    db.session.add(application)
+    db.session.commit()
+
+    return jsonify({"message": "Application submitted successfully."}), 201
+
+
 @api.post("/admin/login")
 def admin_login():
     payload = request.get_json(silent=True) or {}
@@ -85,6 +178,8 @@ def admin_submissions():
     consultations = ConsultationRequest.query.order_by(
         ConsultationRequest.created_at.desc()
     ).all()
+    jobs = JobOpening.query.order_by(JobOpening.created_at.desc()).all()
+    applications = JobApplication.query.order_by(JobApplication.created_at.desc()).all()
 
     return jsonify(
         {
@@ -114,8 +209,86 @@ def admin_submissions():
                 }
                 for item in consultations
             ],
+            "jobs": [
+                {
+                    **serialize_job(item),
+                    "application_count": len(item.applications),
+                }
+                for item in jobs
+            ],
+            "applications": [
+                {
+                    "id": item.id,
+                    "job_id": item.job_id,
+                    "job_title": item.job.title if item.job else "",
+                    "full_name": item.full_name,
+                    "email": item.email,
+                    "phone": item.phone,
+                    "current_company": item.current_company,
+                    "years_of_experience": item.years_of_experience,
+                    "linkedin_url": item.linkedin_url,
+                    "cover_letter": item.cover_letter,
+                    "resume_original_name": item.resume_original_name,
+                    "created_at": item.created_at.isoformat(),
+                }
+                for item in applications
+            ],
         }
     )
+
+
+@api.post("/admin/jobs")
+@admin_required
+def create_job_opening():
+    payload = request.get_json(silent=True) or {}
+    required_fields = [
+        "title",
+        "department",
+        "location",
+        "employment_type",
+        "summary",
+        "responsibilities",
+        "requirements",
+    ]
+    missing = missing_fields(payload, required_fields)
+
+    if missing:
+        return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
+
+    job = JobOpening(
+        title=payload["title"].strip(),
+        department=payload["department"].strip(),
+        location=payload["location"].strip(),
+        employment_type=payload["employment_type"].strip(),
+        summary=payload["summary"].strip(),
+        responsibilities=payload["responsibilities"].strip(),
+        requirements=payload["requirements"].strip(),
+        is_active=bool(payload.get("is_active", True)),
+    )
+    db.session.add(job)
+    db.session.commit()
+
+    return jsonify({"message": "Job opening posted successfully.", "job": serialize_job(job)}), 201
+
+
+@api.delete("/admin/jobs/<int:job_id>")
+@admin_required
+def delete_job_opening(job_id):
+    job = JobOpening.query.get(job_id)
+
+    if job is None:
+        return jsonify({"message": "Job opening not found."}), 404
+
+    for application in job.applications:
+        resume_path = os.path.join(current_app.config["UPLOAD_FOLDER"], application.resume_file_name)
+        if application.resume_file_name and os.path.exists(resume_path):
+            os.remove(resume_path)
+        db.session.delete(application)
+
+    db.session.delete(job)
+    db.session.commit()
+
+    return jsonify({"message": "Job opening deleted successfully."})
 
 
 @api.delete("/admin/contacts/<int:submission_id>")
@@ -144,6 +317,40 @@ def delete_consultation_submission(submission_id):
     db.session.commit()
 
     return jsonify({"message": "Consultation request deleted successfully."})
+
+
+@api.delete("/admin/applications/<int:application_id>")
+@admin_required
+def delete_job_application(application_id):
+    application = JobApplication.query.get(application_id)
+
+    if application is None:
+        return jsonify({"message": "Job application not found."}), 404
+
+    resume_path = os.path.join(current_app.config["UPLOAD_FOLDER"], application.resume_file_name)
+    if application.resume_file_name and os.path.exists(resume_path):
+        os.remove(resume_path)
+
+    db.session.delete(application)
+    db.session.commit()
+
+    return jsonify({"message": "Job application deleted successfully."})
+
+
+@api.get("/admin/applications/<int:application_id>/resume")
+@admin_required
+def download_resume(application_id):
+    application = JobApplication.query.get(application_id)
+
+    if application is None:
+        return jsonify({"message": "Job application not found."}), 404
+
+    return send_from_directory(
+        current_app.config["UPLOAD_FOLDER"],
+        application.resume_file_name,
+        as_attachment=True,
+        download_name=application.resume_original_name,
+    )
 
 
 @api.get("/services")

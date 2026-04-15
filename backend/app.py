@@ -15,6 +15,7 @@ load_dotenv()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
     CORS(app, resources={r"/api/*": {"origins": "*"}})
 

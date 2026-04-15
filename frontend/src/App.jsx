@@ -3,6 +3,8 @@ import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
+import CareerApplyPage from "./pages/CareerApplyPage";
+import CareersPage from "./pages/CareersPage";
 import HomePage from "./pages/HomePage";
 import ServicesPage from "./pages/ServicesPage";
 import IndustriesPage from "./pages/IndustriesPage";
@@ -24,6 +26,8 @@ export default function App() {
       />
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
+        <Route path="/careers" element={<CareersPage />} />
+        <Route path="/careers/:jobId/apply" element={<CareerApplyPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/about" element={<AboutPage />} />

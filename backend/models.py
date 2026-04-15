@@ -57,3 +57,35 @@ class ConsultationRequest(db.Model, TimestampMixin):
     timeline = db.Column(db.String(120))
     team_size = db.Column(db.String(120))
     goals = db.Column(db.Text, nullable=False)
+
+
+class JobOpening(db.Model, TimestampMixin):
+    __tablename__ = "job_openings"
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(160), nullable=False)
+    department = db.Column(db.String(120), nullable=False)
+    location = db.Column(db.String(120), nullable=False)
+    employment_type = db.Column(db.String(80), nullable=False)
+    summary = db.Column(db.Text, nullable=False)
+    responsibilities = db.Column(db.Text, nullable=False)
+    requirements = db.Column(db.Text, nullable=False)
+    is_active = db.Column(db.Boolean, nullable=False, default=True)
+
+
+class JobApplication(db.Model, TimestampMixin):
+    __tablename__ = "job_applications"
+
+    id = db.Column(db.Integer, primary_key=True)
+    job_id = db.Column(db.Integer, db.ForeignKey("job_openings.id"), nullable=False)
+    full_name = db.Column(db.String(160), nullable=False)
+    email = db.Column(db.String(160), nullable=False)
+    phone = db.Column(db.String(40), nullable=False)
+    current_company = db.Column(db.String(160))
+    years_of_experience = db.Column(db.String(40))
+    linkedin_url = db.Column(db.String(255))
+    cover_letter = db.Column(db.Text)
+    resume_file_name = db.Column(db.String(255), nullable=False)
+    resume_original_name = db.Column(db.String(255), nullable=False)
+
+    job = db.relationship("JobOpening", backref=db.backref("applications", lazy=True))

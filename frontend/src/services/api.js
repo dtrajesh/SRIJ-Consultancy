@@ -2,12 +2,14 @@ const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api
 
 async function request(path, options = {}) {
   const customHeaders = options.headers || {};
+  const isFormData = typeof FormData !== "undefined" && options.body instanceof FormData;
+  const { headers: _ignoredHeaders, ...restOptions } = options;
   const response = await fetch(`${API_BASE}${path}`, {
     headers: {
-      "Content-Type": "application/json",
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
       ...customHeaders
     },
-    ...options
+    ...restOptions
   });
 
   if (!response.ok) {
@@ -63,4 +65,51 @@ export function deleteAdminConsultation(token, submissionId) {
       Authorization: `Bearer ${token}`
     }
   });
+}
+
+export function getPublicJobs() {
+  return request("/careers/jobs");
+}
+
+export function getPublicJob(jobId) {
+  return request(`/careers/jobs/${jobId}`);
+}
+
+export function applyToJob(jobId, formData) {
+  return request(`/careers/jobs/${jobId}/apply`, {
+    method: "POST",
+    body: formData
+  });
+}
+
+export function createAdminJob(token, payload) {
+  return request("/admin/jobs", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(payload)
+  });
+}
+
+export function deleteAdminJob(token, jobId) {
+  return request(`/admin/jobs/${jobId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+export function deleteAdminApplication(token, applicationId) {
+  return request(`/admin/applications/${applicationId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+export function getAdminResumeUrl(applicationId) {
+  return `${API_BASE}/admin/applications/${applicationId}/resume`;
 }

@@ -4,6 +4,7 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
   { label: "Industries", to: "/industries" },
+  { label: "Careers", to: "/careers" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" }
 ];
@@ -55,6 +56,7 @@ export default function Layout() {
             <h4>Explore</h4>
             <NavLink to="/services">Services</NavLink>
             <NavLink to="/industries">Industries</NavLink>
+            <NavLink to="/careers">Careers</NavLink>
             <NavLink to="/about">About</NavLink>
           </div>
           <div>
