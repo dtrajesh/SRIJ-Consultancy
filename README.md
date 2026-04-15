@@ -1,4 +1,4 @@
-# SRIJ Talent Solutions
+# Trinexora
 
 This workspace now contains a full-stack consultancy website scaffold based on the provided blueprint direction:
 

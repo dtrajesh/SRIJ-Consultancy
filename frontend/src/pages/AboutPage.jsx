@@ -9,7 +9,7 @@ export default function AboutPage() {
           <SectionHeader
             eyebrow="About Us"
             title="A consultancy built around responsiveness, accountability, and long-term client trust"
-            text="SRIJ Talent Solutions partners with businesses that need technical capability without the hiring delay or delivery uncertainty."
+            text="Trinexora partners with businesses that need technical capability without the hiring delay or delivery uncertainty."
           />
 
           <div className="content-copy">
@@ -26,7 +26,7 @@ export default function AboutPage() {
         </div>
 
         <aside className="highlight-panel">
-          <h3>Why clients choose SRIJ</h3>
+          <h3>Why clients choose Trinexora</h3>
           <ul>
             <li>Fast consultant onboarding and team ramp-up</li>
             <li>Clear engagement structure and reporting cadence</li>

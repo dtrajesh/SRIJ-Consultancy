@@ -9,7 +9,7 @@ export default function ProductsPage() {
         <SectionHeader
           eyebrow="Products"
           title="Reusable solutions that help clients move faster"
-          text="Alongside staffing and consulting, SRIJ can package repeatable delivery assets and accelerators that reduce setup time and improve execution."
+          text="Alongside staffing and consulting, Trinexora can package repeatable delivery assets and accelerators that reduce setup time and improve execution."
         />
 
         <div className="card-grid">

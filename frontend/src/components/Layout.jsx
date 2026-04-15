@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
+import brandLogo from "../assets/trinexora-logo.svg";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -17,11 +18,7 @@ export default function Layout() {
       <header className="site-header">
         <div className="container header-row">
           <NavLink className="brand" to="/">
-            <span className="brand-mark">S</span>
-            <div>
-              <strong>SRIJ Talent Solutions</strong>
-              <p>Staffing and delivery partner</p>
-            </div>
+            <img className="brand-logo" src={brandLogo} alt="Trinexora logo" />
           </NavLink>
 
           <nav className="nav">
@@ -48,10 +45,10 @@ export default function Layout() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div>
-            <h3>SRIJ Talent Solutions</h3>
+            <img className="footer-brand-logo" src={brandLogo} alt="Trinexora logo" />
             <p>
-              Helping clients build teams fast and deliver with confidence through staffing,
-              managed delivery, and modernization support.
+              Talent delivered with execution-first thinking across AI, data, applications,
+              and digital transformation programs.
             </p>
           </div>
           <div>
@@ -68,7 +65,7 @@ export default function Layout() {
             <NavLink to="/contact">Contact</NavLink>
             <NavLink to="/get-started">Get Started</NavLink>
             <NavLink to="/admin/login">Admin</NavLink>
-            <a href="mailto:hello@srijtalent.com">hello@srijtalent.com</a>
+            <a href="mailto:hello@trinexora.com">hello@trinexora.com</a>
           </div>
         </div>
       </footer>

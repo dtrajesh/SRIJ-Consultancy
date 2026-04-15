@@ -9,7 +9,7 @@ export default function ServicesPage() {
         <SectionHeader
           eyebrow="What We Do"
           title="Services designed for speed, stability, and delivery ownership"
-          text="Whether you need an individual specialist or a full managed pod, SRIJ offers flexible engagement options backed by transparent communication."
+          text="Whether you need an individual specialist or a full managed pod, Trinexora offers flexible engagement options backed by transparent communication."
         />
 
         <div className="stack-grid">

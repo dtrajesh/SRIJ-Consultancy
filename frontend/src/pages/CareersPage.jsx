@@ -28,7 +28,7 @@ export default function CareersPage() {
       <div className="container">
         <SectionHeader
           eyebrow="Careers"
-          title="Build your career with SRIJ Talent Solutions"
+          title="Build your career with Trinexora"
           text="We will publish open positions here as our team grows. When a role is posted, applicants can apply directly with their resume."
         />
 

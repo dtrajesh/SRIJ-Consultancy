@@ -1,0 +1,45 @@
+<svg width="500" height="120" viewBox="0 0 500 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="goldMain" x1="28" y1="18" x2="122" y2="104" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7E7C8"/>
+      <stop offset="0.42" stop-color="#D7B07B"/>
+      <stop offset="1" stop-color="#9D6C35"/>
+    </linearGradient>
+    <linearGradient id="goldLight" x1="48" y1="26" x2="87" y2="85" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1DA"/>
+      <stop offset="1" stop-color="#C7965A"/>
+    </linearGradient>
+    <linearGradient id="goldDark" x1="36" y1="83" x2="109" y2="59" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8C5B2C"/>
+      <stop offset="1" stop-color="#D6AF79"/>
+    </linearGradient>
+    <filter id="softShadow" x="0" y="8" width="138" height="112" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#A97746" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#softShadow)">
+    <path d="M60 22C67 22 73 25 77 31L111 83C113 86 114 90 114 94C114 101 108 106 101 106H33C26 106 20 101 20 94C20 90 21 86 23 83L57 31C61 25 67 22 74 22H60Z" fill="url(#goldMain)"/>
+    <path d="M58 34C61 30 65 28 70 28C75 28 79 30 82 34L103 69L78 52C72 48 66 48 60 52L31 72L58 34Z" fill="url(#goldLight)"/>
+    <path d="M31 72L58 52C64 48 71 48 77 52L103 69L81 99C78 103 74 105 70 105C65 105 61 103 58 99L31 72Z" fill="url(#goldDark)"/>
+    <path d="M48 66C48 55 57 46 68 46H72C83 46 92 55 92 66C92 77 83 86 72 86H68C57 86 48 77 48 66Z" fill="#F7F1E6"/>
+  </g>
+
+  <circle cx="132" cy="34" r="10" fill="#F59A3A"/>
+
+  <text
+    x="156"
+    y="66"
+    font-family="Segoe UI, Arial, sans-serif"
+    font-size="58"
+    font-weight="700"
+    fill="#C69A60"
+    letter-spacing="-1.2"
+  >
+    Trinexora
+  </text>
+
+  <text x="159" y="99" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5E646A" letter-spacing="0.1">
+    Right Talent. Real Execution.
+  </text>
+</svg>

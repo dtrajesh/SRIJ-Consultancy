@@ -53,7 +53,7 @@ export const industries = [
 export const testimonials = [
   {
     quote:
-      "SRIJ helped us ramp a delivery team in weeks, not months, and stayed accountable to every milestone.",
+      "Trinexora helped us ramp a delivery team in weeks, not months, and stayed accountable to every milestone.",
     name: "Director of Technology",
     company: "Regional Healthcare Group"
   },

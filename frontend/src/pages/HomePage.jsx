@@ -8,7 +8,7 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero-grid">
           <div>
-            <span className="eyebrow">IT staffing and delivery partner</span>
+            <span className="eyebrow">AI, data, and digital transformation partner</span>
             <h1>Build teams fast. Deliver projects with confidence.</h1>
             <p>
               We help organizations scale with vetted consultants, accountable delivery

@@ -13,7 +13,7 @@ export default function ContactPage() {
           />
 
           <div className="contact-info">
-            <p>Email: hello@srijtalent.com</p>
+            <p>Email: hello@trinexora.com</p>
             <p>Phone: +1 (555) 240-9810</p>
             <p>Location: Serving clients across the United States</p>
           </div>
