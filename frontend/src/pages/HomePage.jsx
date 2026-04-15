@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
-import { industries, services, stats, testimonials } from "../data/siteContent";
+import { industries, products, services, stats, technologies, testimonials } from "../data/siteContent";
 
 export default function HomePage() {
   return (
@@ -77,6 +77,44 @@ export default function HomePage() {
               <span key={industry} className="industry-tag">
                 {industry}
               </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <SectionHeader
+            eyebrow="Technologies"
+            title="Support for GenAI, data, cybersecurity, performance, and enterprise applications"
+            text="We align consultants and delivery teams to the platforms and disciplines your business already relies on, from Java and Python applications to AI-enabled delivery."
+          />
+          <div className="card-grid three-up">
+            {technologies.slice(0, 3).map((group) => (
+              <article key={group.category} className="content-card">
+                <h3>{group.category}</h3>
+                <p>{group.items.slice(0, 4).join(", ")}</p>
+                <Link to="/technologies">View full technology support</Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-muted">
+        <div className="container">
+          <SectionHeader
+            eyebrow="Products"
+            title="Solution accelerators that make delivery easier to start"
+            text="Our reusable frameworks and solution packages help clients move faster without starting from zero."
+          />
+          <div className="card-grid">
+            {products.slice(0, 2).map((product) => (
+              <article key={product.title} className="content-card product-card">
+                <h3>{product.title}</h3>
+                <p>{product.description}</p>
+                <Link to="/products">Explore products</Link>
+              </article>
             ))}
           </div>
         </div>
