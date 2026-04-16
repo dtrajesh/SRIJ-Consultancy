@@ -88,7 +88,7 @@ h6,
 }
 
 .brand-logo {
-  width: clamp(14rem, 20vw, 17rem);
+  width: clamp(15rem, 22vw, 18.5rem);
   max-width: 100%;
   height: auto;
   display: block;
