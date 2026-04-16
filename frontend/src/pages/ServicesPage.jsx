@@ -19,11 +19,6 @@ export default function ServicesPage() {
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
               </div>
-              <div className="feature-meta">
-                <span>Flexible engagement</span>
-                <span>Fast onboarding</span>
-                <span>Delivery reporting</span>
-              </div>
             </article>
           ))}
         </div>
