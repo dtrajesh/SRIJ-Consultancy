@@ -190,11 +190,11 @@ h6,
 
 .hero h1 {
   margin: 0.45rem 0 1rem;
-  font-size: clamp(2.65rem, 5vw, 4.3rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  max-width: 11ch;
-  font-weight: 800;
+  font-size: clamp(1.45rem, 2vw, 1.95rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  max-width: none;
+  font-weight: 700;
 }
 
 .hero p {
@@ -261,10 +261,10 @@ h6,
 
 .section-header h2 {
   margin: 0.5rem 0 0.85rem;
-  font-size: clamp(2.05rem, 3vw, 2.85rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  font-weight: 800;
+  font-size: clamp(1.45rem, 2vw, 1.95rem);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  font-weight: 700;
 }
 
 .section-header p,
@@ -393,6 +393,13 @@ h6,
 .cta-panel h2,
 .cta-panel p {
   margin: 0.4rem 0;
+}
+
+.cta-panel h2 {
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  line-height: 1.24;
+  letter-spacing: -0.01em;
+  font-weight: 700;
 }
 
 .cta-panel p {
