@@ -49,6 +49,33 @@ export function getAdminSubmissions(token) {
   });
 }
 
+export function getAdminHrContacts(token) {
+  return request("/admin/hr-contacts", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+export function createAdminHrContact(token, payload) {
+  return request("/admin/hr-contacts", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(payload)
+  });
+}
+
+export function deleteAdminHrContact(token, contactId) {
+  return request(`/admin/hr-contacts/${contactId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
 export function deleteAdminContact(token, submissionId) {
   return request(`/admin/contacts/${submissionId}`, {
     method: "DELETE",

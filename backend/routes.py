@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 from models import (
     ConsultationRequest,
     ContactSubmission,
+    HrContact,
     Industry,
     JobApplication,
     JobOpening,
@@ -250,6 +251,79 @@ def admin_submissions():
             ],
         }
     )
+
+
+@api.get("/admin/hr-contacts")
+@admin_required
+def get_hr_contacts():
+    contacts = HrContact.query.order_by(HrContact.created_at.desc()).all()
+    return jsonify(
+        [
+            {
+                "id": item.id,
+                "name": item.name,
+                "company": item.company,
+                "designation": item.designation,
+                "email": item.email,
+                "phone": item.phone,
+                "created_at": item.created_at.isoformat(),
+            }
+            for item in contacts
+        ]
+    )
+
+
+@api.post("/admin/hr-contacts")
+@admin_required
+def create_hr_contact():
+    payload = request.get_json(silent=True) or {}
+    required_fields = ["name", "company", "designation", "email", "phone"]
+    missing = missing_fields(payload, required_fields)
+
+    if missing:
+        return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
+
+    contact = HrContact(
+        name=payload["name"].strip(),
+        company=payload["company"].strip(),
+        designation=payload["designation"].strip(),
+        email=payload["email"].strip(),
+        phone=payload["phone"].strip(),
+    )
+    db.session.add(contact)
+    db.session.commit()
+
+    return (
+        jsonify(
+            {
+                "message": "HR contact saved successfully.",
+                "contact": {
+                    "id": contact.id,
+                    "name": contact.name,
+                    "company": contact.company,
+                    "designation": contact.designation,
+                    "email": contact.email,
+                    "phone": contact.phone,
+                    "created_at": contact.created_at.isoformat(),
+                },
+            }
+        ),
+        201,
+    )
+
+
+@api.delete("/admin/hr-contacts/<int:contact_id>")
+@admin_required
+def delete_hr_contact(contact_id):
+    contact = HrContact.query.get(contact_id)
+
+    if contact is None:
+        return jsonify({"message": "HR contact not found."}), 404
+
+    db.session.delete(contact)
+    db.session.commit()
+
+    return jsonify({"message": "HR contact deleted successfully."})
 
 
 @api.post("/admin/jobs")

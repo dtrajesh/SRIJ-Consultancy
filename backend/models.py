@@ -90,3 +90,14 @@ class JobApplication(db.Model, TimestampMixin):
     resume_original_name = db.Column(db.String(255), nullable=False)
 
     job = db.relationship("JobOpening", backref=db.backref("applications", lazy=True))
+
+
+class HrContact(db.Model, TimestampMixin):
+    __tablename__ = "hr_contacts"
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(160), nullable=False)
+    company = db.Column(db.String(160), nullable=False)
+    designation = db.Column(db.String(160), nullable=False)
+    email = db.Column(db.String(160), nullable=False)
+    phone = db.Column(db.String(40), nullable=False)

@@ -1,45 +1,60 @@
-<svg width="500" height="120" viewBox="0 0 500 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1180" height="220" viewBox="0 0 1180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="goldMain" x1="28" y1="18" x2="122" y2="104" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F7E7C8"/>
-      <stop offset="0.42" stop-color="#D7B07B"/>
-      <stop offset="1" stop-color="#9D6C35"/>
+    <linearGradient id="triBlue" x1="72" y1="34" x2="266" y2="172" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2E91E6"/>
+      <stop offset="1" stop-color="#0A3E94"/>
     </linearGradient>
-    <linearGradient id="goldLight" x1="48" y1="26" x2="87" y2="85" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF1DA"/>
-      <stop offset="1" stop-color="#C7965A"/>
+    <linearGradient id="triSlate" x1="230" y1="36" x2="388" y2="184" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#AEB6C6"/>
+      <stop offset="1" stop-color="#485266"/>
     </linearGradient>
-    <linearGradient id="goldDark" x1="36" y1="83" x2="109" y2="59" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#8C5B2C"/>
-      <stop offset="1" stop-color="#D6AF79"/>
+    <linearGradient id="triTeal" x1="84" y1="154" x2="370" y2="190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#034F78"/>
+      <stop offset="1" stop-color="#2CB5A3"/>
     </linearGradient>
-    <filter id="softShadow" x="0" y="8" width="138" height="112" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#A97746" flood-opacity="0.24"/>
+    <linearGradient id="arrowFill" x1="120" y1="156" x2="292" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F1FDFF"/>
+      <stop offset="1" stop-color="#FCFFFF"/>
+    </linearGradient>
+    <filter id="softShadow" x="12" y="18" width="1148" height="184" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#1A3049" flood-opacity="0.1"/>
     </filter>
   </defs>
 
   <g filter="url(#softShadow)">
-    <path d="M60 22C67 22 73 25 77 31L111 83C113 86 114 90 114 94C114 101 108 106 101 106H33C26 106 20 101 20 94C20 90 21 86 23 83L57 31C61 25 67 22 74 22H60Z" fill="url(#goldMain)"/>
-    <path d="M58 34C61 30 65 28 70 28C75 28 79 30 82 34L103 69L78 52C72 48 66 48 60 52L31 72L58 34Z" fill="url(#goldLight)"/>
-    <path d="M31 72L58 52C64 48 71 48 77 52L103 69L81 99C78 103 74 105 70 105C65 105 61 103 58 99L31 72Z" fill="url(#goldDark)"/>
-    <path d="M48 66C48 55 57 46 68 46H72C83 46 92 55 92 66C92 77 83 86 72 86H68C57 86 48 77 48 66Z" fill="#F7F1E6"/>
+    <path d="M234 28L72 164L234 116V28Z" fill="url(#triBlue)"/>
+    <path d="M242 28L242 114L390 188L242 28Z" fill="url(#triSlate)"/>
+    <path d="M72 164L390 188L242 114L72 164Z" fill="url(#triTeal)"/>
+
+    <path d="M236 34L242 28L242 114L233 117L236 34Z" fill="#F5FAFE" opacity="0.95"/>
+    <path d="M239 112L385 186" stroke="#EDF6FC" stroke-width="3.5" stroke-linecap="round" opacity="0.9"/>
+
+    <circle cx="176" cy="92" r="21" fill="#F8FBFF"/>
+    <path d="M149 124C154 110 163 103 169 103H183C190 103 201 111 207 124L193 150L186 125L180 130L174 125L167 150L149 124Z" fill="#F8FBFF"/>
+    <path d="M118 156C123 149 129 138 136 130C143 122 150 124 155 131L163 142L175 130L188 145L179 173L162 152L152 173L141 149L129 158C124 162 117 162 112 158L94 145C89 141 88 133 93 128C98 123 105 123 110 130L118 140V156Z" fill="#F8FBFF"/>
+    <path d="M115 154L95 145C89 142 86 136 90 129C94 122 101 122 107 128L115 136L132 118C137 112 145 114 149 120C153 126 151 133 145 138L128 156C124 160 119 160 115 154Z" fill="#F8FBFF"/>
+
+    <rect x="272" y="82" width="84" height="58" rx="8" fill="#F8FBFF"/>
+    <rect x="281" y="90" width="66" height="42" rx="4" fill="#646E82"/>
+    <rect x="306" y="143" width="17" height="9" rx="3" fill="#F8FBFF"/>
+    <rect x="296" y="152" width="36" height="6" rx="3" fill="#F8FBFF"/>
+    <circle cx="379" cy="150" r="13" fill="#F8FBFF"/>
+    <circle cx="359" cy="166" r="10" fill="#F8FBFF"/>
+    <circle cx="390" cy="177" r="8" fill="#F8FBFF"/>
+    <path d="M367 157L362 160M371 160L384 170" stroke="#5F697D" stroke-width="2.5" stroke-linecap="round"/>
+
+    <path d="M124 168C164 176 213 174 255 160C279 152 301 139 319 120L334 127L306 156L294 145C265 170 229 183 188 187C160 189 136 186 117 180L124 168Z" fill="url(#arrowFill)"/>
+    <path d="M126 168C164 176 213 174 255 160C279 152 301 139 319 120" stroke="#F6FBFD" stroke-width="5" stroke-linecap="round"/>
+    <path d="M308 126L334 127L322 148" stroke="#F6FBFD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="470" y="112" font-family="'Segoe UI', Arial, sans-serif" font-size="84" font-weight="800" letter-spacing="1" fill="#424B60">
+      TRINEXORA
+    </text>
+
+    <path d="M525 160H674" stroke="#1B79BC" stroke-width="5" stroke-linecap="round"/>
+    <text x="700" y="171" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="6" fill="#445064">
+      IT SERVICES
+    </text>
+    <path d="M944 160H1094" stroke="#2A9C8B" stroke-width="5" stroke-linecap="round"/>
   </g>
-
-  <circle cx="132" cy="34" r="10" fill="#F59A3A"/>
-
-  <text
-    x="156"
-    y="66"
-    font-family="Segoe UI, Arial, sans-serif"
-    font-size="58"
-    font-weight="700"
-    fill="#C69A60"
-    letter-spacing="-1.2"
-  >
-    Trinexora
-  </text>
-
-  <text x="159" y="99" font-family="Segoe UI, Arial, sans-serif" font-size="20" fill="#5E646A" letter-spacing="0.1">
-    Right Talent. Real Execution.
-  </text>
 </svg>

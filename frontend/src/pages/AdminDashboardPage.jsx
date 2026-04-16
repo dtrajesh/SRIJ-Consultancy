@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AdminJobForm from "../components/AdminJobForm";
 import {
   deleteAdminApplication,
@@ -228,9 +228,14 @@ export default function AdminDashboardPage() {
             <h1>Website leads</h1>
             <p>Logged in as {username}</p>
           </div>
-          <button className="button button-secondary" type="button" onClick={handleLogout}>
-            Logout
-          </button>
+          <div className="admin-actions">
+            <Link className="button button-secondary" to="/admin/hr-contacts">
+              HR Contacts
+            </Link>
+            <button className="button button-secondary" type="button" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </div>
 
         {status.type === "loading" ? <p className="form-status loading">{status.message}</p> : null}
