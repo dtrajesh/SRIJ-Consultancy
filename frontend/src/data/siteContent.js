@@ -72,48 +72,42 @@ export const testimonials = [
 ];
 
 export const stats = [
-  { value: "250+", label: "Consultants in network" },
-  { value: "32", label: "Projects delivered" },
-  { value: "98%", label: "Client retention" },
-  { value: "24/7", label: "Support readiness" }
+  { value: "250+", label: "Skilled Consultants Across Technologies" },
+  { value: "50+", label: "Successful Project Deliveries" },
+  { value: "98%", label: "Client Retention Rate" },
+  { value: "24/7", label: "Global Delivery & Support" }
 ];
 
 export const products = [
   {
-    title: "Talent Pipeline Accelerator",
+    title: "QA Automation Accelerator",
     description:
-      "A structured hiring workflow package for faster screening, role matching, and consultant onboarding.",
-    useCase: "Best for teams hiring across multiple technical roles at once."
+      "Pre-built automation framework with reusable test scripts, CI/CD integration, and reporting dashboards to accelerate test coverage and reduce release risk.",
+    useCase: "Highlights: Selenium/Cypress-ready setup, API + UI automation, CI/CD integration."
   },
   {
-    title: "Delivery Visibility Dashboard",
+    title: "Cloud Migration Accelerator",
     description:
-      "A reporting framework that brings project health, team utilization, milestones, and risks into one view.",
-    useCase: "Best for outsourced or hybrid delivery engagements that need clear governance."
+      "Structured migration framework for seamless transition to AWS or Azure with minimal downtime, cost optimization, and security best practices.",
+    useCase: "Highlights: assessment + roadmap, lift-and-shift or modernization, cost optimization."
   },
   {
-    title: "QA Automation Starter Kit",
+    title: "DevOps Automation Suite",
     description:
-      "A reusable automation baseline for UI, API, and regression testing with delivery-ready conventions.",
-    useCase: "Best for clients that want faster release cycles with better test coverage."
+      "Delivery accelerator for streamlining engineering operations through standardized CI/CD pipelines, infrastructure automation, and faster release execution.",
+    useCase: "Highlights: CI/CD pipelines, Infrastructure as Code, deployment automation."
   },
   {
-    title: "Cloud Migration Blueprint",
+    title: "Performance Testing Accelerator",
     description:
-      "A repeatable migration and modernization framework covering discovery, rollout planning, and stabilization.",
-    useCase: "Best for organizations moving legacy workloads into modern cloud environments."
+      "Performance engineering toolkit for validating load readiness, identifying bottlenecks, and improving scalability before production rollouts.",
+    useCase: "Highlights: JMeter/load testing, bottleneck analysis, scalability validation."
   },
   {
-    title: "Enterprise GenAI Enablement Kit",
+    title: "Data Insights Accelerator",
     description:
-      "A practical accelerator for GenAI use cases, internal knowledge assistants, prompt workflows, and governance-ready rollout planning.",
-    useCase: "Best for teams exploring AI-powered productivity, search, support, or analytics workflows."
-  },
-  {
-    title: "Application Modernization Accelerator",
-    description:
-      "A reusable approach for upgrading Java and Python-based business applications with better observability, performance, and maintainability.",
-    useCase: "Best for organizations modernizing legacy applications without disrupting business operations."
+      "Analytics-focused accelerator for building dependable data pipelines, business intelligence dashboards, and reporting workflows that improve visibility and decision-making.",
+    useCase: "Highlights: data pipelines, BI dashboards, reporting automation."
   }
 ];
 

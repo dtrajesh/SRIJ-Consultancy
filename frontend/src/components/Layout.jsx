@@ -44,28 +44,35 @@ export default function Layout() {
 
       <footer className="site-footer">
         <div className="container footer-grid">
-          <div>
+          <div className="footer-section footer-brand">
             <img className="footer-brand-logo" src={brandLogo} alt="Trinexora logo" />
             <p>
-              Talent delivered with execution-first thinking across AI, data, applications,
-              and digital transformation programs.
+              Building high-performance teams for AI, data, and digital
+              transformation.
+              <br />
+              Helping organizations scale faster with expert talent and reliable
+              delivery.
             </p>
           </div>
-          <div>
+          <div className="footer-section">
             <h4>Explore</h4>
-            <NavLink to="/services">Services</NavLink>
-            <NavLink to="/industries">Industries</NavLink>
-            <NavLink to="/technologies">Technologies</NavLink>
-            <NavLink to="/products">Products</NavLink>
-            <NavLink to="/careers">Careers</NavLink>
-            <NavLink to="/about">About</NavLink>
+            <div className="footer-links">
+              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/industries">Industries</NavLink>
+              <NavLink to="/technologies">Technologies</NavLink>
+              <NavLink to="/products">Products</NavLink>
+              <NavLink to="/careers">Careers</NavLink>
+              <NavLink to="/about">About</NavLink>
+            </div>
           </div>
-          <div>
+          <div className="footer-section">
             <h4>Connect</h4>
-            <NavLink to="/contact">Contact</NavLink>
-            <NavLink to="/get-started">Get Started</NavLink>
-            <NavLink to="/admin/login">Admin</NavLink>
-            <a href="mailto:hello@trinexora.com">hello@trinexora.com</a>
+            <div className="footer-links">
+              <NavLink to="/contact">Contact</NavLink>
+              <NavLink to="/get-started">Get Started</NavLink>
+              <NavLink to="/admin/login">Admin</NavLink>
+              <a href="mailto:hello@trinexora.com">hello@trinexora.com</a>
+            </div>
           </div>
         </div>
       </footer>

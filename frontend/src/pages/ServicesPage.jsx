@@ -7,9 +7,10 @@ export default function ServicesPage() {
     <section className="section page-intro">
       <div className="container">
         <SectionHeader
+          className="services-page-header"
           eyebrow="What We Do"
-          title="Services designed for speed, stability, and delivery ownership"
-          text="Whether you need an individual specialist or a full managed pod, Trinexora offers flexible engagement options backed by transparent communication."
+          title="Services built for speed, reliability, and accountable delivery"
+          text="We provide flexible engagement models from individual specialists to fully managed teams ensuring seamless execution, transparent communication, and measurable outcomes."
         />
 
         <div className="stack-grid">
@@ -23,8 +24,14 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        <div className="cta-inline">
-          <p>Need help selecting the right model for your project?</p>
+        <div className="cta-inline services-cta-inline">
+          <div>
+            <h3>Not sure which engagement model fits your needs?</h3>
+            <p>
+              Get expert guidance on choosing the right approach for your timeline,
+              budget, and delivery goals.
+            </p>
+          </div>
           <Link className="button button-primary" to="/get-started">
             Talk to Our Team
           </Link>
