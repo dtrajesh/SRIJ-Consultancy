@@ -16,7 +16,12 @@ export default function ServicesPage() {
         <div className="card-grid">
           {services.map((service) => (
             <article key={service.title} className="content-card service-detail-card">
-              <h3>{service.title}</h3>
+              <div className="service-detail-card-header">
+                <span className="home-service-icon" aria-hidden="true">
+                  {service.icon}
+                </span>
+                <h3>{service.title}</h3>
+              </div>
               <p>{service.description}</p>
               <Link to="/get-started">Explore Solution →</Link>
             </article>

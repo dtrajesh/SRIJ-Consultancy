@@ -1037,6 +1037,12 @@ textarea {
   margin: 0;
 }
 
+.service-detail-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+}
+
 .service-detail-card p {
   margin: 0;
 }
