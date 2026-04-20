@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import brandLogo from "../assets/trinexora-logo-clean.png";
+import brandLogo from "../assets/trinexora-logo-transparent.png";
 
 const navItems = [
   { label: "Home", to: "/" },

@@ -13,23 +13,22 @@ export default function ServicesPage() {
           text="We provide flexible engagement models from individual specialists to fully managed teams ensuring seamless execution, transparent communication, and measurable outcomes."
         />
 
-        <div className="stack-grid">
+        <div className="card-grid">
           {services.map((service) => (
-            <article key={service.title} className="feature-panel">
-              <div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
+            <article key={service.title} className="content-card service-detail-card">
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <Link to="/get-started">Explore Solution →</Link>
             </article>
           ))}
         </div>
 
         <div className="cta-inline services-cta-inline">
           <div>
-            <h3>Not sure which engagement model fits your needs?</h3>
+            <h3>Selecting the right engagement model is critical to project success.</h3>
             <p>
-              Get expert guidance on choosing the right approach for your timeline,
-              budget, and delivery goals.
+              We provide expert consultation to align your delivery strategy with your
+              business goals, timelines, and budget expectations.
             </p>
           </div>
           <Link className="button button-primary" to="/get-started">
