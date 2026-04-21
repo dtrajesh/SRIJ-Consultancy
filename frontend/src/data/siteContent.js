@@ -1,43 +1,51 @@
 export const services = [
   {
-    title: "IT Staffing",
+    icon: "👥",
+    title: "IT Staffing & Augmentation",
     description:
-      "Pre-vetted consultants for software engineering, QA, cloud operations, data, and product delivery."
+      "Access pre-vetted, highly skilled professionals across engineering, QA, cloud, and data ready to contribute from day one."
   },
   {
+    icon: "🚀",
     title: "Project Outsourcing",
     description:
-      "Outcome-driven delivery teams that manage planning, execution, reporting, and continuous improvement."
+      "End-to-end ownership of software delivery with dedicated teams managing planning, execution, and continuous improvement."
   },
   {
-    title: "Data & Cloud",
+    icon: "☁️",
+    title: "Cloud & Data Engineering",
     description:
-      "Modern analytics, platform migration, reporting pipelines, and cost-conscious cloud engineering."
+      "Design scalable cloud architectures, enable seamless migrations, and build modern data pipelines for real-time insights."
   },
   {
-    title: "GenAI & Data Science",
+    icon: "🤖",
+    title: "AI & Data Solutions",
     description:
-      "Generative AI initiatives, data science solutions, model integration, and intelligent workflow support for business teams."
+      "Leverage AI, machine learning, and advanced analytics to automate workflows and unlock data-driven decision making."
   },
   {
-    title: "Cybersecurity & Performance Engineering",
+    icon: "🛡️",
+    title: "Cybersecurity & Performance",
     description:
-      "Security-focused delivery, vulnerability-aware application support, load testing, and performance optimization."
+      "Strengthen application security, ensure compliance, and optimize performance with proactive monitoring and testing."
   },
   {
-    title: "Application Support",
+    icon: "⚙️",
+    title: "Application Support & Maintenance",
     description:
-      "L1 to L3 support coverage, incident response, release coordination, and production stability services."
+      "Ensure system stability with 24/7 support, incident management, and continuous enhancements."
   },
   {
-    title: "QA & Automation",
+    icon: "🔄",
+    title: "QA & Test Automation",
     description:
-      "Functional, regression, API, and automation testing strategies that reduce release risk."
+      "Improve product quality with robust manual and automated testing strategies that reduce release risk."
   },
   {
-    title: "Transformation Consulting",
+    icon: "📊",
+    title: "Digital Transformation Consulting",
     description:
-      "Delivery advisory, process optimization, and operating-model support for scaling organizations."
+      "Align technology with business strategy through process optimization, modernization, and scalable delivery models."
   }
 ];
 
