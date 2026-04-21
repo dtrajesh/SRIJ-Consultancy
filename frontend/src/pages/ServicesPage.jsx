@@ -1,35 +1,88 @@
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { services } from "../data/siteContent";
 
 export default function ServicesPage() {
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [activePreviewTitle, setActivePreviewTitle] = useState(null);
+  const hoverLockUntilRef = useRef(0);
+
   const handlePreviewOpen = (event) => {
+    const trigger = event.currentTarget;
+    const previewTitle = trigger.dataset.previewTitle;
+    const now = Date.now();
+
+    if (activePreviewTitle && activePreviewTitle !== previewTitle && now < hoverLockUntilRef.current) {
+      return;
+    }
+
+    setIsPreviewOpen(true);
+    setActivePreviewTitle(previewTitle);
+
     window.requestAnimationFrame(() => {
-      const preview = event.currentTarget.querySelector(".service-preview-card");
-      if (!preview) {
-        return;
-      }
+      window.requestAnimationFrame(() => {
+        const preview = trigger.querySelector(".service-preview-card");
+        if (!preview) {
+          return;
+        }
+        if (trigger.dataset.previewPosition?.startsWith("up")) {
+          preview.classList.remove("service-preview-card-flip");
+          return;
+        }
 
-      const previewBounds = preview.getBoundingClientRect();
-      const viewportBottom = window.innerHeight - 24;
-      const headerHeight = document.querySelector(".site-header")?.offsetHeight ?? 0;
+        const previewBounds = preview.getBoundingClientRect();
+        const viewportBottom = window.innerHeight - 48;
+        const viewportRight = window.innerWidth - 24;
+        const headerHeight = document.querySelector(".site-header")?.offsetHeight ?? 0;
+        const desiredTop = headerHeight + 96;
 
-      if (previewBounds.bottom > viewportBottom) {
-        window.scrollBy({
-          top: previewBounds.bottom - viewportBottom,
-          behavior: "smooth"
-        });
-      } else if (previewBounds.top < headerHeight + 16) {
-        window.scrollBy({
-          top: previewBounds.top - headerHeight - 16,
-          behavior: "smooth"
-        });
-      }
+        if (previewBounds.right > viewportRight) {
+          preview.classList.add("service-preview-card-flip");
+        } else {
+          preview.classList.remove("service-preview-card-flip");
+        }
+
+        if (previewBounds.bottom > viewportBottom) {
+          hoverLockUntilRef.current = Date.now() + 900;
+          const overflow = previewBounds.bottom - viewportBottom + 32;
+          const maxScrollBeforeTopGetsTooHigh = Math.max(previewBounds.top - desiredTop, 0);
+          window.scrollBy({
+            top: Math.min(overflow, maxScrollBeforeTopGetsTooHigh || overflow),
+            behavior: "smooth"
+          });
+        } else if (previewBounds.top < desiredTop) {
+          hoverLockUntilRef.current = Date.now() + 900;
+          window.scrollBy({
+            top: previewBounds.top - desiredTop,
+            behavior: "smooth"
+          });
+        }
+      });
     });
   };
 
+  const handlePreviewBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      hoverLockUntilRef.current = 0;
+      setIsPreviewOpen(false);
+      setActivePreviewTitle(null);
+    }
+  };
+
+  const handlePreviewLeave = (event) => {
+    if (Date.now() < hoverLockUntilRef.current) {
+      return;
+    }
+
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setIsPreviewOpen(false);
+      setActivePreviewTitle(null);
+    }
+  };
+
   return (
-    <section className="section page-intro">
+    <section className={`section page-intro${isPreviewOpen ? " services-preview-open" : ""}`}>
       <div className="container">
         <SectionHeader
           className="services-page-header"
@@ -39,7 +92,7 @@ export default function ServicesPage() {
         />
 
         <div className="card-grid">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <article key={service.title} className="content-card service-detail-card">
               <div className="service-detail-card-header">
                 <span className="home-service-icon" aria-hidden="true">
@@ -48,53 +101,70 @@ export default function ServicesPage() {
                 <h3>{service.title}</h3>
               </div>
               <p>{service.description}</p>
-              {index === 0 ? (
-                <div
-                  className="service-preview-trigger"
-                  onMouseEnter={handlePreviewOpen}
-                  onFocus={handlePreviewOpen}
-                >
-                  <Link to="/get-started">Explore Solution →</Link>
-                  <div className="service-preview-card" aria-hidden="true">
-                    <div className="service-preview-window">
-                      <span className="service-preview-close">×</span>
-                      <h4>Talent Solutions Overview</h4>
-                      <div className="service-preview-grid">
-                        <div className="service-preview-panel">
-                          <strong>💼 Our Services</strong>
-                          <ul>
-                            <li>IT Staff Augmentation</li>
-                            <li>Dedicated Development Teams</li>
-                            <li>Contract &amp; Contract-to-Hire</li>
-                            <li>Project-Based Delivery</li>
-                          </ul>
-                        </div>
-                        <div className="service-preview-panel">
-                          <strong>🏗 Talent Areas</strong>
-                          <ul>
-                            <li>Software Engineering</li>
-                            <li>QA &amp; Automation</li>
-                            <li>Cloud &amp; DevOps</li>
-                            <li>Data Engineering</li>
-                          </ul>
-                        </div>
+              {service.deliverables && (
+                <div className="service-deliverables">
+                  <strong>{service.deliverablesLabel || "What we deliver:"}</strong>
+                  <ul>
+                    {service.deliverables.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {service.outcome && (
+                <p className="service-outcome">
+                  <span aria-hidden="true">👉</span> {service.outcomeLabel || "Outcome"}: {service.outcome}
+                </p>
+              )}
+              <div
+                className={`service-preview-trigger${
+                  activePreviewTitle === service.title ? " service-preview-trigger-open" : ""
+                }`}
+                data-preview-title={service.title}
+                data-preview-position={
+                  service.title === "Talent Advisory & Workforce Strategy"
+                    ? "up"
+                    : "up-low"
+                }
+                onMouseEnter={handlePreviewOpen}
+                onMouseLeave={handlePreviewLeave}
+                onFocus={handlePreviewOpen}
+                onBlur={handlePreviewBlur}
+              >
+                <Link to="/get-started">Explore Solution →</Link>
+                <div className="service-preview-card" aria-hidden="true">
+                  <div className="service-preview-window">
+                    <span className="service-preview-close">×</span>
+                    <h4>{service.title}</h4>
+                    <p className="service-preview-summary">{service.description}</p>
+                    <div className="service-preview-grid">
+                      <div className="service-preview-panel">
+                        <strong>{service.deliverablesLabel || "What we deliver:"}</strong>
+                        <ul>
+                          {(service.deliverables || [service.description]).map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
                       </div>
-                      <div className="service-preview-benefits">
-                        <strong>✅ Key Benefits</strong>
-                        <span>Pre-vetted professionals</span>
-                        <span>48-72 hour onboarding</span>
-                        <span>Scalable teams</span>
+                      <div className="service-preview-panel">
+                        <strong>{service.outcomeLabel || "Outcome"}</strong>
+                        <p>{service.outcome || "A focused solution aligned to your hiring and delivery goals."}</p>
                       </div>
-                      <div className="service-preview-actions">
-                        <span>View Talent Pool</span>
-                        <span>Request a Consultant →</span>
-                      </div>
+                    </div>
+                    <div className="service-preview-benefits">
+                      <strong>✅ Key Benefits</strong>
+                      {(service.deliverables || []).slice(0, 3).map((item) => (
+                        <span key={item}>{item}</span>
+                      ))}
+                      {service.deliverablesLabel && <span>Global reach</span>}
+                    </div>
+                    <div className="service-preview-actions">
+                      <Link to="/careers">View Talent Pool</Link>
+                      <Link to="/get-started">Request a Consultant →</Link>
                     </div>
                   </div>
                 </div>
-              ) : (
-                <Link to="/get-started">Explore Solution →</Link>
-              )}
+              </div>
             </article>
           ))}
         </div>

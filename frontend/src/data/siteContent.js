@@ -1,51 +1,109 @@
 export const services = [
   {
-    icon: "👥",
-    title: "IT Staffing & Augmentation",
+    icon: "🧠",
+    title: "Talent Advisory & Workforce Strategy",
     description:
-      "Access pre-vetted, highly skilled professionals across engineering, QA, cloud, and data ready to contribute from day one."
+      "We help you define what to hire before you start hiring.",
+    deliverables: [
+      "Workforce planning aligned with business goals",
+      "Skill gap analysis & future talent forecasting",
+      "Role definition & job architecture design",
+      "Hiring model optimization (cost vs speed vs quality)"
+    ],
+    outcome: "Build the right team structure before spending on hiring."
   },
   {
-    icon: "🚀",
-    title: "Project Outsourcing",
+    icon: "🏢",
+    title: "Dedicated Offshore / Nearshore Teams",
     description:
-      "End-to-end ownership of software delivery with dedicated teams managing planning, execution, and continuous improvement."
-  },
-  {
-    icon: "☁️",
-    title: "Cloud & Data Engineering",
-    description:
-      "Design scalable cloud architectures, enable seamless migrations, and build modern data pipelines for real-time insights."
-  },
-  {
-    icon: "🤖",
-    title: "AI & Data Solutions",
-    description:
-      "Leverage AI, machine learning, and advanced analytics to automate workflows and unlock data-driven decision making."
-  },
-  {
-    icon: "🛡️",
-    title: "Cybersecurity & Performance",
-    description:
-      "Strengthen application security, ensure compliance, and optimize performance with proactive monitoring and testing."
+      "Your extended engineering arm without operational complexity.",
+    deliverables: [
+      "Dedicated development, QA, DevOps, and cloud teams",
+      "Fully managed or client-controlled delivery pods",
+      "Flexible team scaling (up or down on demand)",
+      "Long-term or project-based engagement models"
+    ],
+    outcome: "Build high-performing remote teams that act as your own."
   },
   {
     icon: "⚙️",
-    title: "Application Support & Maintenance",
+    title: "Contract-to-Hire Solutions",
     description:
-      "Ensure system stability with 24/7 support, incident management, and continuous enhancements."
+      "Reduce hiring risk with real-world validation.",
+    deliverables: [
+      "Short-term contract talent with conversion option",
+      "Performance-based hiring evaluation",
+      "Faster onboarding with pre-vetted candidates",
+      "Reduced hiring failure rates"
+    ],
+    outcome: "Hire confidently after real performance assessment."
+  },
+  {
+    icon: "🎯",
+    title: "Executive & Niche Hiring (Leadership & Specialized Roles)",
+    description:
+      "We find talent that is not actively available in the market.",
+    deliverables: [
+      "CXO, VP, Director & Architect-level hiring",
+      "AI/ML, Data Engineering, Cloud leadership roles",
+      "Confidential and retained search support",
+      "Deep market mapping & headhunting"
+    ],
+    outcome: "Secure rare, high-impact leadership talent."
+  },
+  {
+    icon: "☁️",
+    title: "Cloud & Digital Transformation Talent Pods",
+    description:
+      "Power your modernization journey with specialized teams.",
+    deliverables: [
+      "AWS / Azure / GCP certified engineers",
+      "DevOps, SRE, and platform engineering teams",
+      "Data engineering & analytics specialists",
+      "Digital transformation-focused staffing pods"
+    ],
+    outcome: "Accelerate cloud adoption with ready expertise."
   },
   {
     icon: "🔄",
-    title: "QA & Test Automation",
+    title: "Rapid Hiring & On-Demand Staffing",
     description:
-      "Improve product quality with robust manual and automated testing strategies that reduce release risk."
+      "When speed becomes critical, we deliver immediately.",
+    deliverables: [
+      "24–72 hour candidate turnaround",
+      "Access to pre-vetted talent pool",
+      "Bulk hiring for project ramp-ups",
+      "Short-term and long-term staffing support"
+    ],
+    outcome: "Eliminate delays in critical project execution."
   },
   {
     icon: "📊",
-    title: "Digital Transformation Consulting",
+    title: "Managed Recruitment Services (RPO Model)",
     description:
-      "Align technology with business strategy through process optimization, modernization, and scalable delivery models."
+      "We become your extended recruitment function.",
+    deliverables: [
+      "End-to-end recruitment lifecycle management",
+      "Dedicated recruiter teams for your organization",
+      "ATS integration & pipeline management",
+      "Employer branding support"
+    ],
+    outcome: "Scalable, structured, and predictable hiring engine."
+  },
+  {
+    icon: "🌐",
+    title: "Global Talent Sourcing",
+    description:
+      "Access talent beyond local markets.",
+    deliverablesLabel: "What you offer:",
+    deliverables: [
+      "Offshore talent acquisition",
+      "Cross-border hiring support",
+      "Compliance-aware staffing",
+      "Time-zone aligned teams"
+    ],
+    outcomeLabel: "Value",
+    outcome: "Hire without boundaries"
   }
 ];
 
