@@ -2088,8 +2088,8 @@ textarea {
 .service-detail-card {
   display: grid;
   gap: 1.55rem;
-  min-height: 10.5rem;
-  padding: 1.65rem;
+  min-height: 12rem;
+  padding: 1.9rem;
   position: relative;
 }
 
@@ -2111,6 +2111,7 @@ textarea {
   align-self: end;
   color: var(--accent-dark);
   font-weight: 800;
+  font-size: 1.05rem;
 }
 
 .service-preview-trigger {
@@ -2120,11 +2121,12 @@ textarea {
 
 .service-preview-card {
   position: absolute;
-  left: 100%;
-  top: calc(100% + 0.35rem);
-  width: min(40rem, calc(100vw - 4rem));
-  min-height: 25rem;
-  padding: 3rem 2.7rem;
+  left: 0;
+  top: calc(100% + 0.85rem);
+  width: min(58rem, calc(100vw - 4rem));
+  max-height: min(38rem, calc(100vh - 3rem));
+  overflow-y: auto;
+  padding: clamp(2rem, 4vw, 4rem);
   border-radius: 0.9rem;
   background:
     radial-gradient(circle at 18% 22%, rgba(56, 189, 248, 0.55), transparent 30%),
@@ -2133,9 +2135,26 @@ textarea {
   box-shadow: 0 24px 52px rgba(12, 42, 84, 0.28);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-0.45rem) scale(0.98);
+  transform: translateY(-0.35rem) scale(0.98);
+  transform-origin: top left;
   transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
-  z-index: 4;
+  z-index: 60;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.72) rgba(8, 45, 92, 0.35);
+}
+
+.service-preview-card::-webkit-scrollbar {
+  width: 0.65rem;
+}
+
+.service-preview-card::-webkit-scrollbar-track {
+  background: rgba(8, 45, 92, 0.35);
+  border-radius: 999px;
+}
+
+.service-preview-card::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
 }
 
 .service-preview-trigger:hover .service-preview-card,
@@ -2148,11 +2167,11 @@ textarea {
 .service-preview-window {
   position: relative;
   display: grid;
-  gap: 0.75rem;
-  max-width: 31rem;
+  gap: 1rem;
+  max-width: 44rem;
   margin: 0 auto;
-  padding: 1.55rem;
-  border-radius: 0.3rem;
+  padding: clamp(1.5rem, 3vw, 2.35rem);
+  border-radius: 0.45rem;
   background: rgba(255, 255, 255, 0.94);
   box-shadow: 0 18px 40px rgba(8, 28, 58, 0.25);
 }
@@ -2161,7 +2180,7 @@ textarea {
   margin: 0;
   text-align: center;
   color: #143f78;
-  font-size: 0.95rem;
+  font-size: 1.18rem;
   font-weight: 800;
 }
 
@@ -2177,7 +2196,7 @@ textarea {
 .service-preview-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 .service-preview-panel,
@@ -2185,7 +2204,7 @@ textarea {
   border: 1px solid rgba(215, 226, 234, 0.9);
   border-radius: 0.25rem;
   background: #ffffff;
-  padding: 0.8rem;
+  padding: 1rem;
 }
 
 .service-preview-panel strong,
@@ -2193,48 +2212,49 @@ textarea {
   display: block;
   margin-bottom: 0.35rem;
   color: #0d5f86;
-  font-size: 0.78rem;
+  font-size: 0.94rem;
   font-weight: 800;
 }
 
 .service-preview-panel ul {
   display: grid;
-  gap: 0.35rem;
-  margin: 0;
-  padding-left: 0.65rem;
+  gap: 0.5rem;
+  margin: 0.2rem 0 0;
+  padding-left: 1rem;
   color: #21384c;
-  font-size: 0.68rem;
-  line-height: 1.45;
+  font-size: 0.86rem;
+  line-height: 1.5;
 }
 
 .service-preview-benefits {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.5rem 0.9rem;
+  gap: 0.75rem 1.25rem;
 }
 
 .service-preview-benefits span {
   color: #21384c;
-  font-size: 0.68rem;
+  font-size: 0.86rem;
 }
 
 .service-preview-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.7rem;
+  gap: 0.9rem;
 }
 
 .service-preview-actions span {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  min-height: 2rem;
+  min-height: 2.75rem;
   border: 1px solid #2b74cc;
   border-radius: 0.18rem;
   color: #174c91;
-  font-size: 0.7rem;
+  font-size: 0.88rem;
   font-weight: 800;
+  text-align: center;
 }
 
 .service-preview-actions span:last-child {
@@ -2422,6 +2442,17 @@ textarea {
     left: 1rem;
     right: 1rem;
     width: min(13.75rem, calc(100vw - 2rem));
+  }
+
+  .service-preview-card {
+    width: min(38rem, calc(100vw - 4rem));
+    max-height: calc(100vh - 2rem);
+    padding: 1.25rem;
+  }
+
+  .service-preview-grid,
+  .service-preview-actions {
+    grid-template-columns: 1fr;
   }
 
   .brand-logo,

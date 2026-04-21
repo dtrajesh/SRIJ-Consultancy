@@ -3,6 +3,31 @@ import SectionHeader from "../components/SectionHeader";
 import { services } from "../data/siteContent";
 
 export default function ServicesPage() {
+  const handlePreviewOpen = (event) => {
+    window.requestAnimationFrame(() => {
+      const preview = event.currentTarget.querySelector(".service-preview-card");
+      if (!preview) {
+        return;
+      }
+
+      const previewBounds = preview.getBoundingClientRect();
+      const viewportBottom = window.innerHeight - 24;
+      const headerHeight = document.querySelector(".site-header")?.offsetHeight ?? 0;
+
+      if (previewBounds.bottom > viewportBottom) {
+        window.scrollBy({
+          top: previewBounds.bottom - viewportBottom,
+          behavior: "smooth"
+        });
+      } else if (previewBounds.top < headerHeight + 16) {
+        window.scrollBy({
+          top: previewBounds.top - headerHeight - 16,
+          behavior: "smooth"
+        });
+      }
+    });
+  };
+
   return (
     <section className="section page-intro">
       <div className="container">
@@ -24,7 +49,11 @@ export default function ServicesPage() {
               </div>
               <p>{service.description}</p>
               {index === 0 ? (
-                <div className="service-preview-trigger">
+                <div
+                  className="service-preview-trigger"
+                  onMouseEnter={handlePreviewOpen}
+                  onFocus={handlePreviewOpen}
+                >
                   <Link to="/get-started">Explore Solution →</Link>
                   <div className="service-preview-card" aria-hidden="true">
                     <div className="service-preview-window">
