@@ -14,7 +14,7 @@ export default function ServicesPage() {
         />
 
         <div className="card-grid">
-          {services.map((service) => (
+          {services.map((service, index) => (
             <article key={service.title} className="content-card service-detail-card">
               <div className="service-detail-card-header">
                 <span className="home-service-icon" aria-hidden="true">
@@ -23,7 +23,49 @@ export default function ServicesPage() {
                 <h3>{service.title}</h3>
               </div>
               <p>{service.description}</p>
-              <Link to="/get-started">Explore Solution →</Link>
+              {index === 0 ? (
+                <div className="service-preview-trigger">
+                  <Link to="/get-started">Explore Solution →</Link>
+                  <div className="service-preview-card" aria-hidden="true">
+                    <div className="service-preview-window">
+                      <span className="service-preview-close">×</span>
+                      <h4>Talent Solutions Overview</h4>
+                      <div className="service-preview-grid">
+                        <div className="service-preview-panel">
+                          <strong>💼 Our Services</strong>
+                          <ul>
+                            <li>IT Staff Augmentation</li>
+                            <li>Dedicated Development Teams</li>
+                            <li>Contract &amp; Contract-to-Hire</li>
+                            <li>Project-Based Delivery</li>
+                          </ul>
+                        </div>
+                        <div className="service-preview-panel">
+                          <strong>🏗 Talent Areas</strong>
+                          <ul>
+                            <li>Software Engineering</li>
+                            <li>QA &amp; Automation</li>
+                            <li>Cloud &amp; DevOps</li>
+                            <li>Data Engineering</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="service-preview-benefits">
+                        <strong>✅ Key Benefits</strong>
+                        <span>Pre-vetted professionals</span>
+                        <span>48-72 hour onboarding</span>
+                        <span>Scalable teams</span>
+                      </div>
+                      <div className="service-preview-actions">
+                        <span>View Talent Pool</span>
+                        <span>Request a Consultant →</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link to="/get-started">Explore Solution →</Link>
+              )}
             </article>
           ))}
         </div>
