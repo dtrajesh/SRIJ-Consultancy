@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import brandLogo from "../assets/trinexora-logo-transparent.png";
+import headerLogo from "../assets/trinexora-dark-logo.png";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -64,7 +64,7 @@ export default function Layout() {
       <header className="site-header">
         <div className="container header-row">
           <NavLink className="brand" to="/">
-            <img className="brand-logo" src={brandLogo} alt="Trinexora logo" />
+            <img className="brand-logo" src={headerLogo} alt="Trinexora logo" />
           </NavLink>
 
           <nav className="nav">
@@ -133,7 +133,7 @@ export default function Layout() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-section footer-brand">
-            <img className="footer-brand-logo" src={brandLogo} alt="Trinexora logo" />
+            <img className="footer-brand-logo" src={headerLogo} alt="Trinexora logo" />
             <p>
               Building high-performance teams for AI, data, and digital
               transformation.
