@@ -37,19 +37,43 @@ export default function GetStartedForm() {
   }
 
   return (
-    <form className="form-card" onSubmit={handleSubmit}>
+    <form className="form-card get-started-form" onSubmit={handleSubmit}>
+      <div className="get-started-form-header">
+        <h2>Get In Touch</h2>
+        <p>Partner with us to tackle your IT challenges and drive success.</p>
+      </div>
+
       <div className="form-grid">
         <label>
-          Name
-          <input name="name" value={form.name} onChange={handleChange} required />
+          Full Name
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="John Carter"
+            required
+          />
         </label>
         <label>
           Work Email
-          <input name="email" type="email" value={form.email} onChange={handleChange} required />
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="john@example.com"
+            required
+          />
         </label>
         <label>
           Company
-          <input name="company" value={form.company} onChange={handleChange} required />
+          <input
+            name="company"
+            value={form.company}
+            onChange={handleChange}
+            placeholder="Acme Corporation"
+            required
+          />
         </label>
         <label>
           Engagement Type
@@ -64,7 +88,7 @@ export default function GetStartedForm() {
           Timeline
           <input
             name="timeline"
-            placeholder="e.g. 2-4 weeks"
+            placeholder="2-4 weeks"
             value={form.timeline}
             onChange={handleChange}
           />
@@ -73,7 +97,7 @@ export default function GetStartedForm() {
           Team Size
           <input
             name="team_size"
-            placeholder="e.g. 3 engineers + 1 QA"
+            placeholder="3 engineers + 1 QA"
             value={form.team_size}
             onChange={handleChange}
           />
@@ -87,10 +111,12 @@ export default function GetStartedForm() {
           rows="5"
           value={form.goals}
           onChange={handleChange}
-          placeholder="Tell us what you need, current pain points, and expected outcomes."
+          placeholder="Tell us what you need, current pain points, and expected outcomes..."
           required
         />
       </label>
+
+      <p className="get-started-form-note">Your information is confidential and secure.</p>
 
       <button className="button button-primary" type="submit">
         Request Consultation

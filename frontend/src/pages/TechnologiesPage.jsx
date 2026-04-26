@@ -140,10 +140,12 @@ export default function TechnologiesPage() {
         <div className="technology-card-grid">
           {technologyAreas.map((area) => (
             <article key={area.title} className="technology-card">
-              <span className="technology-card-icon" aria-hidden="true">
-                {area.icon}
-              </span>
-              <h3>{area.title}</h3>
+              <div className="technology-card-header">
+                <span className="technology-card-icon" aria-hidden="true">
+                  {area.icon}
+                </span>
+                <h3>{area.title}</h3>
+              </div>
               <p>{area.description}</p>
               <div className="technology-skills" aria-label={`${area.title} skills`}>
                 {area.skills.map((skill) => (

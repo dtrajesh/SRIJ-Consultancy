@@ -159,7 +159,7 @@ export default function Layout() {
               <NavLink to="/contact">Contact</NavLink>
               <NavLink to="/get-started">Get Started</NavLink>
               <NavLink to="/admin/login">Admin</NavLink>
-              <a href="mailto:hello@trinexora.com">hello@trinexora.com</a>
+              <a href="mailto:sales@trinexora.com">sales@trinexora.com</a>
             </div>
           </div>
         </div>

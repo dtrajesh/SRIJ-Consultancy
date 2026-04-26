@@ -86,8 +86,8 @@ export default function IndustriesPage() {
         </div>
 
         <div className="industries-section-heading">
-          <h3>Industry Expertise That Drives Results</h3>
-          <p>Industries We Serve</p>
+          <h3>Industry Expertise That Delivers Business Impact</h3>
+          <p>Industries we serve</p>
         </div>
 
         <div className="industries-grid">
