@@ -205,7 +205,7 @@ export default function HomePage() {
         <div className="container">
           <SectionHeader
             className="home-products-header"
-            eyebrow="Products"
+            eyebrow="Accelerators"
             title="Accelerators built to speed delivery and reduce execution risk"
             text="Our productized accelerators help teams move faster across QA, cloud migration, DevOps, performance testing, and data analytics."
           />
@@ -236,7 +236,7 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                    <Link to="/products">Explore products</Link>
+                    <Link to="/products">Explore accelerators</Link>
                   </div>
                 </article>
               );

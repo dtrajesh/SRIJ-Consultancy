@@ -7,7 +7,7 @@ const navItems = [
   { label: "Services", to: "/services" },
   { label: "Industries", to: "/industries" },
   { label: "Technologies", to: "/technologies" },
-  { label: "Products", to: "/products" }
+  { label: "Accelerators", to: "/products" }
 ];
 
 const navItemsAfterAbout = [
@@ -148,7 +148,7 @@ export default function Layout() {
               <NavLink to="/services">Services</NavLink>
               <NavLink to="/industries">Industries</NavLink>
               <NavLink to="/technologies">Technologies</NavLink>
-              <NavLink to="/products">Products</NavLink>
+              <NavLink to="/products">Accelerators</NavLink>
               <NavLink to="/careers">Careers</NavLink>
               <NavLink to="/about">About</NavLink>
             </div>
