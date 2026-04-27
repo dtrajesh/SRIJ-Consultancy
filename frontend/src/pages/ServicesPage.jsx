@@ -3,6 +3,32 @@ import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { services } from "../data/siteContent";
 
+const talentAcquisitionTitles = new Set([
+  "Talent Advisory & Workforce Strategy",
+  "Executive & Niche Hiring (Leadership & Specialized Roles)",
+  "Global Talent Sourcing"
+]);
+
+const teamDeliveryTitles = new Set([
+  "Dedicated Offshore / Nearshore Teams",
+  "Cloud & Digital Transformation Talent Pods",
+  "Managed Recruitment Services (RPO Model)"
+]);
+
+const flexibleHiringTitles = new Set([
+  "Contract-to-Hire Solutions",
+  "Rapid Hiring & On-Demand Staffing"
+]);
+
+const talentAcquisitionTitleLabels = {
+  "Executive & Niche Hiring (Leadership & Specialized Roles)": "Executive & Niche Hiring"
+};
+
+const teamDeliveryTitleLabels = {
+  "Cloud & Digital Transformation Talent Pods": "Cloud & Digital Transformation Pods",
+  "Managed Recruitment Services (RPO Model)": "Managed Recruitment Services (RPO)"
+};
+
 export default function ServicesPage() {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [activePreviewTitle, setActivePreviewTitle] = useState(null);
@@ -81,92 +107,187 @@ export default function ServicesPage() {
     }
   };
 
+  const talentAcquisitionModels = services.filter((service) =>
+    talentAcquisitionTitles.has(service.title)
+  );
+  const teamDeliveryModels = services.filter((service) => teamDeliveryTitles.has(service.title));
+  const flexibleHiringModels = services.filter((service) =>
+    flexibleHiringTitles.has(service.title)
+  );
+  const deliveryServices = services.filter(
+    (service) =>
+      !talentAcquisitionTitles.has(service.title) &&
+      !teamDeliveryTitles.has(service.title) &&
+      !flexibleHiringTitles.has(service.title)
+  );
+
+  const renderServiceCard = (service, options = {}) => {
+    const title = options.title || service.tileTitle || service.title;
+    const cardDescription = service.tileDescription || service.description;
+    const cardDeliverables = service.tileDeliverables || service.deliverables;
+    const cardDeliverablesLabel = service.tileDeliverablesLabel || service.deliverablesLabel || "What we deliver:";
+    const cardOutcome = service.tileOutcome || service.outcome;
+    const cardOutcomeLabel = service.tileOutcomeLabel || service.outcomeLabel || "Outcome";
+    const previewTitle = service.previewTitle || title;
+    const previewSubtitle = service.previewSubtitle;
+    const previewDescription = service.previewDescription || service.description;
+    const previewDeliverables = service.previewDeliverables || service.deliverables || [previewDescription];
+    const previewDeliverablesLabel =
+      service.previewDeliverablesLabel || service.deliverablesLabel || "What we deliver:";
+    const previewIdealFor = service.previewIdealFor;
+    const previewIdealForLabel = service.previewIdealForLabel || "Ideal For";
+    const previewOutcomes = service.previewOutcomes || (service.outcome ? [service.outcome] : []);
+    const previewOutcomeLabel = service.previewOutcomeLabel || service.outcomeLabel || "Outcome";
+
+    return (
+      <article
+        key={service.title}
+        className={`content-card service-detail-card${options.isModel ? " talent-model-card" : ""}`}
+      >
+        <div className="service-detail-card-header">
+          <span className="home-service-icon" aria-hidden="true">
+            {service.icon}
+          </span>
+          <h3>{title}</h3>
+        </div>
+        <p>{cardDescription}</p>
+        {cardDeliverables && (
+          <div className="service-deliverables">
+            <strong>{cardDeliverablesLabel}</strong>
+            <ul className={service.tileDeliverables ? "service-check-list" : undefined}>
+              {cardDeliverables.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {cardOutcome && (
+          <p className="service-outcome">
+            <span aria-hidden="true">👉</span> {cardOutcomeLabel}: {cardOutcome}
+          </p>
+        )}
+        <div
+          className={`service-preview-trigger${
+            activePreviewTitle === service.title ? " service-preview-trigger-open" : ""
+          }`}
+          data-preview-title={service.title}
+          data-preview-position={service.title === "Talent Advisory & Workforce Strategy" ? "up" : "up-low"}
+          onMouseEnter={handlePreviewOpen}
+          onMouseLeave={handlePreviewLeave}
+          onFocus={handlePreviewOpen}
+          onBlur={handlePreviewBlur}
+        >
+          <Link to="/get-started">Explore Solution →</Link>
+          <div
+            className={`service-preview-card${
+              service.previewLayout === "vertical" ? " service-preview-card-vertical" : ""
+            }`}
+            aria-hidden="true"
+          >
+            <div className="service-preview-window">
+              <span className="service-preview-close">×</span>
+              <h4>{previewTitle}</h4>
+              {previewSubtitle && <p className="service-preview-subtitle">{previewSubtitle}</p>}
+              <p className="service-preview-summary">{previewDescription}</p>
+              <div className="service-preview-grid">
+                <div className="service-preview-panel">
+                  <strong>{previewDeliverablesLabel}</strong>
+                  <ul>
+                    {previewDeliverables.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                {previewIdealFor && (
+                  <div className="service-preview-panel">
+                    <strong>{previewIdealForLabel}</strong>
+                    <ul>
+                      {previewIdealFor.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="service-preview-panel">
+                  <strong>{previewOutcomeLabel}</strong>
+                  {previewOutcomes.length > 1 ? (
+                    <ul className="service-preview-outcomes">
+                      {previewOutcomes.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{previewOutcomes[0] || "A focused solution aligned to your hiring and delivery goals."}</p>
+                  )}
+                </div>
+              </div>
+              {!service.previewHideBenefits && (
+                <div className="service-preview-benefits">
+                  <strong>✅ Key Benefits</strong>
+                  {(service.deliverables || []).slice(0, 3).map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                  {service.deliverablesLabel && <span>Global reach</span>}
+                </div>
+              )}
+              <div className="service-preview-actions">
+                <Link to="/contact">{service.previewPrimaryCta || "View Talent Pool"}</Link>
+                <Link to="/get-started">{service.previewSecondaryCta || "Request a Consultant →"}</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    );
+  };
+
   return (
     <section className={`section page-intro${isPreviewOpen ? " services-preview-open" : ""}`}>
       <div className="container">
         <SectionHeader
           className="services-page-header"
-          eyebrow="What We Do"
-          title="Services built for speed, reliability, and accountable delivery"
-          text="We provide flexible engagement models from individual specialists to fully managed teams ensuring seamless execution, transparent communication, and measurable outcomes."
+          eyebrow="Our Services"
+          title="Flexible engagement models for speed, reliability, and accountable delivery."
+          text="We provide everything from individual specialists to fully managed teams ensuring seamless execution, transparent communication, and measurable outcomes."
         />
 
+        <div className="service-models-section">
+          <h2>Talent Acquisition Models</h2>
+          <div className="card-grid three-up talent-model-grid">
+            {talentAcquisitionModels.map((service) =>
+              renderServiceCard(service, {
+                isModel: true,
+                title: talentAcquisitionTitleLabels[service.title] || service.title
+              })
+            )}
+          </div>
+        </div>
+
+        <div className="service-models-section">
+          <h2>Team-Based Delivery Models</h2>
+          <div className="card-grid three-up talent-model-grid">
+            {teamDeliveryModels.map((service) =>
+              renderServiceCard(service, {
+                isModel: true,
+                title: teamDeliveryTitleLabels[service.title] || service.title
+              })
+            )}
+          </div>
+        </div>
+
+        <div className="service-models-section">
+          <h2>Flexible Hiring Models</h2>
+          <div className="card-grid flexible-hiring-grid talent-model-grid">
+            {flexibleHiringModels.map((service) =>
+              renderServiceCard(service, {
+                isModel: true
+              })
+            )}
+          </div>
+        </div>
+
         <div className="card-grid">
-          {services.map((service) => (
-            <article key={service.title} className="content-card service-detail-card">
-              <div className="service-detail-card-header">
-                <span className="home-service-icon" aria-hidden="true">
-                  {service.icon}
-                </span>
-                <h3>{service.title}</h3>
-              </div>
-              <p>{service.description}</p>
-              {service.deliverables && (
-                <div className="service-deliverables">
-                  <strong>{service.deliverablesLabel || "What we deliver:"}</strong>
-                  <ul>
-                    {service.deliverables.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {service.outcome && (
-                <p className="service-outcome">
-                  <span aria-hidden="true">👉</span> {service.outcomeLabel || "Outcome"}: {service.outcome}
-                </p>
-              )}
-              <div
-                className={`service-preview-trigger${
-                  activePreviewTitle === service.title ? " service-preview-trigger-open" : ""
-                }`}
-                data-preview-title={service.title}
-                data-preview-position={
-                  service.title === "Talent Advisory & Workforce Strategy"
-                    ? "up"
-                    : "up-low"
-                }
-                onMouseEnter={handlePreviewOpen}
-                onMouseLeave={handlePreviewLeave}
-                onFocus={handlePreviewOpen}
-                onBlur={handlePreviewBlur}
-              >
-                <Link to="/get-started">Explore Solution →</Link>
-                <div className="service-preview-card" aria-hidden="true">
-                  <div className="service-preview-window">
-                    <span className="service-preview-close">×</span>
-                    <h4>{service.title}</h4>
-                    <p className="service-preview-summary">{service.description}</p>
-                    <div className="service-preview-grid">
-                      <div className="service-preview-panel">
-                        <strong>{service.deliverablesLabel || "What we deliver:"}</strong>
-                        <ul>
-                          {(service.deliverables || [service.description]).map((item) => (
-                            <li key={item}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="service-preview-panel">
-                        <strong>{service.outcomeLabel || "Outcome"}</strong>
-                        <p>{service.outcome || "A focused solution aligned to your hiring and delivery goals."}</p>
-                      </div>
-                    </div>
-                    <div className="service-preview-benefits">
-                      <strong>✅ Key Benefits</strong>
-                      {(service.deliverables || []).slice(0, 3).map((item) => (
-                        <span key={item}>{item}</span>
-                      ))}
-                      {service.deliverablesLabel && <span>Global reach</span>}
-                    </div>
-                    <div className="service-preview-actions">
-                      <Link to="/careers">View Talent Pool</Link>
-                      <Link to="/get-started">Request a Consultant →</Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
+          {deliveryServices.map((service) => renderServiceCard(service))}
         </div>
 
         <div className="cta-inline services-cta-inline">
