@@ -145,7 +145,7 @@ export default function HomePage() {
   return (
     <>
       <section className="hero">
-        <div className="container hero-grid">
+        <div className="container hero-grid hero-grid-copy-only">
           <div className="hero-copy">
             <span className="eyebrow">
               Build. Scale. Deliver.
@@ -167,18 +167,6 @@ export default function HomePage() {
                 Explore Our Services
               </Link>
             </div>
-          </div>
-
-          <div className="hero-card">
-            <p>Delivery Excellence Snapshot</p>
-            <ul>
-              <li><span className="hero-marker hero-marker-check">✓</span>Access to highly qualified consultants with domain expertise</li>
-              <li><span className="hero-marker hero-marker-spark">⚡</span>Rapid onboarding with minimal ramp-up time</li>
-              <li><span className="hero-marker hero-marker-scale">👥</span>Scalable teams for product, cloud, and QA delivery</li>
-              <li><span className="hero-marker hero-marker-secure">🔒</span>Proven frameworks for reliable and secure operations</li>
-              <li><span className="hero-marker hero-marker-track">📈</span>Transparent communication and progress tracking</li>
-              <li><span className="hero-marker hero-marker-support">🤝</span>Dedicated account management and delivery oversight</li>
-            </ul>
           </div>
         </div>
       </section>

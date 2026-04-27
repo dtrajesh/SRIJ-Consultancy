@@ -267,17 +267,16 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <aside className="highlight-panel">
-            <h3>Why clients choose Trinexora</h3>
+          <aside className="hero-card about-snapshot-card">
+            <p>Delivery Excellence Snapshot</p>
             <ul>
-              <li>Fast consultant onboarding and team ramp-up</li>
-              <li>Clear engagement structure and reporting cadence</li>
-              <li>Technical breadth across delivery and support functions</li>
-              <li>Flexible support from staffing through managed execution</li>
+              <li><span className="hero-marker hero-marker-check">✓</span>Access to highly qualified consultants with domain expertise</li>
+              <li><span className="hero-marker hero-marker-spark">⚡</span>Rapid onboarding with minimal ramp-up time</li>
+              <li><span className="hero-marker hero-marker-scale">👥</span>Scalable teams for product, cloud, and QA delivery</li>
+              <li><span className="hero-marker hero-marker-secure">🔒</span>Proven frameworks for reliable and secure operations</li>
+              <li><span className="hero-marker hero-marker-track">📈</span>Transparent communication and progress tracking</li>
+              <li><span className="hero-marker hero-marker-support">🤝</span>Dedicated account management and delivery oversight</li>
             </ul>
-            <Link className="button button-primary" to="/get-started">
-              Request a Consultation
-            </Link>
           </aside>
         </div>
       </section>
@@ -568,117 +567,6 @@ export default function AboutPage() {
               At Trinexora, we connect great talent with great opportunities to
               build stronger teams and create lasting impact.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section about-section what-we-do-section" id="what-we-do">
-        <div className="container what-we-do-wrap">
-          <div className="what-we-do-header" data-scroll-anchor>
-            <span>Talent &amp; Delivery Solutions</span>
-            <h2>What We Do</h2>
-            <p>
-              At Trinexora, we connect businesses with high-performing technology
-              talent that drives innovation, speed, and scale. We go beyond staffing,
-              delivering people, capability, and impact aligned to your business goals.
-            </p>
-            <p>
-              We support organizations across Engineering, QA, Cloud, Data, DevOps,
-              and Product teams, enabling them to scale faster with the right expertise
-              at the right time.
-            </p>
-          </div>
-
-          <div className="what-we-do-grid">
-            <article className="what-we-do-card">
-              <span className="what-we-do-number">01</span>
-              <h3>IT Staffing &amp; Augmentation</h3>
-              <p>
-                Access pre-vetted, highly skilled professionals who seamlessly
-                integrate with your teams and start delivering from day one.
-              </p>
-              <dl>
-                <dt>Ideal for</dt>
-                <dd>Scaling teams, urgent hiring needs, niche skill gaps</dd>
-                <dt>Outcome</dt>
-                <dd>Faster hiring, reduced risk, flexible workforce</dd>
-              </dl>
-            </article>
-
-            <article className="what-we-do-card">
-              <span className="what-we-do-number">02</span>
-              <h3>Project-Based Talent Delivery</h3>
-              <p>
-                Build dedicated teams for end-to-end project execution with clear
-                ownership and accountability.
-              </p>
-              <dl>
-                <dt>Ideal for</dt>
-                <dd>Short-term and long-term tech initiatives</dd>
-                <dt>Outcome</dt>
-                <dd>Predictable delivery and reduced internal load</dd>
-              </dl>
-            </article>
-
-            <article className="what-we-do-card">
-              <span className="what-we-do-number">03</span>
-              <h3>Contract-to-Hire Solutions</h3>
-              <p>
-                Evaluate talent in real project environments before making long-term
-                hiring decisions.
-              </p>
-              <dl>
-                <dt>Ideal for</dt>
-                <dd>Risk-free hiring and performance validation</dd>
-                <dt>Outcome</dt>
-                <dd>Better hiring confidence and retention</dd>
-              </dl>
-            </article>
-
-            <article className="what-we-do-card">
-              <span className="what-we-do-number">04</span>
-              <h3>Niche &amp; Specialized Hiring</h3>
-              <p>
-                Find hard-to-source experts across Cloud, Data Engineering, DevOps,
-                QA Automation, and modern frameworks.
-              </p>
-              <dl>
-                <dt>Ideal for</dt>
-                <dd>Critical roles and specialized tech stacks</dd>
-                <dt>Outcome</dt>
-                <dd>Access to rare and high-impact talent</dd>
-              </dl>
-            </article>
-
-            <article className="what-we-do-card">
-              <span className="what-we-do-number">05</span>
-              <h3>Enterprise Talent Scaling</h3>
-              <p>
-                Rapidly scale teams for large programs, digital transformation, or peak
-                delivery demands.
-              </p>
-              <dl>
-                <dt>Ideal for</dt>
-                <dd>Enterprises and fast-growing product companies</dd>
-                <dt>Outcome</dt>
-                <dd>Elastic workforce aligned with business demand</dd>
-              </dl>
-            </article>
-
-            <article className="what-we-do-card">
-              <span className="what-we-do-number">06</span>
-              <h3>Managed Talent Partnerships</h3>
-              <p>
-                We act as your extended hiring arm, handling sourcing, screening,
-                onboarding, and workforce continuity.
-              </p>
-              <dl>
-                <dt>Ideal for</dt>
-                <dd>Long-term hiring partnerships</dd>
-                <dt>Outcome</dt>
-                <dd>Reduced HR burden and consistent talent pipeline</dd>
-              </dl>
-            </article>
           </div>
         </div>
       </section>

@@ -21,11 +21,8 @@ const aboutItems = [
   { label: "Mission & Vision", to: "/about#mission-vision" },
   { label: "Leadership", to: "/about#leadership" },
   { label: "Why Choose Us", to: "/about#why-choose-us" },
-  { label: "What We Do?", to: "/about#what-we-do" },
   { label: "What You Gain", to: "/about#what-you-gain" },
-  { label: "Join Our Growing Team", to: "/about#join-team" },
-  { label: "Recognition", to: "/about#recognition" },
-  { label: "CSR", to: "/about#csr" }
+  { label: "Join Our Growing Team", to: "/about#join-team" }
 ];
 
 function HashScroll() {

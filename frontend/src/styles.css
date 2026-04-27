@@ -361,6 +361,10 @@ h6,
   align-items: start;
 }
 
+.hero-grid-copy-only {
+  grid-template-columns: minmax(0, 42rem);
+}
+
 .hero-copy {
   max-width: 38rem;
   padding-top: 0.35rem;
@@ -467,6 +471,10 @@ h6,
 
 .hero-marker-support {
   color: #f2ca5d;
+}
+
+.about-snapshot-card {
+  align-self: stretch;
 }
 
 .eyebrow {
