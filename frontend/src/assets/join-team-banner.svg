@@ -1,0 +1,63 @@
+<svg width="1200" height="494" viewBox="0 0 1200 494" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="494" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eef3f7"/>
+      <stop offset="0.55" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#fff7e6"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="430" x2="1200" y2="430" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d36b00"/>
+      <stop offset="1" stop-color="#f0a000"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="532" y1="153" x2="660" y2="347" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f6f9e"/>
+      <stop offset="1" stop-color="#12324a"/>
+    </linearGradient>
+    <filter id="shadow" x="120" y="80" width="960" height="330" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#12324A" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="494" fill="url(#bg)"/>
+  <g opacity="0.4" stroke="#ffffff" stroke-width="4">
+    <path d="M0 52H80L116 88H214L252 50H335"/>
+    <path d="M0 128H58L98 88H186"/>
+    <circle cx="80" cy="52" r="14" fill="#fff"/>
+    <circle cx="116" cy="88" r="10" fill="#fff"/>
+    <circle cx="252" cy="50" r="12" fill="#fff"/>
+    <path d="M1200 62H1092L1058 96H980L940 56H850"/>
+    <path d="M1200 126H1128L1088 86H1018"/>
+    <circle cx="1092" cy="62" r="14" fill="#fff"/>
+    <circle cx="1058" cy="96" r="10" fill="#fff"/>
+    <circle cx="940" cy="56" r="12" fill="#fff"/>
+  </g>
+  <g opacity="0.2" stroke="#94A3B8" stroke-width="2">
+    <path d="M0 0H1200V390H0z"/>
+    <path d="M0 130H1200M0 260H1200M200 0V390M400 0V390M600 0V390M800 0V390M1000 0V390"/>
+  </g>
+  <g filter="url(#shadow)">
+    <ellipse cx="602" cy="358" rx="420" ry="46" fill="#CBD5E1" opacity="0.45"/>
+    <rect x="338" y="260" width="250" height="104" rx="10" fill="#1F2937"/>
+    <path d="M370 287H566V354H350L370 287Z" fill="#111827"/>
+    <rect x="610" y="260" width="118" height="90" rx="12" fill="#334155"/>
+    <rect x="625" y="277" width="88" height="56" rx="6" fill="#94A3B8"/>
+    <path d="M331 174C331 125 365 92 409 92C453 92 488 125 488 174V310H331V174Z" fill="#D97706"/>
+    <circle cx="409" cy="92" r="46" fill="#D7A879"/>
+    <path d="M368 89C379 52 444 47 462 83C445 67 410 68 393 82C384 89 377 90 368 89Z" fill="#111827"/>
+    <path d="M395 143H423L444 310H374L395 143Z" fill="#F97316"/>
+    <path d="M491 160C491 110 526 78 570 78C615 78 650 110 650 160V310H491V160Z" fill="#BFD6EA"/>
+    <circle cx="570" cy="78" r="46" fill="#F2C6A7"/>
+    <path d="M525 79C539 40 603 37 620 75C598 60 561 62 544 75C537 80 530 81 525 79Z" fill="#EAB308"/>
+    <path d="M646 172C646 122 682 90 727 90C771 90 806 122 806 172V310H646V172Z" fill="#0E7490"/>
+    <circle cx="727" cy="90" r="46" fill="#7C4A31"/>
+    <path d="M686 89C693 50 762 46 780 86C755 73 720 74 702 86C696 90 691 90 686 89Z" fill="#111827"/>
+    <path d="M802 156C802 107 839 74 884 74C929 74 966 107 966 156V310H802V156Z" fill="#D9E1EA"/>
+    <circle cx="884" cy="74" r="47" fill="#D7B49A"/>
+    <path d="M837 74C850 31 930 30 949 71C921 52 882 53 861 68C853 73 846 75 837 74Z" fill="#D1D5DB"/>
+    <path d="M458 267C492 243 533 242 573 267" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round"/>
+    <path d="M738 265C780 239 823 239 858 265" stroke="#F8FAFC" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <rect y="398" width="1200" height="96" fill="url(#orange)"/>
+  <text x="600" y="458" text-anchor="middle" fill="#ffffff" font-family="Georgia, serif" font-size="30" font-weight="700" letter-spacing="0.5">
+    Explore opportunities in QA, Cloud, Data, and Engineering.
+  </text>
+</svg>

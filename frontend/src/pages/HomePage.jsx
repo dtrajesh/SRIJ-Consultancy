@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
-import { products, stats, testimonials } from "../data/siteContent";
+import { products, testimonials } from "../data/siteContent";
 import requirementDiscoveryImage from "../assets/how-it-works/requirement-discovery.jpeg";
 import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
 import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
@@ -57,6 +57,90 @@ const homeServices = [
   }
 ];
 
+const trustStripItems = [
+  {
+    icon: "globe",
+    title: "Global Delivery Model",
+    text: "Across 20+ Countries"
+  },
+  {
+    icon: "expert",
+    title: "Pre-vetted Experts",
+    text: "Top 1% Tech Talent"
+  },
+  {
+    icon: "teams",
+    title: "Scalable Teams",
+    text: "On Demand"
+  },
+  {
+    icon: "support",
+    title: "24/7 Support",
+    text: "Follow-the-sun Model"
+  },
+  {
+    icon: "shield",
+    title: "Secure & Compliant",
+    text: "ISO 27001 Certified"
+  }
+];
+
+function TrustStripIcon({ type }) {
+  const commonProps = {
+    className: "trust-strip-svg",
+    viewBox: "0 0 48 48",
+    role: "img",
+    "aria-hidden": "true"
+  };
+
+  if (type === "globe") {
+    return (
+      <svg {...commonProps}>
+        <circle cx="24" cy="24" r="17" />
+        <path d="M7 24h34M24 7c5 5 8 11 8 17s-3 12-8 17M24 7c-5 5-8 11-8 17s3 12 8 17" />
+        <path d="M11 15h26M11 33h26" />
+      </svg>
+    );
+  }
+
+  if (type === "expert") {
+    return (
+      <svg {...commonProps}>
+        <circle cx="24" cy="15" r="6" />
+        <path d="M13 37v-4c0-7 5-12 11-12s11 5 11 12v4" />
+        <path d="M18 37h12M35 17l3 3 6-8" />
+      </svg>
+    );
+  }
+
+  if (type === "teams") {
+    return (
+      <svg {...commonProps}>
+        <circle cx="24" cy="13" r="5" />
+        <circle cx="13" cy="23" r="4" />
+        <circle cx="35" cy="23" r="4" />
+        <path d="M16 39v-4c0-5 3-9 8-9s8 4 8 9v4M5 39v-3c0-4 3-7 8-7M43 39v-3c0-4-3-7-8-7" />
+      </svg>
+    );
+  }
+
+  if (type === "support") {
+    return (
+      <svg {...commonProps}>
+        <circle cx="24" cy="25" r="14" />
+        <path d="M24 11V6M18 6h12M24 25l7-6M13 12l-4-4M35 12l4-4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg {...commonProps}>
+      <path d="M24 6 38 12v12c0 10-6 16-14 19-8-3-14-9-14-19V12z" />
+      <path d="M17 25l5 5 10-12" />
+    </svg>
+  );
+}
+
 export default function HomePage() {
   return (
     <>
@@ -64,17 +148,16 @@ export default function HomePage() {
         <div className="container hero-grid">
           <div className="hero-copy">
             <span className="eyebrow">
-              Your Strategic Partner for AI, Data, and Scalable Technology Delivery
+              Build. Scale. Deliver.
             </span>
             <h1>
-              Build high-performing teams.
+              Build, Scale &amp; Deliver
               <br />
-              Deliver outcomes at scale.
+              Technology Faster
             </h1>
             <p>
-              From staff augmentation to end-to-end project delivery, we help you reduce
-              time-to-market, optimize costs, and ensure consistent execution across your
-              technology landscape.
+              End-to-end IT services and talent solutions that help enterprises accelerate
+              innovation, reduce risk, and achieve measurable business outcomes.
             </p>
             <div className="hero-actions">
               <Link className="button button-primary" to="/get-started">
@@ -101,18 +184,47 @@ export default function HomePage() {
       </section>
 
       <section className="stats-band">
+        <div className="container trust-strip-grid">
+          {trustStripItems.map((item) => (
+            <article key={item.title} className="trust-strip-item">
+              <span className="trust-strip-icon" aria-hidden="true">
+                <TrustStripIcon type={item.icon} />
+              </span>
+              <div>
+                <strong>{item.title}</strong>
+                <span>{item.text}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section home-section home-services-section">
         <div className="container">
-          <div className="stats-grid">
-            {stats.map((item) => (
-              <article key={item.label} className="stat-card">
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
+          <div className="home-services-label">
+            <span className="how-it-works-line" />
+            <h2>What We Do</h2>
+            <span className="how-it-works-line" />
+          </div>
+          <SectionHeader
+            className="home-services-header"
+            title="End-to-End IT Services Built for Scale, Speed, and Reliability"
+            text="From rapid talent augmentation to full-scale project delivery, we help organizations accelerate innovation, reduce operational risk, and achieve measurable business outcomes."
+          />
+          <div className="card-grid three-up home-services-grid">
+            {homeServices.map((service) => (
+              <article key={service.title} className="content-card home-service-card">
+                <div className="home-service-card-header">
+                  <span className="home-service-icon" aria-hidden="true">
+                    {service.icon}
+                  </span>
+                  <h3>{service.title}</h3>
+                </div>
+                <p>{service.description}</p>
+                <Link to="/services">Explore Solution →</Link>
               </article>
             ))}
           </div>
-          <p className="stats-caption">
-            Trusted by startups, scaling enterprises, and global organizations for dependable technology delivery.
-          </p>
         </div>
       </section>
 
@@ -176,36 +288,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section home-section home-services-section">
-        <div className="container">
-          <SectionHeader
-            className="home-services-header"
-            eyebrow="Services"
-            title="End-to-End IT Services Built for Scale, Speed, and Reliability"
-            text="From rapid talent augmentation to full-scale project delivery, we help organizations accelerate innovation, reduce operational risk, and achieve measurable business outcomes."
-          />
-          <div className="card-grid three-up home-services-grid">
-            {homeServices.map((service) => (
-              <article key={service.title} className="content-card home-service-card">
-                <div className="home-service-card-header">
-                  <span className="home-service-icon" aria-hidden="true">
-                    {service.icon}
-                  </span>
-                  <h3>{service.title}</h3>
-                </div>
-                <p>{service.description}</p>
-                <Link to="/services">Explore Solution →</Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="section home-section section-muted">
         <div className="container">
+          <div className="home-section-label">
+            <span className="how-it-works-line" />
+            <h2>Accelerators</h2>
+            <span className="how-it-works-line" />
+          </div>
           <SectionHeader
             className="home-products-header"
-            eyebrow="Products"
             title="Accelerators built to speed delivery and reduce execution risk"
             text="Our productized accelerators help teams move faster across QA, cloud migration, DevOps, performance testing, and data analytics."
           />
@@ -236,7 +327,7 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                    <Link to="/products">Explore products</Link>
+                    <Link to="/products">Explore accelerators</Link>
                   </div>
                 </article>
               );
@@ -247,9 +338,13 @@ export default function HomePage() {
 
       <section className="section home-section">
         <div className="container">
+          <div className="home-section-label">
+            <span className="how-it-works-line" />
+            <h2>Client Feedback</h2>
+            <span className="how-it-works-line" />
+          </div>
           <SectionHeader
             className="home-testimonials-header"
-            eyebrow="Client Feedback"
             title="Trusted by leaders to deliver fast, reliable outcomes."
           />
           <div className="card-grid three-up">

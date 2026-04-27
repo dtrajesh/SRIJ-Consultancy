@@ -25,49 +25,82 @@ export default function ContactForm() {
     try {
       const response = await submitContact(form);
       setStatus({ type: "success", message: response.message });
-      setForm(initialState);
     } catch (error) {
       setStatus({
         type: "error",
         message: error.message || "Something went wrong. Please try again."
       });
+    } finally {
+      setForm(initialState);
     }
   }
 
   return (
     <form className="form-card" onSubmit={handleSubmit}>
+      <div className="contact-form-header">
+        <h2>Get in Touch With Our Experts</h2>
+        <p>Partner with us to tackle your IT challenges and drive success.</p>
+      </div>
+
       <div className="form-grid">
         <label>
-          Name
-          <input name="name" value={form.name} onChange={handleChange} required />
+          <span className="sr-only">Full Name</span>
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            placeholder="Full Name"
+            required
+          />
         </label>
         <label>
-          Work Email
-          <input name="email" type="email" value={form.email} onChange={handleChange} required />
+          <span className="sr-only">Work Email</span>
+          <input
+            name="email"
+            type="email"
+            value={form.email}
+            onChange={handleChange}
+            placeholder="Work Email"
+            required
+          />
         </label>
         <label>
-          Company
-          <input name="company" value={form.company} onChange={handleChange} required />
+          <span className="sr-only">Company Name</span>
+          <input
+            name="company"
+            value={form.company}
+            onChange={handleChange}
+            placeholder="Company Name"
+            required
+          />
         </label>
         <label>
-          Phone
-          <input name="phone" value={form.phone} onChange={handleChange} />
+          <span className="sr-only">Phone Number</span>
+          <input
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+            placeholder="Phone Number"
+          />
         </label>
       </div>
 
       <label>
-        Message
+        <span className="sr-only">How Can We Help?</span>
         <textarea
           name="message"
           rows="5"
           value={form.message}
           onChange={handleChange}
+          placeholder="How Can We Help?"
           required
         />
       </label>
 
+      <p className="contact-form-note">Your information is confidential and secure.</p>
+
       <button className="button button-primary" type="submit">
-        Submit Inquiry
+        Request a Consultation
       </button>
 
       {status.message ? (

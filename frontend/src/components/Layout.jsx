@@ -7,7 +7,7 @@ const navItems = [
   { label: "Services", to: "/services" },
   { label: "Industries", to: "/industries" },
   { label: "Technologies", to: "/technologies" },
-  { label: "Products", to: "/products" }
+  { label: "Accelerators", to: "/products" }
 ];
 
 const navItemsAfterAbout = [
@@ -148,7 +148,7 @@ export default function Layout() {
               <NavLink to="/services">Services</NavLink>
               <NavLink to="/industries">Industries</NavLink>
               <NavLink to="/technologies">Technologies</NavLink>
-              <NavLink to="/products">Products</NavLink>
+              <NavLink to="/products">Accelerators</NavLink>
               <NavLink to="/careers">Careers</NavLink>
               <NavLink to="/about">About</NavLink>
             </div>
@@ -159,7 +159,7 @@ export default function Layout() {
               <NavLink to="/contact">Contact</NavLink>
               <NavLink to="/get-started">Get Started</NavLink>
               <NavLink to="/admin/login">Admin</NavLink>
-              <a href="mailto:hello@trinexora.com">hello@trinexora.com</a>
+              <a href="mailto:sales@trinexora.com">sales@trinexora.com</a>
             </div>
           </div>
         </div>
