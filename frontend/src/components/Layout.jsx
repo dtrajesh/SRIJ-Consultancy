@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import headerLogo from "../assets/trinexora-dark-logo.png";
+import headerLogo from "../assets/trinexora-header-logo-aligned.png";
+import footerLogo from "../assets/trinexora-banner-logo-transparent.png";
 
 const navItems = [
   { label: "Home", to: "/" },
@@ -21,11 +22,8 @@ const aboutItems = [
   { label: "Mission & Vision", to: "/about#mission-vision" },
   { label: "Leadership", to: "/about#leadership" },
   { label: "Why Choose Us", to: "/about#why-choose-us" },
-  { label: "What We Do?", to: "/about#what-we-do" },
   { label: "What You Gain", to: "/about#what-you-gain" },
-  { label: "Join Our Growing Team", to: "/about#join-team" },
-  { label: "Recognition", to: "/about#recognition" },
-  { label: "CSR", to: "/about#csr" }
+  { label: "Join Our Growing Team", to: "/about#join-team" }
 ];
 
 function HashScroll() {
@@ -133,7 +131,7 @@ export default function Layout() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-section footer-brand">
-            <img className="footer-brand-logo" src={headerLogo} alt="Trinexora logo" />
+            <img className="footer-brand-logo" src={footerLogo} alt="Trinexora logo" />
             <p>
               Building high-performance teams for AI, data, and digital
               transformation.

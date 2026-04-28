@@ -39,7 +39,7 @@ export default function GetStartedForm() {
   return (
     <form className="form-card get-started-form" onSubmit={handleSubmit}>
       <div className="get-started-form-header">
-        <h2>Get In Touch</h2>
+        <h2>Get in Touch With Our Experts</h2>
         <p>Partner with us to tackle your IT challenges and drive success.</p>
       </div>
 

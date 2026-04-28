@@ -6,7 +6,7 @@ export default function ContactPage() {
     <section className="section page-intro contact-page">
       <div className="container contact-layout">
         <div className="contact-copy">
-          <SectionHeader title="Why Companies Choose Trinexora" />
+          <SectionHeader title="Why Companies Choose" titleAccent="Trinexora" />
           <div className="contact-benefits">
             <p>
               <span aria-hidden="true">✓</span>

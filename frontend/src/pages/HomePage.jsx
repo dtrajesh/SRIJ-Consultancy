@@ -5,6 +5,7 @@ import requirementDiscoveryImage from "../assets/how-it-works/requirement-discov
 import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
 import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
 import executionScalingImage from "../assets/how-it-works/execution-scaling.jpeg";
+import homeTrinexoraLogo from "../assets/home-trinexora-logo-transparent.png";
 
 const homeServices = [
   {
@@ -145,15 +146,11 @@ export default function HomePage() {
   return (
     <>
       <section className="hero">
-        <div className="container hero-grid">
+        <div className="container hero-grid home-hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">
-              Build. Scale. Deliver.
-            </span>
             <h1>
-              Build, Scale &amp; Deliver
-              <br />
-              Technology Faster
+              <span className="home-title-main">Build, Scale &amp; Deliver</span>
+              <span className="home-title-accent">Technology Faster</span>
             </h1>
             <p>
               End-to-end IT services and talent solutions that help enterprises accelerate
@@ -168,17 +165,8 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-
-          <div className="hero-card">
-            <p>Delivery Excellence Snapshot</p>
-            <ul>
-              <li><span className="hero-marker hero-marker-check">✓</span>Access to highly qualified consultants with domain expertise</li>
-              <li><span className="hero-marker hero-marker-spark">⚡</span>Rapid onboarding with minimal ramp-up time</li>
-              <li><span className="hero-marker hero-marker-scale">👥</span>Scalable teams for product, cloud, and QA delivery</li>
-              <li><span className="hero-marker hero-marker-secure">🔒</span>Proven frameworks for reliable and secure operations</li>
-              <li><span className="hero-marker hero-marker-track">📈</span>Transparent communication and progress tracking</li>
-              <li><span className="hero-marker hero-marker-support">🤝</span>Dedicated account management and delivery oversight</li>
-            </ul>
+          <div className="home-hero-logo-wrap" aria-hidden="true">
+            <img src={homeTrinexoraLogo} alt="" />
           </div>
         </div>
       </section>

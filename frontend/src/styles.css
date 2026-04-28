@@ -117,8 +117,8 @@ h6,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(3rem, 5vw, 5.5rem);
-  padding: 1rem 0;
+  gap: clamp(1.4rem, 3vw, 3rem);
+  padding: 0.85rem 0;
   flex-wrap: nowrap;
   position: relative;
   z-index: 1;
@@ -127,7 +127,7 @@ h6,
 .brand {
   display: flex;
   align-items: center;
-  flex: 0 0 clamp(16rem, 22vw, 18.8rem);
+  flex: 0 0 clamp(18rem, 25vw, 21rem);
   min-width: 0;
   padding: 0;
   border-radius: 0;
@@ -137,15 +137,18 @@ h6,
 
 .brand-logo {
   width: 100%;
-  max-width: 17rem;
+  max-width: 20.5rem;
+  max-height: 4.8rem;
   height: auto;
   display: block;
   flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .footer-brand-logo {
-  width: clamp(14.5rem, 20vw, 17rem);
+  width: clamp(17rem, 23vw, 20.5rem);
   max-width: 100%;
+  max-height: 4.8rem;
   height: auto;
   display: block;
   margin-bottom: 0.2rem;
@@ -153,26 +156,27 @@ h6,
   border-radius: 0;
   background: transparent;
   box-shadow: none;
+  object-fit: contain;
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.42rem;
+  gap: 0.34rem;
   flex: 1 1 auto;
   flex-wrap: nowrap;
   min-width: 0;
-  padding-left: clamp(2rem, 4vw, 4.5rem);
+  padding-left: clamp(0.6rem, 1.8vw, 1.8rem);
 }
 
 .nav-link {
-  padding: 0.42rem 0.52rem;
+  padding: 0.42rem 0.48rem;
   border-radius: 999px;
   color: #edf2f7;
   transition: 150ms ease;
   white-space: nowrap;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
 }
@@ -348,8 +352,8 @@ h6,
 }
 
 .about-section {
-  padding-top: clamp(2.6rem, 4vw, 3.4rem);
-  padding-bottom: clamp(2.6rem, 4vw, 3.4rem);
+  padding-top: clamp(2.1rem, 3.2vw, 2.8rem);
+  padding-bottom: clamp(2.1rem, 3.2vw, 2.8rem);
 }
 
 .hero-grid,
@@ -361,6 +365,10 @@ h6,
   align-items: start;
 }
 
+.hero-grid-copy-only {
+  grid-template-columns: minmax(0, 42rem);
+}
+
 .hero-copy {
   max-width: 38rem;
   padding-top: 0.35rem;
@@ -370,9 +378,18 @@ h6,
   margin: 0.6rem 0 1rem;
   font-size: clamp(1.8rem, 2.5vw, 2.6rem);
   line-height: 1.22;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   font-weight: 700;
+  color: #061228;
   max-width: none;
+}
+
+.hero h1 span {
+  display: block;
+}
+
+.home-title-accent {
+  color: #1267d8;
 }
 
 .hero p {
@@ -469,6 +486,10 @@ h6,
   color: #f2ca5d;
 }
 
+.about-snapshot-card {
+  align-self: stretch;
+}
+
 .eyebrow {
   display: inline-block;
   color: var(--accent);
@@ -491,6 +512,23 @@ h6,
   line-height: 1.28;
   letter-spacing: -0.01em;
   font-weight: 700;
+}
+
+.section-header h2 .section-title-main,
+.section-header h2 .section-title-accent {
+  display: block;
+}
+
+.section-header h2 .section-title-main {
+  color: #061228;
+}
+
+.section-header h2 .section-title-accent {
+  color: #1267d8;
+}
+
+.get-started-copy .get-started-hero-header h2 .section-title-accent {
+  color: #1267d8;
 }
 
 .section-header p,
@@ -1177,6 +1215,7 @@ h6,
 
 .what-you-gain-section {
   background: #ffffff;
+  padding-top: 1.2rem;
   padding-bottom: 4.5rem;
 }
 
@@ -1198,7 +1237,7 @@ h6,
 
 .what-you-gain-header h2 {
   margin: 0 0 0.25rem;
-  color: #10172c;
+  color: #1267d8;
   font-size: clamp(1.85rem, 2.7vw, 2.4rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -1359,16 +1398,17 @@ h6,
 }
 
 .careers-cta-copy {
-  max-width: 24rem;
+  max-width: 28rem;
 }
 
 .careers-cta-copy h2 {
   margin: 0 0 1.15rem;
   color: #050b16;
-  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  font-size: clamp(2.15rem, 3.1vw, 2.85rem);
   line-height: 1.18;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .careers-cta-copy h2 span {
@@ -1436,7 +1476,7 @@ h6,
 }
 
 .home-services-header h2 {
-  color: #0b1e3f;
+  color: #061228;
   font-size: clamp(1.65rem, 3vw, 2.45rem);
   line-height: 1.16;
   font-weight: 900;
@@ -1466,7 +1506,7 @@ h6,
 .home-services-label h2,
 .home-section-label h2 {
   margin: 0;
-  color: #0b6fa4;
+  color: #1267d8;
   font-size: clamp(1.5rem, 2.3vw, 2rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
@@ -1483,9 +1523,10 @@ h6,
 
 .home-products-header h2,
 .home-testimonials-header h2 {
-  font-size: clamp(1.1rem, 1.45vw, 1.45rem);
-  line-height: 1.35;
-  font-weight: 700;
+  color: #061228;
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  line-height: 1.16;
+  font-weight: 900;
 }
 
 .services-page-header .eyebrow {
@@ -1613,16 +1654,16 @@ h6,
 .how-it-works-line {
   height: 1px;
   min-width: 8rem;
-  background: #b8c8d4;
+  background: rgba(18, 103, 216, 0.36);
 }
 
 .how-it-works-line:last-child {
-  background: #b8c8d4;
+  background: rgba(18, 103, 216, 0.36);
 }
 
 .how-it-works-header h2 {
   margin: 0;
-  color: #0b6fa4;
+  color: #1267d8;
   font-size: clamp(1.5rem, 2.3vw, 2rem);
   line-height: 1.2;
   letter-spacing: -0.015em;
@@ -1829,8 +1870,47 @@ h6,
 }
 
 .hero {
+  position: relative;
+  overflow: hidden;
   padding-top: 1.6rem;
   padding-bottom: 1.4rem;
+  background:
+    radial-gradient(circle at 76% 28%, rgba(207, 174, 96, 0.14), transparent 18rem),
+    radial-gradient(circle at 90% 72%, rgba(26, 166, 166, 0.12), transparent 16rem);
+}
+
+.home-hero-grid {
+  grid-template-columns: minmax(0, 0.92fr) minmax(20rem, 1.08fr);
+  align-items: center;
+  gap: clamp(1.7rem, 4vw, 3.75rem);
+}
+
+.home-hero-logo-wrap {
+  position: relative;
+  min-height: clamp(11.5rem, 20vw, 18rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.home-hero-logo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 8% 2% 2% 7%;
+  z-index: -1;
+  opacity: 0.32;
+  background:
+    radial-gradient(circle at 42% 50%, rgba(255, 206, 88, 0.52), transparent 11rem),
+    radial-gradient(circle at 68% 40%, rgba(26, 166, 166, 0.18), transparent 13rem);
+  filter: blur(18px);
+}
+
+.home-hero-logo-wrap img {
+  display: block;
+  width: min(100%, 42rem);
+  height: auto;
+  filter: drop-shadow(0 1.4rem 2rem rgba(18, 50, 74, 0.12));
 }
 
 .cta-panel {
@@ -1882,7 +1962,7 @@ h6,
   max-width: 56rem;
   color: #0f172a;
   font-size: clamp(1.85rem, 3.4vw, 3.1rem);
-  line-height: 1.12;
+  line-height: 1.04;
   letter-spacing: 0;
   font-weight: 800;
 }
@@ -1891,7 +1971,28 @@ h6,
   max-width: 54rem;
   color: #475569;
   font-size: 1.08rem;
-  line-height: 1.78;
+  line-height: 1.62;
+}
+
+.about-section.page-intro .about-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(22rem, 0.95fr);
+  gap: clamp(3.75rem, 7vw, 6rem);
+}
+
+.about-hero-header h2 {
+  max-width: 42rem;
+}
+
+.about-hero-header .section-title-main {
+  white-space: nowrap;
+}
+
+.about-hero-header .section-title-accent {
+  max-width: 42rem;
+}
+
+.about-hero-header h2 {
+  font-size: clamp(1.85rem, 3.1vw, 2.85rem);
 }
 
 .contact-page {
@@ -2042,7 +2143,7 @@ h6,
 
 .contact-page .form-card {
   gap: 0.62rem;
-  width: min(100%, 33rem);
+  width: min(100%, 36rem);
   justify-self: end;
   padding: clamp(1.25rem, 2.4vw, 1.8rem);
   border: 1px solid rgba(226, 232, 240, 0.95);
@@ -2063,9 +2164,10 @@ h6,
 .contact-form-header h2 {
   margin: 0;
   color: #17243f;
-  font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+  font-size: clamp(1.12rem, 1.75vw, 1.48rem);
   line-height: 1.15;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .contact-form-header p {
@@ -2178,8 +2280,8 @@ h6,
 .get-started-page .contact-layout {
   position: relative;
   z-index: 1;
-  grid-template-columns: minmax(0, 1.06fr) minmax(25rem, 0.88fr);
-  gap: clamp(1.8rem, 4.5vw, 3.4rem);
+  grid-template-columns: minmax(0, 0.94fr) minmax(28rem, 0.88fr);
+  gap: clamp(2.8rem, 5vw, 4.25rem);
   align-items: start;
 }
 
@@ -2196,9 +2298,13 @@ h6,
 .get-started-copy .section-header h2 {
   max-width: 38rem;
   color: #0b1e3f;
-  font-size: clamp(1.85rem, 3.4vw, 2.55rem);
+  font-size: clamp(1.8rem, 2.75vw, 2.28rem);
   line-height: 1.12;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+}
+
+.get-started-copy .get-started-hero-header h2 .section-title-main {
+  white-space: nowrap;
 }
 
 .get-started-copy .section-header p {
@@ -2287,7 +2393,7 @@ h6,
 
 .get-started-page .form-card {
   gap: 0.62rem;
-  width: min(100%, 32rem);
+  width: min(100%, 36rem);
   justify-self: end;
   padding: clamp(1.15rem, 2vw, 1.45rem);
   border-radius: 0.9rem;
@@ -2304,9 +2410,11 @@ h6,
 .get-started-form-header h2 {
   margin: 0;
   color: #17243f;
-  font-size: 1.45rem;
+  font-size: clamp(1.05rem, 1.75vw, 1.32rem);
   line-height: 1.18;
   font-weight: 800;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .get-started-form-header p {
@@ -2374,7 +2482,7 @@ h6,
 }
 
 .industries-hero .section-header {
-  max-width: 58rem;
+  max-width: 72rem;
   margin-bottom: 1.8rem;
 }
 
@@ -2383,12 +2491,16 @@ h6,
 }
 
 .industries-hero .section-header h2 {
-  max-width: 56rem;
+  max-width: 72rem;
   color: #0f172a;
   font-size: clamp(1.85rem, 3.4vw, 3.1rem);
   line-height: 1.12;
   letter-spacing: 0;
   font-weight: 800;
+}
+
+.industries-hero .section-title-main {
+  white-space: nowrap;
 }
 
 .industries-hero .section-header p {
@@ -2597,31 +2709,99 @@ h6,
 .technologies-page {
   background: #f8fafc;
   color: #0f172a;
+  padding-top: clamp(1.25rem, 2.4vw, 1.9rem);
+  padding-bottom: clamp(3rem, 5vw, 4rem);
 }
 
-.technologies-hero .section-header {
-  max-width: 58rem;
-  margin-bottom: 2rem;
+.technologies-hero {
+  display: grid;
+  grid-template-columns: minmax(36rem, 0.62fr) minmax(21rem, 0.38fr);
+  gap: clamp(1.1rem, 2.2vw, 2rem);
+  align-items: center;
+  min-height: clamp(15rem, 24vw, 20rem);
+  margin-bottom: 1.1rem;
+  padding: clamp(0.15rem, 1vw, 0.55rem) 0 clamp(0.6rem, 1.5vw, 1rem);
+  overflow: hidden;
+}
+
+.technologies-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 47rem;
 }
 
 .technologies-hero .eyebrow {
+  display: block;
+  margin-bottom: 0.65rem;
   color: #0b6fa4;
-}
-
-.technologies-hero .section-header h2 {
-  max-width: 54rem;
-  color: #0f172a;
-  font-size: clamp(1.85rem, 3.4vw, 3.1rem);
-  line-height: 1.12;
-  letter-spacing: 0;
+  font-size: 1rem;
+  line-height: 1.2;
   font-weight: 800;
 }
 
-.technologies-hero .section-header p {
-  max-width: 54rem;
-  color: #475569;
-  font-size: 1.08rem;
-  line-height: 1.78;
+.technologies-hero h1 {
+  max-width: 46rem;
+  margin: 0;
+  color: #061228;
+  font-size: clamp(2.05rem, 3.65vw, 3.35rem);
+  line-height: 1.12;
+  letter-spacing: 0;
+  font-weight: 900;
+}
+
+.technologies-hero h1 span {
+  display: block;
+  white-space: nowrap;
+}
+
+.technologies-title-accent {
+  color: #1267d8;
+}
+
+.technologies-hero p {
+  max-width: 40.5rem;
+  margin: 0.9rem 0 0;
+  color: #1e3a5f;
+  font-size: 1.05rem;
+  line-height: 1.66;
+}
+
+.technologies-hero-visual {
+  position: relative;
+  min-height: clamp(13rem, 23vw, 18.5rem);
+  margin-left: clamp(0.75rem, 2vw, 1.6rem);
+  border-radius: 0;
+  background: transparent;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.technologies-hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0) 82%, #f8fafc 100%),
+    linear-gradient(180deg, #f8fafc 0%, rgba(248, 250, 252, 0) 16%, rgba(248, 250, 252, 0) 84%, #f8fafc 100%);
+}
+
+.technologies-hero-visual img {
+  display: block;
+  width: 124%;
+  height: 100%;
+  min-height: inherit;
+  margin-left: 0;
+  object-fit: cover;
+  object-position: center right;
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+  filter: saturate(1.02) contrast(1.03);
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 13%, #000 88%, transparent 100%),
+    radial-gradient(ellipse at 54% 50%, #000 0 62%, rgba(0, 0, 0, 0.72) 78%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .technology-card-grid {
@@ -2652,7 +2832,7 @@ h6,
   content: "";
   position: absolute;
   inset: 0;
-  border-top: 3px solid rgba(212, 175, 55, 0.86);
+  border-top: 3px solid rgba(18, 103, 216, 0.86);
   opacity: 0;
   transition: opacity 180ms ease;
 }
@@ -2660,10 +2840,10 @@ h6,
 .technology-card:hover,
 .technology-card:focus-within {
   transform: translateY(-0.35rem);
-  border-color: rgba(212, 175, 55, 0.55);
+  border-color: rgba(18, 103, 216, 0.42);
   box-shadow:
-    0 24px 52px rgba(15, 23, 42, 0.13),
-    0 0 0 4px rgba(212, 175, 55, 0.1);
+    0 24px 52px rgba(15, 23, 42, 0.12),
+    0 0 0 4px rgba(18, 103, 216, 0.08);
 }
 
 .technology-card:hover::before,
@@ -2685,9 +2865,9 @@ h6,
   flex: 0 0 auto;
   width: 2.1rem;
   height: 2.1rem;
-  border: 1px solid rgba(212, 175, 55, 0.38);
+  border: 1px solid rgba(18, 103, 216, 0.24);
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.12);
+  background: rgba(18, 103, 216, 0.1);
   font-size: 1.18rem;
   line-height: 1;
 }
@@ -2719,10 +2899,10 @@ h6,
   align-items: center;
   min-height: 2rem;
   padding: 0.42rem 0.72rem;
-  border: 1px solid rgba(212, 175, 55, 0.26);
+  border: 1px solid rgba(18, 103, 216, 0.18);
   border-radius: 999px;
-  background: rgba(212, 175, 55, 0.09);
-  color: #1e293b;
+  background: rgba(18, 103, 216, 0.08);
+  color: #164a86;
   font-size: 0.86rem;
   line-height: 1.2;
   font-weight: 700;
@@ -2737,10 +2917,10 @@ h6,
   padding: clamp(1.5rem, 3vw, 2.2rem);
   border-radius: 1.25rem;
   background:
-    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(18, 50, 74, 0.94)),
-    #0f172a;
+    linear-gradient(135deg, rgba(6, 18, 40, 0.97), rgba(18, 103, 216, 0.9)),
+    #061228;
   color: #ffffff;
-  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 20px 42px rgba(18, 103, 216, 0.18);
 }
 
 .technology-cta span {
@@ -3880,7 +4060,51 @@ textarea {
   font-size: 1rem;
 }
 
+@media (max-width: 1040px) {
+  .header-row {
+    gap: 1rem;
+  }
+
+  .brand {
+    flex-basis: clamp(16.5rem, 27vw, 18.5rem);
+  }
+
+  .brand-logo {
+    max-width: 18.5rem;
+  }
+
+  .nav {
+    gap: 0.24rem;
+    padding-left: 0.25rem;
+  }
+
+  .nav-link {
+    padding-inline: 0.4rem;
+    font-size: 0.92rem;
+  }
+
+  .technologies-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .technologies-hero-visual {
+    max-width: 42rem;
+    width: 100%;
+    margin: -0.25rem auto 0;
+  }
+
+  .technologies-hero-visual img {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 900px) {
+  .industries-hero .section-title-main {
+    white-space: normal;
+  }
+
   .hero-grid,
   .contact-layout,
   .about-grid,
@@ -3915,6 +4139,24 @@ textarea {
     width: 100%;
     flex-wrap: wrap;
     justify-content: flex-start;
+    padding-left: 0;
+  }
+
+  .get-started-form-header h2 {
+    white-space: normal;
+  }
+
+  .contact-form-header h2 {
+    white-space: normal;
+  }
+
+  .careers-cta-copy h2 {
+    white-space: normal;
+  }
+
+  .about-hero-header .section-title-main,
+  .about-hero-header .section-title-accent {
+    white-space: normal;
   }
 
   .nav-dropdown {
@@ -3943,7 +4185,16 @@ textarea {
 
   .brand-logo,
   .footer-brand-logo {
-    width: 16rem;
+    width: 18rem;
+  }
+
+  .home-hero-logo-wrap {
+    min-height: 10rem;
+    justify-content: flex-start;
+  }
+
+  .home-hero-logo-wrap img {
+    width: min(100%, 36rem);
   }
 
   .product-list-summary {
@@ -3963,6 +4214,35 @@ textarea {
 
   .trust-strip-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .technologies-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+    padding-top: 0;
+  }
+
+  .technologies-hero-copy {
+    max-width: 44rem;
+  }
+
+  .technologies-hero h1 {
+    max-width: 42rem;
+    font-size: clamp(1.75rem, 5.8vw, 3rem);
+  }
+
+  .technologies-hero-visual {
+    min-height: clamp(13rem, 42vw, 17rem);
+    max-width: 34rem;
+    width: 100%;
+    margin: -0.45rem auto 0;
+  }
+
+  .technologies-hero-visual img {
+    width: 100%;
+    margin-left: 0;
   }
 
   .industries-grid {
@@ -4026,6 +4306,26 @@ textarea {
 }
 
 @media (max-width: 620px) {
+  .technologies-hero {
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .technologies-hero h1 {
+    font-size: clamp(1.42rem, 6.2vw, 2.25rem);
+  }
+
+  .technologies-hero p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .technologies-hero-visual {
+    min-height: 12rem;
+    margin-top: -0.35rem;
+  }
+
   .industries-grid,
   .industries-why ul {
     grid-template-columns: 1fr;

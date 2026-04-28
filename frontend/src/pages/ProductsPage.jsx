@@ -200,8 +200,8 @@ export default function ProductsPage() {
       <div className="container">
         <div className="accelerators-hero">
           <SectionHeader
-            eyebrow="Accelerators"
-            title="Proven Solutions That Help Clients Move Faster"
+            title="Proven Solutions"
+            titleAccent="That Help Clients Move Faster"
             text="Beyond staffing and consulting, Trinexora offers reusable delivery accelerators designed to reduce setup time, improve quality, and speed execution across transformation programs."
           />
         </div>

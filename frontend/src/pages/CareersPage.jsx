@@ -27,8 +27,8 @@ export default function CareersPage() {
     <section className="section page-intro">
       <div className="container">
         <SectionHeader
-          eyebrow="Careers"
-          title="Build your career with Trinexora"
+          title="Build your career with"
+          titleAccent="Trinexora"
           text="We will publish open positions here as our team grows. When a role is posted, applicants can apply directly with their resume."
         />
 
