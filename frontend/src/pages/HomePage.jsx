@@ -5,6 +5,7 @@ import requirementDiscoveryImage from "../assets/how-it-works/requirement-discov
 import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
 import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
 import executionScalingImage from "../assets/how-it-works/execution-scaling.jpeg";
+import homeTrinexoraLogo from "../assets/home-trinexora-logo-transparent.png";
 
 const homeServices = [
   {
@@ -145,7 +146,7 @@ export default function HomePage() {
   return (
     <>
       <section className="hero">
-        <div className="container hero-grid hero-grid-copy-only">
+        <div className="container hero-grid home-hero-grid">
           <div className="hero-copy">
             <span className="eyebrow">
               Build. Scale. Deliver.
@@ -167,6 +168,9 @@ export default function HomePage() {
                 Explore Our Services
               </Link>
             </div>
+          </div>
+          <div className="home-hero-logo-wrap" aria-hidden="true">
+            <img src={homeTrinexoraLogo} alt="" />
           </div>
         </div>
       </section>
