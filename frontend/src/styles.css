@@ -2605,31 +2605,99 @@ h6,
 .technologies-page {
   background: #f8fafc;
   color: #0f172a;
+  padding-top: clamp(1.25rem, 2.4vw, 1.9rem);
+  padding-bottom: clamp(3rem, 5vw, 4rem);
 }
 
-.technologies-hero .section-header {
-  max-width: 58rem;
-  margin-bottom: 2rem;
+.technologies-hero {
+  display: grid;
+  grid-template-columns: minmax(36rem, 0.62fr) minmax(21rem, 0.38fr);
+  gap: clamp(1.1rem, 2.2vw, 2rem);
+  align-items: center;
+  min-height: clamp(15rem, 24vw, 20rem);
+  margin-bottom: 1.1rem;
+  padding: clamp(0.15rem, 1vw, 0.55rem) 0 clamp(0.6rem, 1.5vw, 1rem);
+  overflow: hidden;
+}
+
+.technologies-hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 47rem;
 }
 
 .technologies-hero .eyebrow {
+  display: block;
+  margin-bottom: 0.65rem;
   color: #0b6fa4;
-}
-
-.technologies-hero .section-header h2 {
-  max-width: 54rem;
-  color: #0f172a;
-  font-size: clamp(1.85rem, 3.4vw, 3.1rem);
-  line-height: 1.12;
-  letter-spacing: 0;
+  font-size: 1rem;
+  line-height: 1.2;
   font-weight: 800;
 }
 
-.technologies-hero .section-header p {
-  max-width: 54rem;
-  color: #475569;
-  font-size: 1.08rem;
-  line-height: 1.78;
+.technologies-hero h1 {
+  max-width: 46rem;
+  margin: 0;
+  color: #061228;
+  font-size: clamp(2.05rem, 3.65vw, 3.35rem);
+  line-height: 1.12;
+  letter-spacing: 0;
+  font-weight: 900;
+}
+
+.technologies-hero h1 span {
+  display: block;
+  white-space: nowrap;
+}
+
+.technologies-title-accent {
+  color: #1267d8;
+}
+
+.technologies-hero p {
+  max-width: 40.5rem;
+  margin: 0.9rem 0 0;
+  color: #1e3a5f;
+  font-size: 1.05rem;
+  line-height: 1.66;
+}
+
+.technologies-hero-visual {
+  position: relative;
+  min-height: clamp(13rem, 23vw, 18.5rem);
+  margin-left: clamp(0.75rem, 2vw, 1.6rem);
+  border-radius: 0;
+  background: transparent;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.technologies-hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0) 82%, #f8fafc 100%),
+    linear-gradient(180deg, #f8fafc 0%, rgba(248, 250, 252, 0) 16%, rgba(248, 250, 252, 0) 84%, #f8fafc 100%);
+}
+
+.technologies-hero-visual img {
+  display: block;
+  width: 124%;
+  height: 100%;
+  min-height: inherit;
+  margin-left: 0;
+  object-fit: cover;
+  object-position: center right;
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+  filter: saturate(1.02) contrast(1.03);
+  mask-image:
+    linear-gradient(90deg, transparent 0%, #000 13%, #000 88%, transparent 100%),
+    radial-gradient(ellipse at 54% 50%, #000 0 62%, rgba(0, 0, 0, 0.72) 78%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .technology-card-grid {
@@ -2660,7 +2728,7 @@ h6,
   content: "";
   position: absolute;
   inset: 0;
-  border-top: 3px solid rgba(212, 175, 55, 0.86);
+  border-top: 3px solid rgba(18, 103, 216, 0.86);
   opacity: 0;
   transition: opacity 180ms ease;
 }
@@ -2668,10 +2736,10 @@ h6,
 .technology-card:hover,
 .technology-card:focus-within {
   transform: translateY(-0.35rem);
-  border-color: rgba(212, 175, 55, 0.55);
+  border-color: rgba(18, 103, 216, 0.42);
   box-shadow:
-    0 24px 52px rgba(15, 23, 42, 0.13),
-    0 0 0 4px rgba(212, 175, 55, 0.1);
+    0 24px 52px rgba(15, 23, 42, 0.12),
+    0 0 0 4px rgba(18, 103, 216, 0.08);
 }
 
 .technology-card:hover::before,
@@ -2693,9 +2761,9 @@ h6,
   flex: 0 0 auto;
   width: 2.1rem;
   height: 2.1rem;
-  border: 1px solid rgba(212, 175, 55, 0.38);
+  border: 1px solid rgba(18, 103, 216, 0.24);
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.12);
+  background: rgba(18, 103, 216, 0.1);
   font-size: 1.18rem;
   line-height: 1;
 }
@@ -2727,10 +2795,10 @@ h6,
   align-items: center;
   min-height: 2rem;
   padding: 0.42rem 0.72rem;
-  border: 1px solid rgba(212, 175, 55, 0.26);
+  border: 1px solid rgba(18, 103, 216, 0.18);
   border-radius: 999px;
-  background: rgba(212, 175, 55, 0.09);
-  color: #1e293b;
+  background: rgba(18, 103, 216, 0.08);
+  color: #164a86;
   font-size: 0.86rem;
   line-height: 1.2;
   font-weight: 700;
@@ -2745,10 +2813,10 @@ h6,
   padding: clamp(1.5rem, 3vw, 2.2rem);
   border-radius: 1.25rem;
   background:
-    linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(18, 50, 74, 0.94)),
-    #0f172a;
+    linear-gradient(135deg, rgba(6, 18, 40, 0.97), rgba(18, 103, 216, 0.9)),
+    #061228;
   color: #ffffff;
-  box-shadow: 0 20px 42px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 20px 42px rgba(18, 103, 216, 0.18);
 }
 
 .technology-cta span {
@@ -3888,6 +3956,24 @@ textarea {
   font-size: 1rem;
 }
 
+@media (max-width: 1040px) {
+  .technologies-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .technologies-hero-visual {
+    max-width: 42rem;
+    width: 100%;
+    margin: -0.25rem auto 0;
+  }
+
+  .technologies-hero-visual img {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 900px) {
   .hero-grid,
   .contact-layout,
@@ -3973,6 +4059,35 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .technologies-hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+    padding-top: 0;
+  }
+
+  .technologies-hero-copy {
+    max-width: 44rem;
+  }
+
+  .technologies-hero h1 {
+    max-width: 42rem;
+    font-size: clamp(1.75rem, 5.8vw, 3rem);
+  }
+
+  .technologies-hero-visual {
+    min-height: clamp(13rem, 42vw, 17rem);
+    max-width: 34rem;
+    width: 100%;
+    margin: -0.45rem auto 0;
+  }
+
+  .technologies-hero-visual img {
+    width: 100%;
+    margin-left: 0;
+  }
+
   .industries-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -4034,6 +4149,26 @@ textarea {
 }
 
 @media (max-width: 620px) {
+  .technologies-hero {
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .technologies-hero h1 {
+    font-size: clamp(1.42rem, 6.2vw, 2.25rem);
+  }
+
+  .technologies-hero p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .technologies-hero-visual {
+    min-height: 12rem;
+    margin-top: -0.35rem;
+  }
+
   .industries-grid,
   .industries-why ul {
     grid-template-columns: 1fr;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SectionHeader from "../components/SectionHeader";
+import technologyHeroBackground from "../assets/technology-hero-background.png";
 
 const technologyAreas = [
   {
@@ -130,11 +130,25 @@ export default function TechnologiesPage() {
     <section className="section page-intro technologies-page">
       <div className="container">
         <div className="technologies-hero">
-          <SectionHeader
-            eyebrow="Technologies"
-            title="Technology Expertise That Powers Modern Delivery"
-            text="We provide specialized talent and delivery teams across modern engineering, cloud, data, AI, QA, and enterprise platforms—helping organizations scale faster with the right technology capabilities."
-          />
+          <div className="technologies-hero-copy">
+            <h1>
+              <span className="technologies-title-main">Technology Expertise</span>
+              <span className="technologies-title-accent">That Powers Modern Delivery</span>
+            </h1>
+            <p>
+              We provide specialized talent and delivery teams across modern
+              engineering, cloud, data, AI, QA, and enterprise platforms—helping
+              organizations scale faster with the right technology capabilities.
+            </p>
+          </div>
+
+          <div className="technologies-hero-visual">
+            <img
+              src={technologyHeroBackground}
+              alt=""
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         <div className="technology-card-grid">
