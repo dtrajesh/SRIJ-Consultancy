@@ -249,8 +249,9 @@ export default function AboutPage() {
         <div className="container about-grid">
           <div>
             <SectionHeader
-              eyebrow="About Us"
-              title="A consultancy built around responsiveness, accountability, and long-term client trust"
+              className="about-hero-header"
+              title={<>A Consulting Partner<br />Defined By Responsiveness,</>}
+              titleAccent={<>Accountability, and<br />Long-Term Client Trust.</>}
               text="Trinexora partners with businesses that need technical capability without the hiring delay or delivery uncertainty."
             />
 

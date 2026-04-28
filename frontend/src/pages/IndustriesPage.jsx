@@ -79,8 +79,8 @@ export default function IndustriesPage() {
       <div className="container">
         <div className="industries-hero">
           <SectionHeader
-            eyebrow="Industry Focus"
-            title="Trusted Delivery Teams for High-Stakes, Industry-Specific Operations"
+            title="Trusted Delivery Teams for High-Stakes"
+            titleAccent="Industry-Specific Operations"
             text="We partner with organizations where speed, precision, compliance, and scalability are mission-critical. Our domain-aligned teams bring industry expertise, technology excellence, and execution discipline to every engagement."
           />
         </div>

@@ -148,13 +148,9 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero-grid home-hero-grid">
           <div className="hero-copy">
-            <span className="eyebrow">
-              Build. Scale. Deliver.
-            </span>
             <h1>
-              Build, Scale &amp; Deliver
-              <br />
-              Technology Faster
+              <span className="home-title-main">Build, Scale &amp; Deliver</span>
+              <span className="home-title-accent">Technology Faster</span>
             </h1>
             <p>
               End-to-end IT services and talent solutions that help enterprises accelerate

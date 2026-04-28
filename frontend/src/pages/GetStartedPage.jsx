@@ -7,8 +7,9 @@ export default function GetStartedPage() {
       <div className="container contact-layout">
         <div className="get-started-copy">
           <SectionHeader
-            eyebrow="Get Started"
-            title="Start Your IT Transformation With Trinexora"
+            className="get-started-hero-header"
+            title="Start Your IT Transformation With"
+            titleAccent="Trinexora"
             text="Tell us your goals — we'll design the right engagement model for your timeline and team. Whether you need staffing, managed delivery, or consulting — we'll guide you to the best fit."
           />
 
