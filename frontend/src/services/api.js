@@ -109,6 +109,13 @@ export function applyToJob(jobId, formData) {
   });
 }
 
+export function submitTalentProfile(formData) {
+  return request("/careers/talent/submit", {
+    method: "POST",
+    body: formData
+  });
+}
+
 export function createAdminJob(token, payload) {
   return request("/admin/jobs", {
     method: "POST",
@@ -139,4 +146,17 @@ export function deleteAdminApplication(token, applicationId) {
 
 export function getAdminResumeUrl(applicationId) {
   return `${API_BASE}/admin/applications/${applicationId}/resume`;
+}
+
+export function deleteAdminTalentSubmission(token, submissionId) {
+  return request(`/admin/talent-submissions/${submissionId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+export function getAdminTalentResumeUrl(submissionId) {
+  return `${API_BASE}/admin/talent-submissions/${submissionId}/resume`;
 }

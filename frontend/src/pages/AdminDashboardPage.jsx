@@ -6,7 +6,9 @@ import {
   deleteAdminJob,
   deleteAdminConsultation,
   deleteAdminContact,
+  deleteAdminTalentSubmission,
   getAdminResumeUrl,
+  getAdminTalentResumeUrl,
   getAdminSubmissions
 } from "../services/api";
 
@@ -35,7 +37,8 @@ export default function AdminDashboardPage() {
     contacts: [],
     consultations: [],
     jobs: [],
-    applications: []
+    applications: [],
+    talent_submissions: []
   });
   const [status, setStatus] = useState({ type: "loading", message: "Loading submissions..." });
   const [actionMessage, setActionMessage] = useState("");
@@ -219,6 +222,62 @@ export default function AdminDashboardPage() {
     }
   }
 
+  async function handleDeleteTalentSubmission(submissionId) {
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      navigate("/admin/login");
+      return;
+    }
+
+    const confirmed = window.confirm("Delete this resume bank submission?");
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setDeletingKey(`talent-${submissionId}`);
+      const response = await deleteAdminTalentSubmission(token, submissionId);
+      await loadDashboardData(token, { loadingMessage: "Refreshing dashboard..." });
+      setActionMessage(response.message);
+    } catch (error) {
+      setActionMessage(error.message || "Unable to delete talent submission.");
+    } finally {
+      setDeletingKey("");
+    }
+  }
+
+  async function handleTalentResumeDownload(submissionId, resumeName) {
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      navigate("/admin/login");
+      return;
+    }
+
+    try {
+      const response = await fetch(getAdminTalentResumeUrl(submissionId), {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to download resume.");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = resumeName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      setActionMessage(error.message || "Unable to download resume.");
+    }
+  }
+
   return (
     <section className="admin-dashboard">
       <div className="container">
@@ -372,6 +431,84 @@ export default function AdminDashboardPage() {
                             {deletingKey === `application-${item.id}`
                               ? "Deleting..."
                               : "Delete"}
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="admin-panel">
+            <div className="admin-panel-header">
+              <h2>Resume bank and talent network</h2>
+              <span>{data.talent_submissions.length}</span>
+            </div>
+            <div className="admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Submission</th>
+                    <th>Target Role</th>
+                    <th>Experience</th>
+                    <th>Work Preferences</th>
+                    <th>Skills</th>
+                    <th>Resume</th>
+                    <th>Received</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.talent_submissions.length === 0 ? (
+                    <tr>
+                      <td colSpan="9">No resume bank submissions yet.</td>
+                    </tr>
+                  ) : (
+                    data.talent_submissions.map((item) => (
+                      <tr key={item.id}>
+                        <td>
+                          <strong>{item.full_name}</strong>
+                          <div>{item.email}</div>
+                          <div>{item.phone}</div>
+                        </td>
+                        <td>
+                          {item.submission_type === "join_talent_network"
+                            ? "Talent Network"
+                            : "Resume Submission"}
+                        </td>
+                        <td>{item.target_job_title}</td>
+                        <td>
+                          <div>{item.years_of_experience}</div>
+                          <div>{item.current_location}</div>
+                        </td>
+                        <td>
+                          <div>{item.employment_preference}</div>
+                          <div>{item.preferred_work_mode}</div>
+                        </td>
+                        <td>{item.primary_skills}</td>
+                        <td>
+                          <button
+                            className="button button-secondary button-small"
+                            type="button"
+                            onClick={() =>
+                              handleTalentResumeDownload(item.id, item.resume_original_name)
+                            }
+                          >
+                            Resume
+                          </button>
+                        </td>
+                        <td>{formatDate(item.created_at)}</td>
+                        <td>
+                          <button
+                            className="button button-danger button-small"
+                            type="button"
+                            disabled={deletingKey === `talent-${item.id}`}
+                            onClick={() => handleDeleteTalentSubmission(item.id)}
+                          >
+                            {deletingKey === `talent-${item.id}` ? "Deleting..." : "Delete"}
                           </button>
                         </td>
                       </tr>

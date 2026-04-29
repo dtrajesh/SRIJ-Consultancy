@@ -14,6 +14,7 @@ from models import (
     JobApplication,
     JobOpening,
     Service,
+    TalentProfileSubmission,
     Testimonial,
     db,
 )
@@ -56,6 +57,30 @@ def serialize_job(job):
         "requirements": job.requirements,
         "is_active": job.is_active,
         "created_at": job.created_at.isoformat(),
+    }
+
+
+def serialize_talent_submission(item):
+    return {
+        "id": item.id,
+        "submission_type": item.submission_type,
+        "target_job_title": item.target_job_title,
+        "full_name": item.full_name,
+        "email": item.email,
+        "phone": item.phone,
+        "current_location": item.current_location,
+        "current_company": item.current_company,
+        "years_of_experience": item.years_of_experience,
+        "linkedin_url": item.linkedin_url,
+        "portfolio_url": item.portfolio_url,
+        "employment_preference": item.employment_preference,
+        "preferred_work_mode": item.preferred_work_mode,
+        "notice_period": item.notice_period,
+        "work_authorization": item.work_authorization,
+        "primary_skills": item.primary_skills,
+        "professional_summary": item.professional_summary,
+        "resume_original_name": item.resume_original_name,
+        "created_at": item.created_at.isoformat(),
     }
 
 
@@ -160,6 +185,67 @@ def apply_to_job(job_id):
     return jsonify({"message": "Application submitted successfully."}), 201
 
 
+@api.post("/careers/talent/submit")
+def submit_talent_profile():
+    form = request.form
+    required_fields = [
+        "submission_type",
+        "target_job_title",
+        "full_name",
+        "email",
+        "phone",
+        "current_location",
+        "years_of_experience",
+        "employment_preference",
+        "preferred_work_mode",
+        "work_authorization",
+        "primary_skills",
+        "professional_summary",
+    ]
+    missing = [field for field in required_fields if not str(form.get(field, "")).strip()]
+
+    resume = request.files.get("resume")
+    if missing:
+        return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
+
+    if resume is None or not resume.filename:
+        return jsonify({"message": "Resume upload is required."}), 400
+
+    if not allowed_resume(resume.filename):
+        return jsonify({"message": "Resume must be a PDF, DOC, or DOCX file."}), 400
+
+    original_name = secure_filename(resume.filename)
+    extension = original_name.rsplit(".", 1)[-1].lower()
+    stored_name = f"{uuid.uuid4().hex}.{extension}"
+    upload_path = os.path.join(current_app.config["UPLOAD_FOLDER"], stored_name)
+    resume.save(upload_path)
+
+    submission = TalentProfileSubmission(
+        submission_type=form["submission_type"].strip(),
+        target_job_title=form["target_job_title"].strip(),
+        full_name=form["full_name"].strip(),
+        email=form["email"].strip(),
+        phone=form["phone"].strip(),
+        current_location=form["current_location"].strip(),
+        current_company=form.get("current_company", "").strip(),
+        years_of_experience=form["years_of_experience"].strip(),
+        linkedin_url=form.get("linkedin_url", "").strip(),
+        portfolio_url=form.get("portfolio_url", "").strip(),
+        employment_preference=form["employment_preference"].strip(),
+        preferred_work_mode=form["preferred_work_mode"].strip(),
+        notice_period=form.get("notice_period", "").strip(),
+        work_authorization=form["work_authorization"].strip(),
+        primary_skills=form["primary_skills"].strip(),
+        professional_summary=form["professional_summary"].strip(),
+        resume_file_name=stored_name,
+        resume_original_name=original_name,
+    )
+    db.session.add(submission)
+    db.session.commit()
+
+    return jsonify({"message": "Your profile has been submitted successfully."}), 201
+
+
 @api.post("/admin/login")
 def admin_login():
     payload = request.get_json(silent=True) or {}
@@ -196,6 +282,9 @@ def admin_submissions():
     ).all()
     jobs = JobOpening.query.order_by(JobOpening.created_at.desc()).all()
     applications = JobApplication.query.order_by(JobApplication.created_at.desc()).all()
+    talent_submissions = TalentProfileSubmission.query.order_by(
+        TalentProfileSubmission.created_at.desc()
+    ).all()
 
     return jsonify(
         {
@@ -248,6 +337,9 @@ def admin_submissions():
                     "created_at": item.created_at.isoformat(),
                 }
                 for item in applications
+            ],
+            "talent_submissions": [
+                serialize_talent_submission(item) for item in talent_submissions
             ],
         }
     )
@@ -421,6 +513,21 @@ def delete_job_application(application_id):
     return jsonify({"message": "Job application deleted successfully."})
 
 
+@api.delete("/admin/talent-submissions/<int:submission_id>")
+@admin_required
+def delete_talent_submission(submission_id):
+    submission = TalentProfileSubmission.query.get(submission_id)
+
+    if submission is None:
+        return jsonify({"message": "Talent submission not found."}), 404
+
+    remove_resume_file(submission.resume_file_name)
+    db.session.delete(submission)
+    db.session.commit()
+
+    return jsonify({"message": "Talent submission deleted successfully."})
+
+
 @api.get("/admin/applications/<int:application_id>/resume")
 @admin_required
 def download_resume(application_id):
@@ -434,6 +541,22 @@ def download_resume(application_id):
         application.resume_file_name,
         as_attachment=True,
         download_name=application.resume_original_name,
+    )
+
+
+@api.get("/admin/talent-submissions/<int:submission_id>/resume")
+@admin_required
+def download_talent_resume(submission_id):
+    submission = TalentProfileSubmission.query.get(submission_id)
+
+    if submission is None:
+        return jsonify({"message": "Talent submission not found."}), 404
+
+    return send_from_directory(
+        current_app.config["UPLOAD_FOLDER"],
+        submission.resume_file_name,
+        as_attachment=True,
+        download_name=submission.resume_original_name,
     )
 
 
