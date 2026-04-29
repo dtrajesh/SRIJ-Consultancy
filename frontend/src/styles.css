@@ -5050,3 +5050,262 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+/* Responsive stability layer */
+html,
+body {
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+.hero-grid > *,
+.contact-layout > *,
+.about-grid > *,
+.who-we-are-grid > *,
+.leadership-intro > *,
+.careers-hero-grid > *,
+.careers-internal-grid > *,
+.careers-process-testimonials > *,
+.careers-talent-layout > *,
+.footer-grid > *,
+.admin-grid > *,
+.admin-panel > * {
+  min-width: 0;
+}
+
+.content-card,
+.feature-panel,
+.form-card,
+.highlight-panel,
+.stat-card,
+.cta-panel,
+.career-opening-card,
+.careers-benefit-card,
+.careers-testimonial-card,
+.careers-internal-card,
+.internal-opening-card {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1180px) {
+  .site-header .container,
+  .container {
+    width: min(100% - 1.5rem, 1120px);
+  }
+
+  .header-row {
+    justify-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0 0.8rem;
+  }
+
+  .brand {
+    width: min(19rem, 82vw);
+    flex-basis: auto;
+  }
+
+  .brand-logo {
+    max-width: min(19rem, 82vw);
+    max-height: 4.9rem;
+  }
+
+  .nav {
+    justify-content: center;
+    gap: 0.35rem;
+  }
+
+  .nav-link {
+    padding: 0.38rem 0.52rem;
+    font-size: 0.9rem;
+    line-height: 1.15;
+  }
+
+  .nav .button {
+    padding: 0.68rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .section {
+    padding-top: clamp(2rem, 7vw, 3.2rem);
+    padding-bottom: clamp(2rem, 7vw, 3.2rem);
+  }
+
+  .page-intro {
+    padding-top: clamp(2rem, 7vw, 3rem);
+  }
+
+  .hero-actions,
+  .careers-hero-actions,
+  .careers-band-actions,
+  .admin-actions {
+    gap: 0.7rem;
+  }
+
+  .button {
+    min-height: 2.75rem;
+    padding: 0.78rem 1.05rem;
+  }
+
+  .content-card,
+  .feature-panel,
+  .form-card,
+  .highlight-panel,
+  .stat-card,
+  .cta-panel {
+    padding: clamp(1rem, 4vw, 1.35rem);
+    border-radius: 0.85rem;
+  }
+
+  .careers-talent-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-talent-form,
+  .contact-page .form-card,
+  .get-started-page .form-card {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .admin-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 48rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-header .container,
+  .container {
+    width: min(100% - 1rem, 1120px);
+  }
+
+  .site-header::before {
+    height: 0.22rem;
+  }
+
+  .site-header {
+    border-bottom-width: 0.22rem;
+  }
+
+  .header-row {
+    gap: 0.55rem;
+    padding: 0.52rem 0 0.68rem;
+  }
+
+  .brand {
+    width: min(15.5rem, 76vw);
+  }
+
+  .brand-logo {
+    max-width: min(15.5rem, 76vw);
+    max-height: 4rem;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.34rem;
+    align-items: stretch;
+  }
+
+  .nav-dropdown,
+  .nav-link,
+  .nav .button {
+    width: 100%;
+  }
+
+  .nav-link,
+  .nav .button {
+    min-height: 2.25rem;
+    padding: 0.42rem 0.35rem;
+    border-radius: 0.72rem;
+    font-size: clamp(0.74rem, 2.7vw, 0.86rem);
+    text-align: center;
+  }
+
+  .nav-dropdown-trigger {
+    justify-content: center;
+  }
+
+  .nav-dropdown-menu {
+    left: 0;
+    right: 0;
+    width: min(100%, calc(100vw - 1rem));
+  }
+
+  .hero h1,
+  .careers-hero-copy h1,
+  .careers-internal-hero h1,
+  .careers-talent-copy h1 {
+    font-size: clamp(1.72rem, 8vw, 2.25rem);
+    line-height: 1.16;
+  }
+
+  .hero p,
+  .lead-text,
+  .careers-hero-copy p {
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .hero-actions .button,
+  .careers-hero-actions .button,
+  .careers-band-actions .button {
+    width: 100%;
+  }
+
+  .careers-band {
+    border-radius: 0.9rem;
+  }
+
+  .careers-internal-card,
+  .career-opening-card,
+  .internal-opening-card,
+  .careers-benefit-card,
+  .careers-testimonial-card {
+    border-radius: 0.85rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav .button {
+    grid-column: 1 / -1;
+  }
+
+  .brand,
+  .brand-logo {
+    max-width: min(13.5rem, 78vw);
+  }
+
+  .footer-brand-logo {
+    width: min(15rem, 100%);
+  }
+
+  .content-card,
+  .feature-panel,
+  .form-card,
+  .highlight-panel,
+  .stat-card,
+  .cta-panel,
+  .career-opening-card,
+  .internal-opening-card {
+    padding: 1rem;
+  }
+}
