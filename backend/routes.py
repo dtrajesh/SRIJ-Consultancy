@@ -48,6 +48,7 @@ def remove_resume_file(file_name):
 def serialize_job(job):
     return {
         "id": job.id,
+        "job_category": job.job_category,
         "title": job.title,
         "department": job.department,
         "location": job.location,
@@ -125,13 +126,27 @@ def health_check():
 
 @api.get("/careers/jobs")
 def get_public_jobs():
-    jobs = JobOpening.query.filter_by(is_active=True).order_by(JobOpening.created_at.desc()).all()
+    jobs = (
+        JobOpening.query.filter_by(is_active=True, job_category="public")
+        .order_by(JobOpening.created_at.desc())
+        .all()
+    )
+    return jsonify([serialize_job(job) for job in jobs])
+
+
+@api.get("/careers/internal/jobs")
+def get_internal_jobs():
+    jobs = (
+        JobOpening.query.filter_by(is_active=True, job_category="internal")
+        .order_by(JobOpening.created_at.desc())
+        .all()
+    )
     return jsonify([serialize_job(job) for job in jobs])
 
 
 @api.get("/careers/jobs/<int:job_id>")
 def get_public_job(job_id):
-    job = JobOpening.query.filter_by(id=job_id, is_active=True).first()
+    job = JobOpening.query.filter_by(id=job_id, is_active=True, job_category="public").first()
 
     if job is None:
         return jsonify({"message": "Job opening not found."}), 404
@@ -141,7 +156,7 @@ def get_public_job(job_id):
 
 @api.post("/careers/jobs/<int:job_id>/apply")
 def apply_to_job(job_id):
-    job = JobOpening.query.filter_by(id=job_id, is_active=True).first()
+    job = JobOpening.query.filter_by(id=job_id, is_active=True, job_category="public").first()
 
     if job is None:
         return jsonify({"message": "Job opening not found."}), 404
@@ -436,7 +451,12 @@ def create_job_opening():
     if missing:
         return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
 
+    job_category = payload.get("job_category", "public").strip() or "public"
+    if job_category not in {"public", "internal"}:
+        return jsonify({"message": "Opening type must be public or internal."}), 400
+
     job = JobOpening(
+        job_category=job_category,
         title=payload["title"].strip(),
         department=payload["department"].strip(),
         location=payload["location"].strip(),

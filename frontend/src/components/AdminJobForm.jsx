@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createAdminJob } from "../services/api";
 
 const initialState = {
+  job_category: "public",
   title: "",
   department: "",
   location: "",
@@ -43,6 +44,13 @@ export default function AdminJobForm({ onJobCreated }) {
   return (
     <form className="form-card" onSubmit={handleSubmit}>
       <div className="form-grid">
+        <label>
+          Opening Type
+          <select name="job_category" value={form.job_category} onChange={handleChange}>
+            <option value="public">Public Careers</option>
+            <option value="internal">Internal Careers</option>
+          </select>
+        </label>
         <label>
           Job Title
           <input name="title" value={form.title} onChange={handleChange} required />

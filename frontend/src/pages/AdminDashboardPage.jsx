@@ -32,6 +32,22 @@ function normalizeExternalUrl(value) {
   return `https://${value}`;
 }
 
+function formatJobCategory(value) {
+  return value === "internal" ? "Internal Careers" : "Public Careers";
+}
+
+function formatSubmissionType(value) {
+  if (value === "join_talent_network") {
+    return "Talent Network";
+  }
+
+  if (value === "internal_career") {
+    return "Internal Career";
+  }
+
+  return "Resume Submission";
+}
+
 export default function AdminDashboardPage() {
   const [data, setData] = useState({
     contacts: [],
@@ -303,7 +319,7 @@ export default function AdminDashboardPage() {
         <div className="admin-grid">
           <section className="admin-panel">
             <div className="admin-panel-header">
-              <h2>Post a new job</h2>
+              <h2>Post a new opening</h2>
               <span>{data.jobs.length}</span>
             </div>
             <AdminJobForm onJobCreated={handleJobCreated} />
@@ -311,7 +327,7 @@ export default function AdminDashboardPage() {
 
           <section className="admin-panel">
             <div className="admin-panel-header">
-              <h2>Active job openings</h2>
+              <h2>Active openings</h2>
               <span>{data.jobs.length}</span>
             </div>
             <div className="admin-table-wrap">
@@ -319,6 +335,7 @@ export default function AdminDashboardPage() {
                 <thead>
                   <tr>
                     <th>Title</th>
+                    <th>Opening Type</th>
                     <th>Department</th>
                     <th>Location</th>
                     <th>Type</th>
@@ -330,12 +347,13 @@ export default function AdminDashboardPage() {
                 <tbody>
                   {data.jobs.length === 0 ? (
                     <tr>
-                      <td colSpan="7">No job openings yet.</td>
+                      <td colSpan="8">No job openings yet.</td>
                     </tr>
                   ) : (
                     data.jobs.map((item) => (
                       <tr key={item.id}>
                         <td>{item.title}</td>
+                        <td>{formatJobCategory(item.job_category)}</td>
                         <td>{item.department}</td>
                         <td>{item.location}</td>
                         <td>{item.employment_type}</td>
@@ -477,7 +495,7 @@ export default function AdminDashboardPage() {
                         <td>
                           {item.submission_type === "join_talent_network"
                             ? "Talent Network"
-                            : "Resume Submission"}
+                            : formatSubmissionType(item.submission_type)}
                         </td>
                         <td>{item.target_job_title}</td>
                         <td>

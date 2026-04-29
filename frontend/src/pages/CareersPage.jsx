@@ -81,12 +81,65 @@ const candidateTestimonials = [
 ];
 
 const internalRoles = [
-  "Technical Recruiter",
-  "Account Manager",
-  "Sales Executive",
-  "HR Coordinator",
-  "Operations Specialist"
+  { title: "Technical Recruiter", icon: "recruiter" },
+  { title: "Account Manager", icon: "account" },
+  { title: "Sales Executive", icon: "sales" },
+  { title: "HR Coordinator", icon: "hr" },
+  { title: "Operations Specialist", icon: "operations" }
 ];
+
+function InternalRoleIcon({ type }) {
+  if (type === "recruiter") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10" cy="8" r="4" />
+        <path d="M4 20c.6-3.7 2.6-6 6-6s5.4 2.3 6 6" />
+        <path d="m16 11 2 2 4-5" />
+      </svg>
+    );
+  }
+
+  if (type === "account") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 20V8l8-4 8 4v12" />
+        <path d="M8 20v-6h8v6" />
+        <path d="M9 10h6" />
+      </svg>
+    );
+  }
+
+  if (type === "sales") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 19V5" />
+        <path d="M4 19h16" />
+        <path d="m7 15 4-4 3 3 5-7" />
+        <path d="M16 7h3v3" />
+      </svg>
+    );
+  }
+
+  if (type === "hr") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="5" y="4" width="14" height="16" rx="2" />
+        <path d="M9 8h6" />
+        <path d="M9 12h6" />
+        <path d="M9 16h4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z" />
+      <path d="M12 12 4 7" />
+      <path d="m12 12 8-5" />
+      <path d="M12 12v9" />
+    </svg>
+  );
+}
 
 function getJobBadgeColor(index) {
   const palette = [
@@ -343,19 +396,21 @@ export default function CareersPage() {
               Explore exciting career opportunities within Trinexora and grow with our
               recruitment and delivery teams.
             </p>
-            <Link className="button button-primary" to="/contact">
+            <Link className="button button-primary" to="/careers/internal">
               View Internal Careers
             </Link>
           </div>
 
           <div className="careers-internal-cards">
             {internalRoles.map((role) => (
-              <article key={role} className="careers-internal-card">
+              <article key={role.title} className="careers-internal-card">
                 <span className="careers-internal-icon" aria-hidden="true">
-                  ◻
+                  <InternalRoleIcon type={role.icon} />
                 </span>
-                <h3>{role}</h3>
-                <Link to="/contact">View Openings →</Link>
+                <h3>{role.title}</h3>
+                <Link to="/careers/internal">
+                  View Openings {"->"}
+                </Link>
               </article>
             ))}
           </div>

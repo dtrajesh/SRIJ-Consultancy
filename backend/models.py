@@ -63,6 +63,7 @@ class JobOpening(db.Model, TimestampMixin):
     __tablename__ = "job_openings"
 
     id = db.Column(db.Integer, primary_key=True)
+    job_category = db.Column(db.String(40), nullable=False, default="public")
     title = db.Column(db.String(160), nullable=False)
     department = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)

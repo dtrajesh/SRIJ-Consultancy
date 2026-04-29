@@ -4556,7 +4556,21 @@ textarea {
   justify-content: center;
   margin: 0 auto;
   color: #1d4ed8;
-  font-size: 1.25rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.95rem;
+  background: rgba(37, 99, 235, 0.08);
+  font-size: 0;
+}
+
+.careers-internal-icon svg {
+  width: 1.65rem;
+  height: 1.65rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .careers-internal-card h3 {
@@ -4571,6 +4585,101 @@ textarea {
   color: #1d4ed8;
   font-size: 0.9rem;
   font-weight: 700;
+}
+
+.careers-internal-page {
+  background:
+    radial-gradient(circle at 8% 4%, rgba(37, 99, 235, 0.08), transparent 25rem),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+}
+
+.careers-internal-hero {
+  padding-bottom: 1.4rem;
+}
+
+.careers-internal-hero-grid {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.careers-internal-hero h1 {
+  margin: 0.7rem 0 0.85rem;
+  color: #081a35;
+  font-size: clamp(2.05rem, 3.6vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
+.careers-internal-hero .lead-text {
+  max-width: 48rem;
+  margin: 0;
+  color: #355070;
+}
+
+.internal-openings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.internal-opening-card {
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
+  padding: 1.2rem;
+  border: 1px solid rgba(220, 229, 241, 0.95);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 14px 32px rgba(18, 38, 63, 0.08);
+}
+
+.internal-opening-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 0.95rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2563eb, #14b8a6);
+}
+
+.internal-opening-icon svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.internal-opening-card h3 {
+  margin: 0 0 0.45rem;
+  color: #0f172a;
+  font-size: 1.08rem;
+  line-height: 1.35;
+}
+
+.internal-opening-card p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.internal-opening-requirements {
+  font-size: 0.93rem;
+}
+
+.internal-opening-card .button {
+  justify-self: start;
+  margin-top: 0.2rem;
+}
+
+.internal-apply-section {
+  padding-top: 1rem;
 }
 
 @media (max-width: 1040px) {
@@ -4808,15 +4917,22 @@ textarea {
 
   .careers-hero-grid,
   .careers-process-testimonials,
+  .careers-internal-hero-grid,
   .careers-internal-grid {
     grid-template-columns: 1fr;
+  }
+
+  .careers-internal-hero-grid {
+    display: grid;
+    align-items: start;
   }
 
   .careers-benefits-grid,
   .careers-jobs-grid,
   .careers-process-steps,
   .careers-testimonials-grid,
-  .careers-internal-cards {
+  .careers-internal-cards,
+  .internal-openings-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -4929,7 +5045,8 @@ textarea {
   .careers-jobs-grid,
   .careers-process-steps,
   .careers-testimonials-grid,
-  .careers-internal-cards {
+  .careers-internal-cards,
+  .internal-openings-grid {
     grid-template-columns: 1fr;
   }
 }

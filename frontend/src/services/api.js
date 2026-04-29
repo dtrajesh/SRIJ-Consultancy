@@ -98,6 +98,10 @@ export function getPublicJobs() {
   return request("/careers/jobs");
 }
 
+export function getInternalJobs() {
+  return request("/careers/internal/jobs");
+}
+
 export function getPublicJob(jobId) {
   return request(`/careers/jobs/${jobId}`);
 }
