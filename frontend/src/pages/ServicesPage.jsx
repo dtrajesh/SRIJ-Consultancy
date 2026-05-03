@@ -246,7 +246,7 @@ export default function ServicesPage() {
       <div className="container">
         <SectionHeader
           className="services-page-header"
-          title="Flexible engagement models for Speed,"
+          title="Flexible Engagement Models for Speed,"
           titleAccent="Reliability, and Accountable Delivery."
           text="We provide everything from individual specialists to fully managed teams ensuring seamless execution, transparent communication, and measurable outcomes."
         />

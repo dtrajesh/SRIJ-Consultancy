@@ -68,24 +68,23 @@ h6,
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(16px);
   overflow: visible;
   background:
-    radial-gradient(circle at 22% 0%, rgba(30, 64, 175, 0.34), transparent 24rem),
-    linear-gradient(90deg, #020817 0%, #071a34 48%, #0a2345 100%);
-  border-bottom: 0.3rem solid #cfae60;
-  box-shadow: 0 14px 34px rgba(2, 8, 23, 0.42);
+    linear-gradient(90deg, rgba(15, 23, 42, 0.98), rgba(17, 34, 64, 0.96)),
+    #0f172a;
+  border-bottom: 0.26rem solid #d4af37;
+  box-shadow: 0 14px 34px rgba(2, 8, 23, 0.34);
 }
 
 .site-header .container {
-  width: min(1240px, calc(100% - 2rem));
+  width: min(1500px, calc(100% - 2rem));
 }
 
 .site-header::before {
   content: "";
   display: block;
-  height: 0.3rem;
-  background: #cfae60;
+  height: 0.22rem;
+  background: linear-gradient(90deg, #b88716, #f2d675, #d4af37);
 }
 
 .site-header::after,
@@ -95,7 +94,7 @@ h6,
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.16;
   background-image:
     url("data:image/svg+xml,%3Csvg width='360' height='96' viewBox='0 0 360 96' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 22H72L92 42H168L190 20H246L268 42H360' stroke='%2338BDF8' stroke-opacity='.38' stroke-width='1.4'/%3E%3Cpath d='M0 72H56L78 50H144L166 72H236L258 52H360' stroke='%2300C2C2' stroke-opacity='.3' stroke-width='1.2'/%3E%3Cpath d='M34 46H102L124 68H186' stroke='%2338BDF8' stroke-opacity='.2' stroke-width='1'/%3E%3Ccircle cx='92' cy='42' r='2.5' fill='%2338BDF8' fill-opacity='.5'/%3E%3Ccircle cx='190' cy='20' r='2.5' fill='%2300C2C2' fill-opacity='.46'/%3E%3Ccircle cx='258' cy='52' r='2.5' fill='%2338BDF8' fill-opacity='.44'/%3E%3Ccircle cx='124' cy='68' r='2' fill='%2300C2C2' fill-opacity='.34'/%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat;
@@ -117,8 +116,8 @@ h6,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(1.4rem, 3vw, 3rem);
-  padding: 0.85rem 0;
+  gap: clamp(1.1rem, 2.4vw, 2rem);
+  padding: 1rem 0 0.86rem;
   flex-wrap: nowrap;
   position: relative;
   z-index: 1;
@@ -127,7 +126,8 @@ h6,
 .brand {
   display: flex;
   align-items: center;
-  flex: 0 0 clamp(23rem, 32vw, 26rem);
+  gap: clamp(0.42rem, 0.8vw, 0.7rem);
+  flex: 0 0 clamp(31rem, 39vw, 34.5rem);
   min-width: 0;
   padding: 0;
   border-radius: 0;
@@ -135,14 +135,72 @@ h6,
   box-shadow: none;
 }
 
-.brand-logo {
-  width: 100%;
-  max-width: 25.5rem;
-  max-height: 6.4rem;
-  height: auto;
+.brand-symbol {
+  width: clamp(6.6rem, 8.5vw, 8.4rem);
+  height: clamp(4.5rem, 5.9vw, 5.75rem);
   display: block;
   flex: 0 0 auto;
   object-fit: contain;
+  filter: drop-shadow(0 0.38rem 0.7rem rgba(0, 0, 0, 0.3));
+}
+
+.brand-copy {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.22rem;
+  min-width: 0;
+}
+
+.brand-name {
+  color: #ffffff;
+  font-family: "Arial Black", Impact, var(--font-sans);
+  font-size: clamp(2.05rem, 3.05vw, 3.15rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: 0.035em;
+  text-shadow:
+    0 1px 0 #8b5b12,
+    0 0 18px rgba(212, 175, 55, 0.18);
+}
+
+.brand-name::first-letter {
+  color: #f3d36b;
+}
+
+.brand-name-gold {
+  color: #f3d36b;
+}
+
+.brand-accent-letter {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+}
+
+.brand-accent-letter::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -0.22em;
+  width: 0.27em;
+  height: 0.12em;
+  background: #f3d36b;
+  border: 1px solid rgba(212, 175, 55, 0.82);
+  transform: translateX(-35%) skewY(-22deg) rotate(-18deg);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.5);
+}
+
+.brand-tagline {
+  color: #f4d16b;
+  font-size: clamp(0.82rem, 0.92vw, 0.98rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.045em;
+  justify-self: center;
+  text-align: center;
+  white-space: nowrap;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
 }
 
 .footer-brand-logo {
@@ -159,33 +217,103 @@ h6,
   object-fit: contain;
 }
 
+.footer-brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48rem;
+  margin-bottom: 0.45rem;
+}
+
+.footer-brand-symbol {
+  width: clamp(5.4rem, 7vw, 6.7rem);
+  height: clamp(3.65rem, 4.8vw, 4.55rem);
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0.3rem 0.65rem rgba(0, 0, 0, 0.3));
+}
+
+.footer-brand-copy {
+  display: grid;
+  justify-items: center;
+  gap: 0.16rem;
+}
+
+.footer-brand-name {
+  color: #ffffff;
+  font-family: "Arial Black", Impact, var(--font-sans);
+  font-size: clamp(1.65rem, 2.4vw, 2.35rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: 0.035em;
+  text-shadow:
+    0 1px 0 #8b5b12,
+    0 0 18px rgba(212, 175, 55, 0.18);
+}
+
+.footer-brand-name::first-letter {
+  color: #f3d36b;
+}
+
+.footer-brand-name-gold {
+  color: #f3d36b;
+}
+
+.footer-brand-accent-letter {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+}
+
+.footer-brand-accent-letter::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -0.27em;
+  width: 0.27em;
+  height: 0.12em;
+  background: #f3d36b;
+  border: 1px solid rgba(212, 175, 55, 0.82);
+  transform: translateX(-35%) skewY(-22deg) rotate(-18deg);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.5);
+}
+
+.footer-brand-tagline {
+  color: #f4d16b;
+  font-size: clamp(0.66rem, 0.78vw, 0.82rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
 .nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.34rem;
+  gap: 0.3rem;
   flex: 1 1 auto;
   flex-wrap: nowrap;
   min-width: 0;
-  padding-left: clamp(0.6rem, 1.8vw, 1.8rem);
+  padding-left: clamp(0.2rem, 0.7vw, 0.75rem);
 }
 
 .nav-link {
-  padding: 0.42rem 0.48rem;
+  padding: 0.52rem 0.7rem;
   border-radius: 999px;
-  color: #edf2f7;
+  color: rgba(255, 255, 255, 0.88);
   transition: 150ms ease;
   white-space: nowrap;
-  font-size: 0.96rem;
-  font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  font-size: 1.08rem;
+  font-weight: 700;
+  text-shadow: none;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  background: rgba(212, 175, 55, 0.24);
-  color: #ffd95a;
-  box-shadow: 0 8px 20px rgba(3, 12, 24, 0.18);
+  background: rgba(212, 175, 55, 0.16);
+  color: #f4d16b;
+  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.22);
 }
 
 .nav-dropdown {
@@ -261,9 +389,9 @@ h6,
   gap: 0.5rem;
   border: none;
   border-radius: 999px;
-  padding: 0.85rem 1.35rem;
+  padding: 0.98rem 1.58rem;
   font-weight: 700;
-  font-size: 0.98rem;
+  font-size: 1.08rem;
   cursor: pointer;
   transition: transform 150ms ease, opacity 150ms ease;
 }
@@ -279,13 +407,13 @@ h6,
 }
 
 .button-primary {
-  background: #d4af37;
-  color: #111827;
-  box-shadow: 0 12px 24px rgba(212, 175, 55, 0.28);
+  background: linear-gradient(135deg, #f3d36b, #d4af37);
+  color: #0f172a;
+  box-shadow: 0 12px 24px rgba(212, 175, 55, 0.24);
 }
 
 .button-primary:hover {
-  background: #f59e0b;
+  background: linear-gradient(135deg, #ffe38a, #d4af37);
 }
 
 .button-secondary {
@@ -314,8 +442,8 @@ h6,
   }
 
   .brand {
-    flex: 0 0 min(16rem, 100%);
-    width: min(16rem, 100%);
+    flex: 0 0 min(31rem, 100%);
+    width: min(31rem, 100%);
   }
 
   .nav {
@@ -334,11 +462,20 @@ h6,
   }
 
   .brand {
-    width: min(14.5rem, 100%);
+    width: min(25rem, 100%);
   }
 
-  .brand-logo {
-    max-width: 14.5rem;
+  .brand-symbol {
+    width: 5.85rem;
+    height: 4.05rem;
+  }
+
+  .brand-name {
+    font-size: clamp(1.7rem, 8vw, 2.05rem);
+  }
+
+  .brand-tagline {
+    font-size: clamp(0.68rem, 3.2vw, 0.82rem);
   }
 
   .nav {
@@ -3350,19 +3487,19 @@ textarea {
 .site-footer {
   position: relative;
   overflow: hidden;
-  border-top: 0.3rem solid #cfae60;
-  border-bottom: 0.3rem solid #cfae60;
-  padding: 1.05rem 0 1.2rem;
+  border-top: 0.26rem solid #d4af37;
+  border-bottom: 0.26rem solid #d4af37;
+  padding: 1.35rem 0 1.45rem;
   background:
-    radial-gradient(circle at 18% 0%, rgba(30, 64, 175, 0.28), transparent 24rem),
-    linear-gradient(90deg, #020817 0%, #071a34 52%, #0a2345 100%);
+    linear-gradient(90deg, rgba(15, 23, 42, 0.98), rgba(17, 34, 64, 0.96)),
+    #0f172a;
   color: #d1d5db;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(20rem, 0.95fr) minmax(10rem, 0.38fr) minmax(10rem, 0.38fr);
-  gap: clamp(1rem, 2.4vw, 2.2rem);
+  grid-template-columns: minmax(31rem, 0.95fr) minmax(11rem, 0.32fr) minmax(12rem, 0.34fr);
+  gap: clamp(1.8rem, 4vw, 4rem);
   align-items: start;
   position: relative;
   z-index: 1;
@@ -3372,7 +3509,7 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.12rem;
+  gap: 0.22rem;
 }
 
 .footer-brand {
@@ -3383,14 +3520,14 @@ textarea {
 .footer-brand p {
   position: relative;
   z-index: 1;
-  max-width: 30rem;
+  max-width: 45rem;
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.12rem;
+  gap: 0.18rem;
   margin-top: 0;
 }
 
@@ -3400,25 +3537,25 @@ textarea {
 
 .footer-section:nth-child(2),
 .footer-section:nth-child(3) {
-  min-width: 10rem;
+  min-width: 11rem;
 }
 
 .site-footer h3,
 .site-footer h4 {
   margin-top: 0;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.22rem;
   line-height: 1.1;
-  color: #fbbf24;
+  color: #f4d16b;
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 1.12rem;
 }
 
 .site-footer p,
 .site-footer a {
   display: block;
-  color: #d1d5db;
-  line-height: 1.25;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.35;
+  font-size: 1.02rem;
   margin: 0;
   padding: 0;
 }
@@ -4688,11 +4825,20 @@ textarea {
   }
 
   .brand {
-    flex-basis: clamp(16.5rem, 27vw, 18.5rem);
+    flex-basis: clamp(29rem, 46vw, 31rem);
   }
 
-  .brand-logo {
-    max-width: 18.5rem;
+  .brand-symbol {
+    width: clamp(5.9rem, 8vw, 6.9rem);
+    height: clamp(4rem, 5.5vw, 4.75rem);
+  }
+
+  .brand-name {
+    font-size: clamp(1.8rem, 3.5vw, 2.55rem);
+  }
+
+  .brand-tagline {
+    font-size: clamp(0.72rem, 1.15vw, 0.86rem);
   }
 
   .nav {
@@ -4702,7 +4848,7 @@ textarea {
 
   .nav-link {
     padding-inline: 0.4rem;
-    font-size: 0.92rem;
+    font-size: 1rem;
   }
 
   .technologies-hero {
@@ -4764,6 +4910,10 @@ textarea {
     padding-left: 0;
   }
 
+  .footer-grid {
+    gap: 1.6rem;
+  }
+
   .get-started-form-header h2 {
     white-space: normal;
   }
@@ -4805,7 +4955,6 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .brand-logo,
   .footer-brand-logo {
     width: 18rem;
   }
@@ -5101,17 +5250,25 @@ video {
   .header-row {
     justify-items: center;
     gap: 0.75rem;
-    padding: 0.65rem 0 0.8rem;
+    padding: 0.9rem 0 0.84rem;
   }
 
   .brand {
-    width: min(19rem, 82vw);
+    width: min(31rem, 88vw);
     flex-basis: auto;
   }
 
-  .brand-logo {
-    max-width: min(19rem, 82vw);
-    max-height: 4.9rem;
+  .brand-symbol {
+    width: clamp(5.9rem, 12vw, 6.9rem);
+    height: clamp(4rem, 8vw, 4.75rem);
+  }
+
+  .brand-name {
+    font-size: clamp(1.8rem, 5vw, 2.55rem);
+  }
+
+  .brand-tagline {
+    font-size: clamp(0.72rem, 1.9vw, 0.86rem);
   }
 
   .nav {
@@ -5121,13 +5278,13 @@ video {
 
   .nav-link {
     padding: 0.38rem 0.52rem;
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     line-height: 1.15;
   }
 
   .nav .button {
     padding: 0.68rem 1rem;
-    font-size: 0.9rem;
+    font-size: 0.98rem;
   }
 }
 
@@ -5202,16 +5359,25 @@ video {
 
   .header-row {
     gap: 0.55rem;
-    padding: 0.52rem 0 0.68rem;
+    padding: 0.82rem 0 0.76rem;
   }
 
   .brand {
-    width: min(15.5rem, 76vw);
+    width: min(25rem, 92vw);
   }
 
-  .brand-logo {
-    max-width: min(15.5rem, 76vw);
-    max-height: 4rem;
+  .brand-symbol {
+    width: clamp(5.2rem, 21vw, 5.85rem);
+    height: clamp(3.55rem, 14vw, 4.05rem);
+  }
+
+  .brand-name {
+    font-size: clamp(1.55rem, 8vw, 2.05rem);
+  }
+
+  .brand-tagline {
+    font-size: clamp(0.62rem, 3.2vw, 0.78rem);
+    letter-spacing: 0.025em;
   }
 
   .nav {
@@ -5219,6 +5385,23 @@ video {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.34rem;
     align-items: stretch;
+  }
+
+  .footer-brand-lockup {
+    align-items: flex-start;
+  }
+
+  .footer-brand-symbol {
+    width: 4.9rem;
+    height: 3.35rem;
+  }
+
+  .footer-brand-name {
+    font-size: clamp(1.35rem, 7vw, 1.75rem);
+  }
+
+  .footer-brand-tagline {
+    font-size: clamp(0.54rem, 2.9vw, 0.66rem);
   }
 
   .nav-dropdown,
@@ -5289,9 +5472,22 @@ video {
     grid-column: 1 / -1;
   }
 
-  .brand,
-  .brand-logo {
-    max-width: min(13.5rem, 78vw);
+  .brand {
+    max-width: min(23rem, 94vw);
+    gap: 0.42rem;
+  }
+
+  .brand-symbol {
+    width: 4.85rem;
+    height: 3.35rem;
+  }
+
+  .brand-name {
+    font-size: clamp(1.35rem, 7.6vw, 1.72rem);
+  }
+
+  .brand-tagline {
+    font-size: clamp(0.54rem, 3vw, 0.64rem);
   }
 
   .footer-brand-logo {

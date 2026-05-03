@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import headerLogo from "../assets/trinexora-header-logo-aligned.png";
+import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 import footerLogo from "../assets/trinexora-banner-logo-transparent.png";
 
 const navItems = [
@@ -62,7 +62,13 @@ export default function Layout() {
       <header className="site-header">
         <div className="container header-row">
           <NavLink className="brand" to="/">
-            <img className="brand-logo" src={headerLogo} alt="Trinexora logo" />
+            <img className="brand-symbol" src={headerSymbol} alt="" aria-hidden="true" />
+            <span className="brand-copy" aria-label="Trinexora, IT Staffing, IT Solutions, IT Expansion">
+              <span className="brand-name" aria-hidden="true">
+                <span className="brand-name-gold">TR<span className="brand-accent-letter">I</span></span>NEXORA
+              </span>
+              <span className="brand-tagline">IT Staffing | IT Solutions | IT Expansion</span>
+            </span>
           </NavLink>
 
           <nav className="nav">
@@ -86,9 +92,6 @@ export default function Layout() {
                 }
               >
                 About Us
-                <span className="nav-caret" aria-hidden="true">
-                  v
-                </span>
               </NavLink>
               <div className="nav-dropdown-menu" aria-label="About Us sections">
                 {aboutItems.map((item) => (
@@ -131,7 +134,15 @@ export default function Layout() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-section footer-brand">
-            <img className="footer-brand-logo" src={footerLogo} alt="Trinexora logo" />
+            <div className="footer-brand-lockup" aria-label="Trinexora, IT Staffing, IT Solutions, IT Expansion">
+              <img className="footer-brand-symbol" src={headerSymbol} alt="" aria-hidden="true" />
+              <span className="footer-brand-copy">
+                <span className="footer-brand-name">
+                  <span className="footer-brand-name-gold">TR<span className="footer-brand-accent-letter">I</span></span>NEXORA
+                </span>
+                <span className="footer-brand-tagline">IT Staffing | IT Solutions | IT Expansion</span>
+              </span>
+            </div>
             <p>
               Building high-performance teams for AI, data, and digital
               transformation.

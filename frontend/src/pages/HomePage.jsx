@@ -158,7 +158,7 @@ export default function HomePage() {
             </p>
             <div className="hero-actions">
               <Link className="button button-primary" to="/get-started">
-                Schedule a Consultation
+                Schedule A Consultation
               </Link>
               <Link className="button button-secondary" to="/services">
                 Explore Our Services

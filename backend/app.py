@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
-from sqlalchemy import text
+from sqlalchemy import inspect, text
 
 from config import Config
 from models import Industry, Service, Testimonial, db
@@ -32,10 +32,14 @@ def create_app():
 
 
 def ensure_schema():
+    columns = {column["name"] for column in inspect(db.engine).get_columns("job_openings")}
+    if "job_category" in columns:
+        return
+
     db.session.execute(
         text(
             "ALTER TABLE job_openings "
-            "ADD COLUMN IF NOT EXISTS job_category VARCHAR(40) NOT NULL DEFAULT 'public'"
+            "ADD COLUMN job_category VARCHAR(40) NOT NULL DEFAULT 'public'"
         )
     )
     db.session.commit()
