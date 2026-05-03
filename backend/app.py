@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 from flask_cors import CORS
+from sqlalchemy import text
 
 from config import Config
 from models import Industry, Service, Testimonial, db
@@ -24,9 +25,20 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+        ensure_schema()
         seed_reference_data()
 
     return app
+
+
+def ensure_schema():
+    db.session.execute(
+        text(
+            "ALTER TABLE job_openings "
+            "ADD COLUMN IF NOT EXISTS job_category VARCHAR(40) NOT NULL DEFAULT 'public'"
+        )
+    )
+    db.session.commit()
 
 
 def seed_reference_data():

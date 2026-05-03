@@ -6,7 +6,9 @@ import {
   deleteAdminJob,
   deleteAdminConsultation,
   deleteAdminContact,
+  deleteAdminTalentSubmission,
   getAdminResumeUrl,
+  getAdminTalentResumeUrl,
   getAdminSubmissions
 } from "../services/api";
 
@@ -30,12 +32,29 @@ function normalizeExternalUrl(value) {
   return `https://${value}`;
 }
 
+function formatJobCategory(value) {
+  return value === "internal" ? "Internal Careers" : "Public Careers";
+}
+
+function formatSubmissionType(value) {
+  if (value === "join_talent_network") {
+    return "Talent Network";
+  }
+
+  if (value === "internal_career") {
+    return "Internal Career";
+  }
+
+  return "Resume Submission";
+}
+
 export default function AdminDashboardPage() {
   const [data, setData] = useState({
     contacts: [],
     consultations: [],
     jobs: [],
-    applications: []
+    applications: [],
+    talent_submissions: []
   });
   const [status, setStatus] = useState({ type: "loading", message: "Loading submissions..." });
   const [actionMessage, setActionMessage] = useState("");
@@ -219,6 +238,62 @@ export default function AdminDashboardPage() {
     }
   }
 
+  async function handleDeleteTalentSubmission(submissionId) {
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      navigate("/admin/login");
+      return;
+    }
+
+    const confirmed = window.confirm("Delete this resume bank submission?");
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setDeletingKey(`talent-${submissionId}`);
+      const response = await deleteAdminTalentSubmission(token, submissionId);
+      await loadDashboardData(token, { loadingMessage: "Refreshing dashboard..." });
+      setActionMessage(response.message);
+    } catch (error) {
+      setActionMessage(error.message || "Unable to delete talent submission.");
+    } finally {
+      setDeletingKey("");
+    }
+  }
+
+  async function handleTalentResumeDownload(submissionId, resumeName) {
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      navigate("/admin/login");
+      return;
+    }
+
+    try {
+      const response = await fetch(getAdminTalentResumeUrl(submissionId), {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to download resume.");
+      }
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = resumeName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      setActionMessage(error.message || "Unable to download resume.");
+    }
+  }
+
   return (
     <section className="admin-dashboard">
       <div className="container">
@@ -244,7 +319,7 @@ export default function AdminDashboardPage() {
         <div className="admin-grid">
           <section className="admin-panel">
             <div className="admin-panel-header">
-              <h2>Post a new job</h2>
+              <h2>Post a new opening</h2>
               <span>{data.jobs.length}</span>
             </div>
             <AdminJobForm onJobCreated={handleJobCreated} />
@@ -252,7 +327,7 @@ export default function AdminDashboardPage() {
 
           <section className="admin-panel">
             <div className="admin-panel-header">
-              <h2>Active job openings</h2>
+              <h2>Active openings</h2>
               <span>{data.jobs.length}</span>
             </div>
             <div className="admin-table-wrap">
@@ -260,6 +335,7 @@ export default function AdminDashboardPage() {
                 <thead>
                   <tr>
                     <th>Title</th>
+                    <th>Opening Type</th>
                     <th>Department</th>
                     <th>Location</th>
                     <th>Type</th>
@@ -271,12 +347,13 @@ export default function AdminDashboardPage() {
                 <tbody>
                   {data.jobs.length === 0 ? (
                     <tr>
-                      <td colSpan="7">No job openings yet.</td>
+                      <td colSpan="8">No job openings yet.</td>
                     </tr>
                   ) : (
                     data.jobs.map((item) => (
                       <tr key={item.id}>
                         <td>{item.title}</td>
+                        <td>{formatJobCategory(item.job_category)}</td>
                         <td>{item.department}</td>
                         <td>{item.location}</td>
                         <td>{item.employment_type}</td>
@@ -372,6 +449,84 @@ export default function AdminDashboardPage() {
                             {deletingKey === `application-${item.id}`
                               ? "Deleting..."
                               : "Delete"}
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section className="admin-panel">
+            <div className="admin-panel-header">
+              <h2>Resume bank and talent network</h2>
+              <span>{data.talent_submissions.length}</span>
+            </div>
+            <div className="admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Candidate</th>
+                    <th>Submission</th>
+                    <th>Target Role</th>
+                    <th>Experience</th>
+                    <th>Work Preferences</th>
+                    <th>Skills</th>
+                    <th>Resume</th>
+                    <th>Received</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.talent_submissions.length === 0 ? (
+                    <tr>
+                      <td colSpan="9">No resume bank submissions yet.</td>
+                    </tr>
+                  ) : (
+                    data.talent_submissions.map((item) => (
+                      <tr key={item.id}>
+                        <td>
+                          <strong>{item.full_name}</strong>
+                          <div>{item.email}</div>
+                          <div>{item.phone}</div>
+                        </td>
+                        <td>
+                          {item.submission_type === "join_talent_network"
+                            ? "Talent Network"
+                            : formatSubmissionType(item.submission_type)}
+                        </td>
+                        <td>{item.target_job_title}</td>
+                        <td>
+                          <div>{item.years_of_experience}</div>
+                          <div>{item.current_location}</div>
+                        </td>
+                        <td>
+                          <div>{item.employment_preference}</div>
+                          <div>{item.preferred_work_mode}</div>
+                        </td>
+                        <td>{item.primary_skills}</td>
+                        <td>
+                          <button
+                            className="button button-secondary button-small"
+                            type="button"
+                            onClick={() =>
+                              handleTalentResumeDownload(item.id, item.resume_original_name)
+                            }
+                          >
+                            Resume
+                          </button>
+                        </td>
+                        <td>{formatDate(item.created_at)}</td>
+                        <td>
+                          <button
+                            className="button button-danger button-small"
+                            type="button"
+                            disabled={deletingKey === `talent-${item.id}`}
+                            onClick={() => handleDeleteTalentSubmission(item.id)}
+                          >
+                            {deletingKey === `talent-${item.id}` ? "Deleting..." : "Delete"}
                           </button>
                         </td>
                       </tr>

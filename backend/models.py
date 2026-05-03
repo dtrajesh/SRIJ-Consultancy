@@ -63,6 +63,7 @@ class JobOpening(db.Model, TimestampMixin):
     __tablename__ = "job_openings"
 
     id = db.Column(db.Integer, primary_key=True)
+    job_category = db.Column(db.String(40), nullable=False, default="public")
     title = db.Column(db.String(160), nullable=False)
     department = db.Column(db.String(120), nullable=False)
     location = db.Column(db.String(120), nullable=False)
@@ -101,3 +102,27 @@ class HrContact(db.Model, TimestampMixin):
     designation = db.Column(db.String(160), nullable=False)
     email = db.Column(db.String(160), nullable=False)
     phone = db.Column(db.String(40), nullable=False)
+
+
+class TalentProfileSubmission(db.Model, TimestampMixin):
+    __tablename__ = "talent_profile_submissions"
+
+    id = db.Column(db.Integer, primary_key=True)
+    submission_type = db.Column(db.String(80), nullable=False)
+    target_job_title = db.Column(db.String(160), nullable=False)
+    full_name = db.Column(db.String(160), nullable=False)
+    email = db.Column(db.String(160), nullable=False)
+    phone = db.Column(db.String(40), nullable=False)
+    current_location = db.Column(db.String(160), nullable=False)
+    current_company = db.Column(db.String(160))
+    years_of_experience = db.Column(db.String(40), nullable=False)
+    linkedin_url = db.Column(db.String(255))
+    portfolio_url = db.Column(db.String(255))
+    employment_preference = db.Column(db.String(80), nullable=False)
+    preferred_work_mode = db.Column(db.String(80), nullable=False)
+    notice_period = db.Column(db.String(120))
+    work_authorization = db.Column(db.String(160), nullable=False)
+    primary_skills = db.Column(db.Text, nullable=False)
+    professional_summary = db.Column(db.Text, nullable=False)
+    resume_file_name = db.Column(db.String(255), nullable=False)
+    resume_original_name = db.Column(db.String(255), nullable=False)

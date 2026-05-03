@@ -98,12 +98,23 @@ export function getPublicJobs() {
   return request("/careers/jobs");
 }
 
+export function getInternalJobs() {
+  return request("/careers/internal/jobs");
+}
+
 export function getPublicJob(jobId) {
   return request(`/careers/jobs/${jobId}`);
 }
 
 export function applyToJob(jobId, formData) {
   return request(`/careers/jobs/${jobId}/apply`, {
+    method: "POST",
+    body: formData
+  });
+}
+
+export function submitTalentProfile(formData) {
+  return request("/careers/talent/submit", {
     method: "POST",
     body: formData
   });
@@ -139,4 +150,17 @@ export function deleteAdminApplication(token, applicationId) {
 
 export function getAdminResumeUrl(applicationId) {
   return `${API_BASE}/admin/applications/${applicationId}/resume`;
+}
+
+export function deleteAdminTalentSubmission(token, submissionId) {
+  return request(`/admin/talent-submissions/${submissionId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
+
+export function getAdminTalentResumeUrl(submissionId) {
+  return `${API_BASE}/admin/talent-submissions/${submissionId}/resume`;
 }

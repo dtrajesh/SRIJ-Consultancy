@@ -5,6 +5,8 @@ import AdminDashboardPage from "./pages/AdminDashboardPage";
 import AdminHrContactsPage from "./pages/AdminHrContactsPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import CareerApplyPage from "./pages/CareerApplyPage";
+import CareerInternalPage from "./pages/CareerInternalPage";
+import CareerTalentProfilePage from "./pages/CareerTalentProfilePage";
 import CareersPage from "./pages/CareersPage";
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
@@ -40,7 +42,9 @@ export default function App() {
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/technologies" element={<TechnologiesPage />} />
         <Route path="/careers" element={<CareersPage />} />
+        <Route path="/careers/internal" element={<CareerInternalPage />} />
         <Route path="/careers/:jobId/apply" element={<CareerApplyPage />} />
+        <Route path="/careers/talent-profile" element={<CareerTalentProfilePage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/about" element={<AboutPage />} />
