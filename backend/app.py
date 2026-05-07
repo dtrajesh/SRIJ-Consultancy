@@ -5,12 +5,12 @@ from flask import Flask
 from flask_cors import CORS
 from sqlalchemy import inspect, text
 
+load_dotenv()
+
 from config import Config
 from models import Industry, Service, Testimonial, db
 from routes import api
 from seed_data import INDUSTRIES, SERVICES, TESTIMONIALS
-
-load_dotenv()
 
 
 def create_app():

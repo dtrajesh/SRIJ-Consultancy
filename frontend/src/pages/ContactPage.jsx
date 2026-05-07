@@ -37,7 +37,7 @@ export default function ContactPage() {
             </p>
             <p>
               <span aria-hidden="true">☏</span>
-              6824070099
+              +1-6824070099
             </p>
             <p>
               <span className="contact-pin-icon" aria-hidden="true"></span>

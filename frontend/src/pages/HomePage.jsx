@@ -5,7 +5,7 @@ import requirementDiscoveryImage from "../assets/how-it-works/requirement-discov
 import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
 import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
 import executionScalingImage from "../assets/how-it-works/execution-scaling.jpeg";
-import homeTrinexoraLogo from "../assets/home-trinexora-logo-transparent.png";
+import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 
 const homeServices = [
   {
@@ -165,8 +165,14 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          <div className="home-hero-logo-wrap" aria-hidden="true">
-            <img src={homeTrinexoraLogo} alt="" />
+          <div className="home-hero-logo-wrap" aria-label="Trinexora, IT Staffing, IT Solutions, IT Expansion">
+            <img className="home-hero-brand-symbol" src={headerSymbol} alt="" aria-hidden="true" />
+            <span className="home-hero-brand-copy">
+              <span className="home-hero-brand-name" aria-hidden="true">
+                <span className="home-hero-brand-name-blue">TR<span className="home-hero-brand-accent-letter">I</span></span>NEXORA
+              </span>
+              <span className="home-hero-brand-tagline">IT Staffing | IT Solutions | IT Expansion</span>
+            </span>
           </div>
         </div>
       </section>

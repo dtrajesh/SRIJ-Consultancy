@@ -208,8 +208,10 @@ export default function CareersPage() {
       <section className="careers-hero">
         <div className="container careers-hero-grid">
           <div className="careers-hero-copy">
-            <span className="eyebrow careers-eyebrow">Careers</span>
-            <h1>Launch Your Next Career Move with Trinexora</h1>
+            <h1>
+              <span>Launch Your Next Career</span>
+              <span className="careers-hero-title-accent">Move with Trinexora</span>
+            </h1>
             <p>
               Connecting skilled IT professionals with high-impact opportunities across
               leading enterprises, startups, and digital transformation programs.
@@ -242,7 +244,9 @@ export default function CareersPage() {
       <section className="section careers-section">
         <div className="container">
           <div className="careers-section-heading centered">
-            <h2>Why Candidates Choose Trinexora</h2>
+            <h2>
+              Why Candidates Choose <span>Trinexora</span>
+            </h2>
           </div>
           <div className="careers-benefits-grid">
             {reasonsToChoose.map((item) => (
@@ -373,7 +377,7 @@ export default function CareersPage() {
           </div>
           <div className="careers-band-actions">
             <Link
-              className="button button-secondary"
+              className="button button-primary"
               to="/careers/talent-profile?type=submit_resume&jobTitle=General%20Application"
             >
               Upload Resume
