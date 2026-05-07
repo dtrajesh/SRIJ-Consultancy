@@ -18,10 +18,8 @@
   --teal: #3b82f6;
   --slate-base: #0f172a;
   --enterprise-orange: #d66b00;
-  --brand-gold: #ffd84d;
-  --brand-orange: #f08a00;
-  --brand-burnt-orange: #b64800;
-  --brand-wordmark-gradient: linear-gradient(180deg, #fff06a 0%, #ffb000 34%, #d66b00 66%, #8f2f00 100%);
+  --brand-blue: #3b82f6;
+  --brand-navy: #0f172a;
   --shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
   --font-sans: "Roboto", "Segoe UI", Arial, sans-serif;
 }
@@ -177,28 +175,30 @@ h6,
 }
 
 .brand-name {
-  color: var(--brand-orange);
-  background: var(--brand-wordmark-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
   font-family: "Arial Black", Impact, var(--font-sans);
   font-size: clamp(2.05rem, 3.05vw, 3.15rem);
   font-weight: 900;
   line-height: 0.92;
   letter-spacing: 0.035em;
-  filter: drop-shadow(0 1px 0 #7b2600) drop-shadow(0 0.18rem 0.08rem rgba(0, 0, 0, 0.22));
+  -webkit-text-stroke: 0;
+  filter: none;
   text-shadow:
-    0 1px 0 #7b2600,
-    0 0 18px rgba(255, 176, 0, 0.16);
+    0 1px 0 rgba(0, 0, 0, 0.44),
+    0 0 18px rgba(59, 130, 246, 0.16);
 }
 
 .brand-name::first-letter {
-  color: var(--brand-orange);
+  color: var(--brand-blue);
 }
 
-.brand-name-gold {
-  color: inherit;
+.brand-name-gold,
+.footer-brand-name-gold {
+  color: var(--brand-blue);
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
 }
 
 .brand-accent-letter {
@@ -214,24 +214,26 @@ h6,
   top: -0.22em;
   width: 0.27em;
   height: 0.12em;
-  background: linear-gradient(180deg, #fff06a, #f08a00);
-  border: 1px solid rgba(180, 72, 0, 0.82);
+  background: var(--brand-blue);
+  border: 1px solid rgba(59, 130, 246, 0.82);
   transform: translateX(-35%) skewY(-22deg) rotate(-18deg);
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.5);
 }
 
 .brand-tagline {
-  color: var(--brand-orange);
+  color: var(--brand-blue);
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
   font-size: clamp(0.82rem, 0.92vw, 0.98rem);
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: 0.045em;
+  -webkit-text-stroke: 0;
   justify-self: center;
   text-align: center;
   white-space: nowrap;
-  text-shadow:
-    0 1px 0 rgba(123, 38, 0, 0.85),
-    0 0 12px rgba(255, 176, 0, 0.18);
+  filter: none;
+  text-shadow: none;
 }
 
 .footer-brand-logo {
@@ -276,28 +278,23 @@ h6,
 }
 
 .footer-brand-name {
-  color: var(--brand-orange);
-  background: var(--brand-wordmark-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
   font-family: "Arial Black", Impact, var(--font-sans);
   font-size: clamp(2.05rem, 3.05vw, 3.15rem);
   font-weight: 900;
   line-height: 0.92;
   letter-spacing: 0.035em;
-  filter: drop-shadow(0 1px 0 #7b2600) drop-shadow(0 0.18rem 0.08rem rgba(0, 0, 0, 0.22));
+  -webkit-text-stroke: 0;
+  filter: none;
   text-shadow:
-    0 1px 0 #7b2600,
-    0 0 18px rgba(255, 176, 0, 0.16);
+    0 1px 0 rgba(0, 0, 0, 0.4),
+    0 0 18px rgba(59, 130, 246, 0.16);
 }
 
 .footer-brand-name::first-letter {
-  color: var(--brand-orange);
-}
-
-.footer-brand-name-gold {
-  color: inherit;
+  color: var(--brand-blue);
 }
 
 .footer-brand-accent-letter {
@@ -313,22 +310,24 @@ h6,
   top: -0.27em;
   width: 0.27em;
   height: 0.12em;
-  background: linear-gradient(180deg, #fff06a, #f08a00);
-  border: 1px solid rgba(180, 72, 0, 0.82);
+  background: var(--brand-blue);
+  border: 1px solid rgba(59, 130, 246, 0.82);
   transform: translateX(-35%) skewY(-22deg) rotate(-18deg);
   box-shadow: 0 1px 0 rgba(15, 23, 42, 0.5);
 }
 
 .footer-brand-tagline {
-  color: var(--brand-orange);
+  color: var(--brand-blue);
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
   font-size: clamp(0.82rem, 0.92vw, 0.98rem);
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.15;
   letter-spacing: 0.04em;
   white-space: nowrap;
-  text-shadow:
-    0 1px 0 rgba(123, 38, 0, 0.85),
-    0 0 12px rgba(255, 176, 0, 0.18);
+  -webkit-text-stroke: 0;
+  filter: none;
+  text-shadow: none;
 }
 
 .nav {
@@ -2128,26 +2127,27 @@ h6,
 }
 
 .home-hero-brand-name {
-  color: var(--brand-orange);
-  background: var(--brand-wordmark-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--brand-navy);
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
   font-family: "Arial Black", Impact, var(--font-sans);
   font-size: clamp(2.6rem, 4.4vw, 4.35rem);
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: 0.035em;
   white-space: nowrap;
-  filter: drop-shadow(0 1px 0 #7b2600) drop-shadow(0 0.18rem 0.08rem rgba(123, 38, 0, 0.18));
+  -webkit-text-stroke: 0;
+  filter: none;
   text-shadow:
-    0 1px 0 #7b2600,
-    0 0 18px rgba(255, 176, 0, 0.12);
+    0 1px 0 rgba(255, 255, 255, 0.7),
+    0 0 18px rgba(29, 78, 216, 0.08);
 }
 
 .home-hero-brand-name::first-letter,
 .home-hero-brand-name-blue {
-  color: inherit;
+  color: var(--brand-blue);
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
 }
 
 .home-hero-brand-accent-letter {
@@ -2163,23 +2163,27 @@ h6,
   top: -0.22em;
   width: 0.27em;
   height: 0.12em;
-  background: linear-gradient(180deg, #fff06a, #f08a00);
-  border: 1px solid rgba(180, 72, 0, 0.82);
+  background: var(--brand-blue);
+  border: 1px solid rgba(59, 130, 246, 0.82);
   transform: translateX(-35%) skewY(-22deg) rotate(-18deg);
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 .home-hero-brand-tagline {
-  color: var(--brand-orange);
+  color: var(--brand-blue);
+  background: transparent;
+  -webkit-text-fill-color: currentColor;
   font-size: clamp(0.85rem, 1.45vw, 1.22rem);
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: 0.04em;
   text-align: center;
   white-space: nowrap;
+  -webkit-text-stroke: 0;
+  filter: none;
   text-shadow:
-    0 1px 0 rgba(123, 38, 0, 0.35),
-    0 0 12px rgba(255, 176, 0, 0.18);
+    0 1px 0 rgba(255, 255, 255, 0.38),
+    0 0 12px rgba(59, 130, 246, 0.16);
 }
 
 .cta-panel {
