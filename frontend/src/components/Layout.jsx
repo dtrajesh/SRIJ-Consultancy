@@ -55,6 +55,13 @@ function HashScroll() {
 
 export default function Layout() {
   const [isAboutMenuClosed, setIsAboutMenuClosed] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsMobileNavOpen(false);
+    setIsAboutMenuClosed(false);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="site-shell">
@@ -71,7 +78,20 @@ export default function Layout() {
             </span>
           </NavLink>
 
-          <nav className="nav">
+          <button
+            className="mobile-nav-toggle"
+            type="button"
+            aria-label={isMobileNavOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-controls="site-navigation"
+            aria-expanded={isMobileNavOpen}
+            onClick={() => setIsMobileNavOpen((isOpen) => !isOpen)}
+          >
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </button>
+
+          <nav id="site-navigation" className={`nav${isMobileNavOpen ? " nav-open" : ""}`}>
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
