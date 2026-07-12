@@ -1027,9 +1027,9 @@ h6,
 .leader-card {
   display: grid;
   justify-items: center;
-  align-content: start;
-  min-height: 22rem;
-  padding: 2rem 1.75rem 1.8rem;
+  align-content: center;
+  min-height: 8rem;
+  padding: 2rem 1.75rem;
   text-align: center;
   background: #ffffff;
   border: 1px solid rgba(215, 226, 234, 0.85);
@@ -1080,9 +1080,9 @@ h6,
 
 .leader-position {
   display: inline-block;
-  margin-top: 0.75rem;
+  margin-top: 0;
   color: #8b929c;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.55;
   transition: color 180ms ease;
 }
@@ -4077,6 +4077,7 @@ textarea {
   position: absolute;
   left: calc(100% + 1.25rem);
   top: 0;
+  display: none;
   width: min(54rem, calc(100vw - 3rem));
   padding: clamp(1rem, 1.6vw, 1.55rem);
   border-radius: 0.9rem;
@@ -4122,6 +4123,7 @@ textarea {
 }
 
 .service-preview-trigger-open .service-preview-card {
+  display: block;
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
@@ -5817,6 +5819,254 @@ video {
   .career-opening-card,
   .internal-opening-card {
     padding: 1rem;
+  }
+}
+
+/* Mobile navigation and viewport hardening */
+.mobile-nav-toggle {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    overflow: visible;
+  }
+
+  .site-header .container,
+  .container {
+    width: min(100% - 1rem, 1120px);
+  }
+
+  .header-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    justify-items: stretch;
+    gap: 0.55rem;
+    padding: 0.62rem 0;
+  }
+
+  .brand {
+    width: auto;
+    max-width: 100%;
+    justify-self: start;
+    gap: 0.32rem;
+  }
+
+  .brand-symbol {
+    width: clamp(3.9rem, 16vw, 5rem);
+    height: clamp(2.7rem, 11vw, 3.45rem);
+  }
+
+  .brand-copy {
+    justify-items: start;
+  }
+
+  .brand-name {
+    font-size: clamp(1.18rem, 6.2vw, 1.72rem);
+    line-height: 0.95;
+  }
+
+  .brand-tagline {
+    max-width: min(12.4rem, 58vw);
+    font-size: clamp(0.5rem, 2.65vw, 0.64rem);
+    line-height: 1.18;
+    letter-spacing: 0.015em;
+    text-align: left;
+    white-space: normal;
+  }
+
+  .mobile-nav-toggle {
+    position: relative;
+    z-index: 2;
+    display: inline-grid;
+    place-items: center;
+    width: 2.65rem;
+    height: 2.65rem;
+    justify-self: end;
+    border: 1px solid rgba(96, 165, 250, 0.55);
+    border-radius: 0.65rem;
+    background: rgba(15, 23, 42, 0.62);
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  .mobile-nav-toggle span {
+    display: block;
+    width: 1.18rem;
+    height: 2px;
+    margin: 2px 0;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .nav {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    gap: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 180ms ease, opacity 140ms ease, padding 180ms ease;
+  }
+
+  .nav.nav-open {
+    max-height: calc(100vh - 4.5rem);
+    overflow-y: auto;
+    padding-top: 0.5rem;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-dropdown,
+  .nav-link,
+  .nav .button {
+    width: 100%;
+  }
+
+  .nav-link,
+  .nav .button {
+    justify-content: flex-start;
+    min-height: 2.45rem;
+    padding: 0.6rem 0.72rem;
+    border-radius: 0.6rem;
+    font-size: 0.92rem;
+    line-height: 1.15;
+    text-align: left;
+  }
+
+  .nav-dropdown-trigger {
+    justify-content: flex-start;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    width: 100%;
+    margin: 0.25rem 0 0.4rem;
+    padding: 0.25rem;
+    border-radius: 0.6rem;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .nav-dropdown-link {
+    min-height: 2.25rem;
+    padding: 0.5rem 0.65rem;
+    white-space: normal;
+  }
+
+  .hero,
+  .section {
+    padding-top: clamp(1.55rem, 6vw, 2.4rem);
+    padding-bottom: clamp(1.55rem, 6vw, 2.4rem);
+  }
+
+  .home-hero-grid,
+  .careers-hero-grid,
+  .technologies-hero,
+  .contact-layout,
+  .about-grid,
+  .footer-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .how-it-works-line {
+    display: none;
+  }
+
+  .home-hero-logo-wrap {
+    min-height: 8rem;
+    flex-wrap: wrap;
+  }
+
+  .home-hero-brand-copy {
+    justify-items: center;
+    max-width: 100%;
+  }
+
+  .home-hero-brand-name,
+  .home-hero-brand-tagline,
+  .footer-brand-tagline {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .footer-brand-lockup {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .footer-brand-copy {
+    min-width: 0;
+  }
+
+  .form-grid,
+  .contact-page .form-grid,
+  .get-started-page .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  input,
+  textarea,
+  select {
+    min-width: 0;
+    font-size: 1rem;
+  }
+
+  .service-preview-trigger,
+  .service-preview-card,
+  .service-preview-window,
+  .product-list-summary,
+  .careers-opening-header,
+  .careers-band,
+  .admin-panel-header,
+  .admin-actions {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .service-preview-card,
+  .service-preview-trigger[data-preview-position="up"] .service-preview-card,
+  .service-preview-trigger[data-preview-position="up-low"] .service-preview-card {
+    left: 0;
+    right: auto;
+    top: calc(100% + 0.5rem);
+    bottom: auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand {
+    max-width: 100%;
+  }
+
+  .brand-symbol {
+    width: 3.55rem;
+    height: 2.45rem;
+  }
+
+  .brand-name {
+    font-size: clamp(1.02rem, 5.9vw, 1.35rem);
+  }
+
+  .brand-tagline {
+    max-width: 10.7rem;
+    font-size: clamp(0.46rem, 2.55vw, 0.56rem);
+  }
+
+  .home-hero-brand-symbol {
+    width: 4rem;
+    height: 2.8rem;
+  }
+
+  .home-hero-brand-name {
+    font-size: clamp(1.15rem, 6.1vw, 1.48rem);
   }
 }
 

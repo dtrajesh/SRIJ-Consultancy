@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
-import leadershipHeadshot from "../assets/leadership-headshot.png";
 import trinexoraLogo from "../assets/trinexora-logo-transparent.png";
 import accessTopTalentIcon from "../assets/what-you-gain/access-top-talent.png";
 import fasterTeamScalingIcon from "../assets/what-you-gain/faster-team-scaling.png";
@@ -457,33 +456,15 @@ export default function AboutPage() {
 
           <div className="leadership-grid">
             <article className="leader-card">
-              <img className="leader-avatar" src={leadershipHeadshot} alt="Janaki" />
-              <h3>Janaki</h3>
               <span className="leader-position">Director &amp; Investor</span>
-              <div className="leader-socials" aria-label="Leadership profile links">
-                <a href="https://www.linkedin.com" aria-label="LinkedIn profile">in</a>
-                <a href="https://x.com" aria-label="X profile">X</a>
-              </div>
             </article>
 
             <article className="leader-card">
-              <img className="leader-avatar" src={leadershipHeadshot} alt="ASHOK" />
-              <h3>ASHOK</h3>
               <span className="leader-position">Founding Partner &amp; CEO</span>
-              <div className="leader-socials" aria-label="Leadership profile links">
-                <a href="https://www.linkedin.com" aria-label="LinkedIn profile">in</a>
-                <a href="https://x.com" aria-label="X profile">X</a>
-              </div>
             </article>
 
             <article className="leader-card">
-              <img className="leader-avatar" src={leadershipHeadshot} alt="BABU" />
-              <h3>BABU</h3>
               <span className="leader-position">Advisor</span>
-              <div className="leader-socials" aria-label="Leadership profile links">
-                <a href="https://www.linkedin.com" aria-label="LinkedIn profile">in</a>
-                <a href="https://x.com" aria-label="X profile">X</a>
-              </div>
             </article>
           </div>
         </div>
