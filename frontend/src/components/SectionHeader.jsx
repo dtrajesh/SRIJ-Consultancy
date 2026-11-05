@@ -1,17 +1,17 @@
-export default function SectionHeader({ eyebrow, title, titleAccent, text, className = "" }) {
+export default function SectionHeader({ eyebrow, title, titleAccent, text, className = "", as: Heading = "h2" }) {
   return (
     <div className={`section-header ${className}`.trim()}>
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
-      <h2>
+      <Heading>
         {titleAccent ? (
           <>
-            <span className="section-title-main">{title}</span>
+            <span className="section-title-main">{title}</span>{" "}
             <span className="section-title-accent">{titleAccent}</span>
           </>
         ) : (
           title
         )}
-      </h2>
+      </Heading>
       {text ? <p>{text}</p> : null}
     </div>
   );

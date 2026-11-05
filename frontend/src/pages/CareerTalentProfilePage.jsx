@@ -1,3 +1,5 @@
+import { usePageMeta } from "../usePageMeta";
+import ConsentCheckbox, { CANDIDATE_CONSENT_TEXT, useConsent } from "../components/ConsentCheckbox";
 import { useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { submitTalentProfile } from "../services/api";
@@ -44,6 +46,11 @@ function getPageContent(type) {
 
 export default function CareerTalentProfilePage() {
   const [searchParams] = useSearchParams();
+  usePageMeta({
+    title: searchParams.get("type") === "join_talent_network" ? "Join Talent Network | Trinexora" : "Submit Resume | Trinexora",
+    description: "Share your resume with Trinexora to be considered for suitable IT roles across Hyderabad and India.",
+    path: "/careers/talent-profile"
+  });
   const submissionType = searchParams.get("type") === "join_talent_network"
     ? "join_talent_network"
     : "submit_resume";
@@ -55,6 +62,7 @@ export default function CareerTalentProfilePage() {
     target_job_title: jobTitleParam
   });
   const [resume, setResume] = useState(null);
+  const { consentProps, validateConsent, resetConsent, getConsentData } = useConsent(CANDIDATE_CONSENT_TEXT);
   const [status, setStatus] = useState({ type: "", message: "" });
 
   function handleChange(event) {
@@ -68,6 +76,7 @@ export default function CareerTalentProfilePage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (!validateConsent(event.currentTarget)) return;
 
     if (!resume) {
       setStatus({ type: "error", message: "Please upload your resume." });
@@ -80,6 +89,9 @@ export default function CareerTalentProfilePage() {
       formData.append(key, value);
     });
     formData.append("resume", resume);
+    Object.entries(getConsentData()).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     setStatus({ type: "loading", message: "Submitting your profile..." });
 
@@ -91,6 +103,7 @@ export default function CareerTalentProfilePage() {
         target_job_title: content.defaultJobTitle
       });
       setResume(null);
+      resetConsent();
       event.target.reset();
     } catch (error) {
       setStatus({ type: "error", message: error.message || "Unable to submit your profile." });
@@ -106,13 +119,13 @@ export default function CareerTalentProfilePage() {
           <p className="lead-text">{content.intro}</p>
 
           <div className="highlight-panel compact">
-            <h3>What to include</h3>
+            <h2>What to include</h2>
             <p>
               Add the role title you are targeting, your experience summary, primary skills,
               preferred work model, notice period, and resume so our recruiting team can
               review your profile quickly.
             </p>
-            <h3>Accepted resume formats</h3>
+            <h2>Accepted resume formats</h2>
             <p>PDF, DOC, and DOCX files are supported for candidate submissions.</p>
           </div>
 
@@ -121,7 +134,7 @@ export default function CareerTalentProfilePage() {
           </Link>
         </div>
 
-        <form className="form-card careers-talent-form" onSubmit={handleSubmit}>
+        <form className="form-card careers-talent-form" onSubmit={handleSubmit} noValidate>
           <div className="form-grid">
             <label>
               Job Title / Role Applied For
@@ -276,12 +289,14 @@ export default function CareerTalentProfilePage() {
             <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           </label>
 
+          <ConsentCheckbox {...consentProps} />
+
           <button className="button button-primary" type="submit">
             {content.buttonLabel}
           </button>
 
           {status.message ? (
-            <p className={`form-status ${status.type}`}>{status.message}</p>
+            <p role={status.type === "error" ? "alert" : "status"} aria-live="polite" className={`form-status ${status.type}`}>{status.message}</p>
           ) : null}
         </form>
       </div>

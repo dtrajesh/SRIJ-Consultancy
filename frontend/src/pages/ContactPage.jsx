@@ -1,48 +1,70 @@
+import { siteConfig } from "../config/siteConfig";
+import { usePageMeta } from "../usePageMeta";
+import { Link } from "react-router-dom";
+import ContactIcon from "../components/ContactIcon";
 import ContactForm from "../components/ContactForm";
 import SectionHeader from "../components/SectionHeader";
 
 export default function ContactPage() {
+  usePageMeta({
+    title: "Contact Trinexora | Hyderabad",
+    path: "/contact",
+    description: `Tell us about your hiring or project requirement. Call ${siteConfig.phone} or email ${siteConfig.email}.`
+  });
   return (
     <section className="section page-intro contact-page">
       <div className="container contact-layout">
         <div className="contact-copy">
-          <SectionHeader title="Why Companies Choose" titleAccent="Trinexora" />
+          <SectionHeader as="h1" title="Why Companies Choose" titleAccent="Trinexora" />
           <div className="contact-benefits">
             <p>
               <span aria-hidden="true">✓</span>
-              Fast access to pre-vetted IT talent
+              Access to screened IT professionals
             </p>
             <p>
               <span aria-hidden="true">✓</span>
-              Proven delivery frameworks & accelerators
+              A clear, structured hiring process.
             </p>
             <p>
               <span aria-hidden="true">✓</span>
-              Global expertise. Local accountability.
+              Local expertise. Direct accountability.
             </p>
             <p>
               <span aria-hidden="true">✓</span>
-              24-Hour Response Guarantee
+              We respond to every enquiry within one business day.
             </p>
             <p>
               <span aria-hidden="true">✓</span>
-              Zero-Risk Engagement Model
+              Replacement support as per agreement.
+            </p>
+            <p>
+              <span aria-hidden="true">✓</span>
+              Hiring, project delivery and testing support from one team.
             </p>
           </div>
 
           <div className="contact-info">
             <p>
-              <span aria-hidden="true">✉</span>
-              sales@trinexora.com
+              <ContactIcon type="email" />
+              <a href="mailto:sales@trinexora.com">sales@trinexora.com</a>
             </p>
             <p>
-              <span aria-hidden="true">☏</span>
-              +1-6824070099
+              <ContactIcon type="phone" />
+              <a href="tel:+918522857333">+91-8522857333</a>
             </p>
             <p>
-              <span className="contact-pin-icon" aria-hidden="true"></span>
-              Serving clients across the globe with scalable technology solutions
+              <ContactIcon type="location" />
+              Hyderabad-based. Serving clients across India.
             </p>
+            <p>
+              <ContactIcon type="hours" />
+              Mon–Sat, 9:30 AM–6:30 PM IST
+            </p>
+            <p>
+              <ContactIcon type="chat" />
+              <a href="https://wa.me/918522857333" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+            </p>
+            <p className="contact-careers-link"><Link to="/careers">Looking for a job? Visit Careers →</Link></p>
           </div>
         </div>
 

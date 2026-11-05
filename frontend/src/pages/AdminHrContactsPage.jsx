@@ -1,3 +1,4 @@
+import { usePageMeta } from "../usePageMeta";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -23,6 +24,11 @@ const initialForm = {
 };
 
 export default function AdminHrContactsPage() {
+  usePageMeta({
+    title: "Admin | Trinexora",
+    path: "/admin/hr-contacts",
+    noindex: true
+  });
   const [contacts, setContacts] = useState([]);
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState({ type: "loading", message: "Loading HR contacts..." });

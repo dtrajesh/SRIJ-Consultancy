@@ -1,3 +1,4 @@
+import { usePageMeta } from "../usePageMeta";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AdminJobForm from "../components/AdminJobForm";
@@ -49,6 +50,11 @@ function formatSubmissionType(value) {
 }
 
 export default function AdminDashboardPage() {
+  usePageMeta({
+    title: "Admin | Trinexora",
+    path: "/admin/dashboard",
+    noindex: true
+  });
   const [data, setData] = useState({
     contacts: [],
     consultations: [],

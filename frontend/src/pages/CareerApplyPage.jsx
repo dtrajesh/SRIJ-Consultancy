@@ -1,3 +1,5 @@
+import { usePageMeta } from "../usePageMeta";
+import ConsentCheckbox, { CANDIDATE_CONSENT_TEXT, useConsent } from "../components/ConsentCheckbox";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { applyToJob, getPublicJob } from "../services/api";
@@ -14,9 +16,15 @@ const initialState = {
 
 export default function CareerApplyPage() {
   const { jobId } = useParams();
+  usePageMeta({
+    title: "Job Application | Trinexora",
+    description: "Apply for an IT role with Trinexora and share your experience and resume.",
+    path: `/careers/${jobId}/apply`
+  });
   const [job, setJob] = useState(null);
   const [form, setForm] = useState(initialState);
   const [resume, setResume] = useState(null);
+  const { consentProps, validateConsent, resetConsent, getConsentData } = useConsent(CANDIDATE_CONSENT_TEXT);
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState({ type: "", message: "" });
 
@@ -46,6 +54,7 @@ export default function CareerApplyPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (!validateConsent(event.currentTarget)) return;
 
     if (!resume) {
       setStatus({ type: "error", message: "Please upload your resume." });
@@ -57,6 +66,9 @@ export default function CareerApplyPage() {
       formData.append(key, value);
     });
     formData.append("resume", resume);
+    Object.entries(getConsentData()).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     setStatus({ type: "loading", message: "Submitting your application..." });
 
@@ -65,6 +77,7 @@ export default function CareerApplyPage() {
       setStatus({ type: "success", message: response.message });
       setForm(initialState);
       setResume(null);
+      resetConsent();
       event.target.reset();
     } catch (error) {
       setStatus({ type: "error", message: error.message || "Unable to submit application." });
@@ -75,7 +88,8 @@ export default function CareerApplyPage() {
     return (
       <section className="section page-intro">
         <div className="container">
-          <p className="form-status loading">Loading job details...</p>
+          <h1>Job application</h1>
+          <p className="form-status loading" role="status">Loading job details...</p>
         </div>
       </section>
     );
@@ -85,7 +99,8 @@ export default function CareerApplyPage() {
     return (
       <section className="section page-intro">
         <div className="container">
-          <p className="form-status error">{status.message || "Job not found."}</p>
+          <h1>Job application</h1>
+          <p className="form-status error" role="alert">{status.message || "Job not found."}</p>
           <Link className="button button-secondary" to="/careers">
             Back to Careers
           </Link>
@@ -115,7 +130,7 @@ export default function CareerApplyPage() {
           </div>
         </div>
 
-        <form className="form-card" onSubmit={handleSubmit}>
+        <form className="form-card" onSubmit={handleSubmit} noValidate>
           <div className="form-grid">
             <label>
               Full Name
@@ -171,12 +186,14 @@ export default function CareerApplyPage() {
             <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           </label>
 
+          <ConsentCheckbox {...consentProps} />
+
           <button className="button button-primary" type="submit">
             Submit Application
           </button>
 
           {status.message ? (
-            <p className={`form-status ${status.type}`}>{status.message}</p>
+            <p role={status.type === "error" ? "alert" : "status"} aria-live="polite" className={`form-status ${status.type}`}>{status.message}</p>
           ) : null}
         </form>
       </div>

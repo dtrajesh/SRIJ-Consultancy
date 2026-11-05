@@ -1,3 +1,4 @@
+import NotFoundPage from "./pages/NotFoundPage";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -9,13 +10,16 @@ import CareerInternalPage from "./pages/CareerInternalPage";
 import CareerTalentProfilePage from "./pages/CareerTalentProfilePage";
 import CareersPage from "./pages/CareersPage";
 import HomePage from "./pages/HomePage";
-import ProductsPage from "./pages/ProductsPage";
+import SolutionsPage from "./pages/SolutionsPage";
+import { siteConfig } from "./config/siteConfig";
 import ServicesPage from "./pages/ServicesPage";
 import TechnologiesPage from "./pages/TechnologiesPage";
 import IndustriesPage from "./pages/IndustriesPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import GetStartedPage from "./pages/GetStartedPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsPage from "./pages/TermsPage";
 
 export default function App() {
   return (
@@ -39,7 +43,9 @@ export default function App() {
       />
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/solutions" element={siteConfig.showSolutions ? <SolutionsPage /> : <Navigate to="/services" replace />} />
+        <Route path="/accelerators" element={<Navigate to="/solutions" replace />} />
+        <Route path="/products" element={<Navigate to="/solutions" replace />} />
         <Route path="/technologies" element={<TechnologiesPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/careers/internal" element={<CareerInternalPage />} />
@@ -50,7 +56,9 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/get-started" element={<GetStartedPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

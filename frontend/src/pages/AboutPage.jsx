@@ -1,3 +1,5 @@
+import { about } from "../data/about";
+import { usePageMeta } from "../usePageMeta";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import trinexoraLogo from "../assets/trinexora-logo-transparent.png";
@@ -242,33 +244,27 @@ function GainIcon({ type }) {
 }
 
 export default function AboutPage() {
+  usePageMeta({
+    title: "About Trinexora | Hyderabad IT Staffing & Delivery",
+    path: "/about",
+    description: "Trinexora is a Hyderabad-based team that helps companies hire IT talent and build and deliver technology projects."
+  });
   return (
     <>
       <section className="section about-section page-intro" id="overview">
         <div className="container about-grid">
           <div>
-            <SectionHeader
+            <SectionHeader as="h1"
               className="about-hero-header"
-              title={<>A Consulting Partner<br />Defined By Responsiveness,</>}
-              titleAccent={<>Accountability, and<br />Long-Term Client Trust.</>}
-              text="Trinexora partners with businesses that need technical capability without the hiring delay or delivery uncertainty."
+              eyebrow="About Trinexora"
+              title="Your Trusted IT Staffing &"
+              titleAccent="Technology Solutions Partner"
+              text="We help businesses access skilled technology professionals, build scalable teams, and deliver innovative IT solutions. With a focus on quality, collaboration, and reliable delivery, we support organizations in achieving their business and technology goals."
             />
-
-            <div className="content-copy">
-              <p>
-                We combine staffing support with managed execution so clients can choose the
-                model that best fits their constraints. Our approach favors clear ownership,
-                fast communication, and practical delivery planning.
-              </p>
-              <p>
-                Across cloud, data, QA, support, and application delivery, we focus on
-                helping clients build momentum without compromising reliability.
-              </p>
-            </div>
           </div>
 
           <aside className="hero-card about-snapshot-card">
-            <p>Delivery Excellence Snapshot</p>
+            <p>At a Glance</p>
             <ul>
               <li><span className="hero-marker hero-marker-check">✓</span>Access to highly qualified consultants with domain expertise</li>
               <li><span className="hero-marker hero-marker-spark">⚡</span>Rapid onboarding with minimal ramp-up time</li>
@@ -284,13 +280,13 @@ export default function AboutPage() {
       <section className="section about-section who-we-are-section" id="who-we-are">
         <div className="container who-we-are-grid">
           <div className="who-we-are-heading">
-            <h2>Who We Are?</h2>
+            <h2>Who We Are</h2>
           </div>
 
           <div className="who-we-are-copy">
             <p>
-              At Trinexora IT Services, we stand at the intersection of talent,
-              technology, and business transformation empowering organizations to scale
+              At Trinexora, we stand at the intersection of talent,
+              technology, and business transformation, empowering organizations to scale
               faster with the right people at the right time. We are not just a
               staffing provider; we are strategic workforce partners committed to
               solving complex hiring challenges with precision, speed, and insight.
@@ -299,7 +295,7 @@ export default function AboutPage() {
             <p>
               Our expertise lies in delivering highly skilled, pre-vetted professionals
               across software engineering, quality assurance, cloud, data, and product
-              delivery ensuring our clients can execute critical initiatives without
+              delivery, ensuring our clients can execute critical initiatives without
               compromise. Whether it is rapid team augmentation, niche skill hiring, or
               building dedicated offshore capabilities, we bring a solution-oriented
               approach tailored to your business goals.
@@ -337,8 +333,8 @@ export default function AboutPage() {
             </p>
 
             <p>
-              With Trinexora IT Services, you gain more than a vendor, you gain a
-              dependable partner dedicated to building high performing teams and
+              With Trinexora, you gain more than a vendor, you gain a
+              dependable partner dedicated to building high-performing teams and
               delivering sustainable business success.
             </p>
           </div>
@@ -352,7 +348,7 @@ export default function AboutPage() {
             <h3>Deliver dependable technology capability with speed and clarity</h3>
             <p>
               Our mission is to bridge the gap between ambition and execution by delivering
-              the right talent at the right time. At Trinexora IT Services, we help
+              the right talent at the right time. At Trinexora, we help
               businesses scale confidently by providing high-quality, vetted professionals
               who accelerate delivery, reduce risk, and create measurable impact.
             </p>
@@ -387,7 +383,7 @@ export default function AboutPage() {
           <div className="core-values-header">
             <h2>Our Core Values</h2>
             <p>
-              At Trinexora IT Services, our values define how we work, how we
+              At Trinexora, our values define how we work, how we
               engage, and how we deliver impact for our clients and talent.
             </p>
           </div>
@@ -395,38 +391,38 @@ export default function AboutPage() {
           <div className="core-values-grid">
             <article className="core-value-card">
               <CoreValueIcon type="target" />
-              <h3>Precision Talent</h3>
-              <p>Delivering top-tier professionals with exact skills and expertise.</p>
+              <h3>Right-Fit Talent</h3>
+              <p>Matching exact skills and experience to your need.</p>
             </article>
 
             <article className="core-value-card">
               <CoreValueIcon type="handshake" />
               <h3>Client-First Thinking</h3>
-              <p>Aligning with your goals to ensure impactful outcomes.</p>
+              <p>Aligning with your goals so every engagement delivers value.</p>
             </article>
 
             <article className="core-value-card">
               <CoreValueIcon type="speed" />
-              <h3>Speed &amp; Agility</h3>
-              <p>Responding swiftly with quality, scalable solutions.</p>
+              <h3>Speed with Quality</h3>
+              <p>Responding quickly without cutting corners.</p>
             </article>
 
             <article className="core-value-card">
               <CoreValueIcon type="shield" />
               <h3>Trust &amp; Transparency</h3>
-              <p>Building relationships on honesty and clarity.</p>
+              <p>Honest communication, clear terms, no surprises.</p>
             </article>
 
             <article className="core-value-card">
               <CoreValueIcon type="compass" />
               <h3>Ownership Mindset</h3>
-              <p>Taking responsibility and driving success.</p>
+              <p>Taking responsibility from requirement to outcome.</p>
             </article>
 
             <article className="core-value-card">
               <CoreValueIcon type="rocket" />
-              <h3>Continuous Evolution</h3>
-              <p>Innovating and adapting to the future of work.</p>
+              <h3>Continuous Learning</h3>
+              <p>Improving how we work with every engagement.</p>
             </article>
           </div>
         </div>
@@ -435,38 +431,35 @@ export default function AboutPage() {
       <section className="section about-section leadership-section" id="leadership">
         <div className="container">
           <div className="leadership-intro">
-            <h2>Board of Directors, Leadership Team &amp; Advisory Board</h2>
+            <h2>{about.leadershipHeading}</h2>
             <div className="leadership-copy">
-              <p>
-                Trinexora is guided by a strong leadership team comprising experienced
-                professionals from the IT staffing, talent solutions, and technology
-                consulting space. With deep industry expertise across engineering,
-                cloud, data, QA, and digital transformation domains, our leaders bring
-                a practical, execution-focused approach to workforce and delivery
-                solutions.
-              </p>
-              <p>
-                Collectively, they combine decades of experience in building
-                high-performing teams, scaling technology talent delivery, and
-                partnering with global clients to meet evolving business and hiring
-                needs.
-              </p>
+              {about.leadershipIntro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             </div>
           </div>
 
           <div className="leadership-grid">
             <article className="leader-card">
-              <span className="leader-position">Director &amp; Investor</span>
+              <h3>{about.directorTitle}</h3>
+              <p>{about.directorDescription}</p>
+            </article>
+
+            <article className="leader-card about-founder-card">
+              <h3>{about.founderCardTitle}</h3>
+              <p>{about.founderBio}</p>
             </article>
 
             <article className="leader-card">
-              <span className="leader-position">Founding Partner &amp; CEO</span>
-            </article>
-
-            <article className="leader-card">
-              <span className="leader-position">Advisor</span>
+              <h3>{about.advisorTitle}</h3>
+              <p>{about.advisorDescription}</p>
             </article>
           </div>
+          <section className="content-card about-experience" aria-labelledby="about-experience-title">
+            <h3 id="about-experience-title">Industry Experience</h3>
+            <p>{about.industryDescription}</p>
+            <div className="accelerator-tags">
+              {about.industries.map((industry) => <span key={industry}>{industry}</span>)}
+            </div>
+          </section>
         </div>
       </section>
 
@@ -475,7 +468,7 @@ export default function AboutPage() {
           <div className="why-choose-header">
             <span>Why Choose Us</span>
             <h2>
-              Why To Choose <strong>Trinexora?</strong>
+              Why Choose <strong>Trinexora</strong>
             </h2>
             <p>
               We deliver the right talent, at the right time, to help you build
@@ -543,7 +536,7 @@ export default function AboutPage() {
             <img
               className="why-choose-banner-logo"
               src={trinexoraLogo}
-              alt="Trinexora IT Staffing, IT Solutions, IT Expansion"
+              alt="Trinexora IT Staffing, IT Solutions, IT Delivery"
             />
             <p>
               At Trinexora, we connect great talent with great opportunities to
@@ -551,9 +544,7 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </section>
-
-      <section className="section about-section what-you-gain-section" id="what-you-gain">
+        <div className="section what-you-gain-section" id="what-you-gain">
         <div className="container what-you-gain-wrap">
           <div className="what-you-gain-header" data-scroll-anchor>
             <h2>What You Gain</h2>
@@ -620,28 +611,29 @@ export default function AboutPage() {
             Build stronger teams. Deliver faster. Scale with confidence.
           </div>
         </div>
+        </div>
       </section>
 
       <section className="section about-section careers-cta-section" id="join-team">
         <div className="container careers-cta-grid">
           <div className="careers-cta-copy" data-scroll-anchor>
             <h2>
-              Grow <span>With Us</span>
+              Careers at <span>Trinexora</span>
             </h2>
             <p>
-              At Trinexora, we connect talent with meaningful opportunities in
-              modern technology environments. Work on high-impact projects, gain
-              hands-on experience, and grow your expertise across multiple domains.
+              We’re building a team of recruiters and delivery professionals.
+              If you enjoy connecting people with the right opportunities,
+              we’d like to hear from you.
             </p>
             <Link className="button button-primary careers-cta-button" to="/careers">
-              Apply Now
+              View Careers
             </Link>
           </div>
 
           <img
             className="careers-team-banner"
             src={joinTeamBanner}
-            alt="Trinexora team collaboration and career opportunities"
+            alt="Professionals collaborating around a laptop"
           />
         </div>
       </section>

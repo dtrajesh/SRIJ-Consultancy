@@ -619,42 +619,73 @@ def get_testimonials():
 @api.post("/contact")
 def submit_contact():
     payload = request.get_json(silent=True) or {}
-    required_fields = ["name", "email", "company", "message"]
+    success_message = "Thanks, we’ll reply within one business day."
+    if payload.get("website"):
+        return jsonify({"message": success_message}), 201
+    if payload.get("consent") is not True:
+        return jsonify({"message": "Please agree to being contacted about this enquiry."}), 400
+    required_fields = ["name", "email", "message"]
     missing = missing_fields(payload, required_fields)
 
     if missing:
         return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
 
+    interest = payload.get("interest", "").strip()
+    allowed_interests = {"General enquiry", "Business partnership", "Hiring IT talent", "Project or product development", "Testing & QA", "Other"}
+    if interest and interest not in allowed_interests:
+        return jsonify({"message": "Please select a valid enquiry type."}), 400
+    message = payload["message"].strip()
+    if interest:
+        message = f"I'm interested in: {interest}\n\n{message}"
+
     submission = ContactSubmission(
         name=payload["name"].strip(),
         email=payload["email"].strip(),
-        company=payload["company"].strip(),
+        company=payload.get("company", "").strip(),
         phone=payload.get("phone", "").strip(),
-        message=payload["message"].strip()
+        message=message
     )
-    db.session.add(submission)
-    db.session.commit()
+    try:
+        db.session.add(submission)
+        db.session.commit()
+    except Exception:
+        db.session.rollback()
+        current_app.logger.exception("Unable to save contact enquiry")
+        return jsonify({"message": "We couldn’t send your enquiry. Please try again or email sales@trinexora.com."}), 503
 
-    return jsonify({"message": "Thanks for contacting us. Our team will reach out shortly."}), 201
+    # The enquiry remains available in Admin if email delivery fails.
+    from contact_notifications import notify_contact
+    try:
+        delivered = notify_contact(submission)
+        if not delivered:
+            current_app.logger.warning("Contact enquiry saved; SMTP notifications are not configured")
+    except Exception:
+        current_app.logger.exception("Contact enquiry saved; email notification failed")
+    return jsonify({"message": success_message}), 201
 
 
 @api.post("/consultations")
 def submit_consultation():
     payload = request.get_json(silent=True) or {}
-    required_fields = ["name", "email", "company", "need_type", "goals"]
+    required_fields = ["name", "email", "need_type", "goals"]
     missing = missing_fields(payload, required_fields)
 
     if missing:
         return jsonify({"message": f"Missing required fields: {', '.join(missing)}"}), 400
 
+    goals = payload["goals"].strip()
+    phone = payload.get("phone", "").strip()
+    if phone:
+        goals = f"Phone: {phone}\n\n{goals}"
+
     consultation = ConsultationRequest(
         name=payload["name"].strip(),
         email=payload["email"].strip(),
-        company=payload["company"].strip(),
+        company=payload.get("company", "").strip(),
         need_type=payload["need_type"].strip(),
         timeline=payload.get("timeline", "").strip(),
         team_size=payload.get("team_size", "").strip(),
-        goals=payload["goals"].strip()
+        goals=goals
     )
     db.session.add(consultation)
     db.session.commit()

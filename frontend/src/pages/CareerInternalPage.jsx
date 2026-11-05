@@ -1,3 +1,5 @@
+import { usePageMeta } from "../usePageMeta";
+import ConsentCheckbox, { CANDIDATE_CONSENT_TEXT, useConsent } from "../components/ConsentCheckbox";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { getInternalJobs, submitTalentProfile } from "../services/api";
@@ -79,6 +81,11 @@ function RoleIcon({ title }) {
 }
 
 export default function CareerInternalPage() {
+  usePageMeta({
+    title: "Internal Careers | Trinexora",
+    path: "/careers/internal",
+    description: "Explore internal career opportunities at Trinexora and apply with your resume."
+  });
   const [searchParams] = useSearchParams();
   const requestedRole = searchParams.get("role") || "";
   const formRef = useRef(null);
@@ -94,6 +101,7 @@ export default function CareerInternalPage() {
     target_job_title: "Internal Careers"
   });
   const [resume, setResume] = useState(null);
+  const { consentProps, validateConsent, resetConsent, getConsentData } = useConsent(CANDIDATE_CONSENT_TEXT);
   const [status, setStatus] = useState({ type: "", message: "" });
 
   const selectedOpening = useMemo(
@@ -152,6 +160,7 @@ export default function CareerInternalPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (!validateConsent(event.currentTarget)) return;
 
     if (!resume) {
       setStatus({ type: "error", message: "Please upload your resume." });
@@ -164,6 +173,9 @@ export default function CareerInternalPage() {
       formData.append(key, value);
     });
     formData.append("resume", resume);
+    Object.entries(getConsentData()).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
 
     setStatus({ type: "loading", message: "Submitting your resume..." });
 
@@ -175,6 +187,7 @@ export default function CareerInternalPage() {
         target_job_title: selectedRole || "Internal Careers"
       });
       setResume(null);
+      resetConsent();
       event.target.reset();
     } catch (error) {
       setStatus({ type: "error", message: error.message || "Unable to submit your resume." });
@@ -261,7 +274,7 @@ export default function CareerInternalPage() {
               </p>
             </div>
 
-            <form className="form-card careers-talent-form" onSubmit={handleSubmit}>
+            <form className="form-card careers-talent-form" onSubmit={handleSubmit} noValidate>
               <div className="form-grid">
                 <label>
                   Role Applied For
@@ -350,12 +363,14 @@ export default function CareerInternalPage() {
                 <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
               </label>
 
-              <button className="button button-primary" type="submit">
+              <ConsentCheckbox {...consentProps} />
+
+          <button className="button button-primary" type="submit">
                 Submit Resume
               </button>
 
               {status.message ? (
-                <p className={`form-status ${status.type}`}>{status.message}</p>
+                <p role={status.type === "error" ? "alert" : "status"} aria-live="polite" className={`form-status ${status.type}`}>{status.message}</p>
               ) : null}
             </form>
           </div>

@@ -1,35 +1,60 @@
+import { usePageMeta } from "../usePageMeta";
+import ServiceIcon from "../components/ServiceIcon";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { services } from "../data/siteContent";
 
 const talentAcquisitionTitles = new Set([
-  "Talent Advisory & Workforce Strategy",
-  "Executive & Niche Hiring (Leadership & Specialized Roles)",
-  "Global Talent Sourcing"
+  "Hiring Consultation",
+  "Niche & Specialist Hiring",
+  "Talent Sourcing"
 ]);
 
 const teamDeliveryTitles = new Set([
-  "Dedicated Offshore / Nearshore Teams",
+  "Dedicated Project Teams",
   "Cloud & Digital Transformation Talent Pods",
   "Managed Recruitment Services (RPO Model)"
 ]);
 
 const flexibleHiringTitles = new Set([
   "Contract-to-Hire Solutions",
-  "Rapid Hiring & On-Demand Staffing"
+  "Urgent Requirements"
 ]);
 
 const talentAcquisitionTitleLabels = {
-  "Executive & Niche Hiring (Leadership & Specialized Roles)": "Executive & Niche Hiring"
+  "Niche & Specialist Hiring": "Niche & Specialist Hiring"
 };
 
 const teamDeliveryTitleLabels = {
-  "Cloud & Digital Transformation Talent Pods": "Cloud & Digital Transformation Pods",
-  "Managed Recruitment Services (RPO Model)": "Managed Recruitment Services (RPO)"
+  "Cloud & Digital Transformation Talent Pods": "Cloud, DevOps & Data Support",
+  "Managed Recruitment Services (RPO Model)": "Recruitment Support"
 };
 
+const technologyDeliveryServices = [
+  {
+    title: "Project-Based Delivery",
+    description: "Scope, build, test and deliver a technology project against agreed requirements.",
+    deliverables: ["Discovery, scope and delivery milestones", "Build, testing and handover", "Fixed-price or time-and-material options, agreed up front"]
+  },
+  {
+    title: "QA & Performance Testing Services",
+    description: "Dedicated testing support to assess software quality and application behaviour under load.",
+    deliverables: ["Functional, regression and API testing", "Test automation for agreed scenarios", "Load and performance testing with findings and recommendations"]
+  },
+  {
+    title: "Application Support",
+    description: "Maintain and enhance your applications during agreed support hours.",
+    deliverables: ["Issue investigation and maintenance", "Scoped enhancements and release support", "Support hours, priorities and response expectations agreed in advance"]
+  }
+];
+
 export default function ServicesPage() {
+  usePageMeta({
+    title: "IT Staffing & Technology Services | Trinexora",
+    path: "/services",
+    description: "Contract and permanent IT hiring, software development, and QA and performance testing for companies across India."
+  });
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [activePreviewTitle, setActivePreviewTitle] = useState(null);
   const hoverLockUntilRef = useRef(0);
@@ -127,7 +152,6 @@ export default function ServicesPage() {
     const cardDeliverables = service.tileDeliverables || service.deliverables;
     const cardDeliverablesLabel = service.tileDeliverablesLabel || service.deliverablesLabel || "What we deliver:";
     const cardOutcome = service.tileOutcome || service.outcome;
-    const cardOutcomeLabel = service.tileOutcomeLabel || service.outcomeLabel || "Outcome";
     const previewTitle = service.previewTitle || title;
     const previewSubtitle = service.previewSubtitle;
     const previewDescription = service.previewDescription || service.description;
@@ -145,9 +169,7 @@ export default function ServicesPage() {
         className={`content-card service-detail-card${options.isModel ? " talent-model-card" : ""}`}
       >
         <div className="service-detail-card-header">
-          <span className="home-service-icon" aria-hidden="true">
-            {service.icon}
-          </span>
+          <ServiceIcon title={title} />
           <h3>{title}</h3>
         </div>
         <p>{cardDescription}</p>
@@ -163,7 +185,8 @@ export default function ServicesPage() {
         )}
         {cardOutcome && (
           <p className="service-outcome">
-            <span aria-hidden="true">👉</span> {cardOutcomeLabel}: {cardOutcome}
+            <span className="service-outcome-icon" aria-hidden="true">👉</span>
+            <span className="service-outcome-copy"><strong>Outcome:</strong> {cardOutcome}</span>
           </p>
         )}
         <div
@@ -171,7 +194,7 @@ export default function ServicesPage() {
             activePreviewTitle === service.title ? " service-preview-trigger-open" : ""
           }`}
           data-preview-title={service.title}
-          data-preview-position={service.title === "Talent Advisory & Workforce Strategy" ? "up" : "up-low"}
+          data-preview-position={service.title === "Hiring Consultation" ? "up" : "up-low"}
           onMouseEnter={handlePreviewOpen}
           onMouseLeave={handlePreviewLeave}
           onFocus={handlePreviewOpen}
@@ -223,7 +246,7 @@ export default function ServicesPage() {
               </div>
               {!service.previewHideBenefits && (
                 <div className="service-preview-benefits">
-                  <strong>✅ Key Benefits</strong>
+                  <strong>Key Benefits</strong>
                   {(service.deliverables || []).slice(0, 3).map((item) => (
                     <span key={item}>{item}</span>
                   ))}
@@ -244,11 +267,11 @@ export default function ServicesPage() {
   return (
     <section className={`section page-intro${isPreviewOpen ? " services-preview-open" : ""}`}>
       <div className="container">
-        <SectionHeader
+        <SectionHeader as="h1"
           className="services-page-header"
-          title="Flexible Engagement Models for Speed,"
-          titleAccent="Reliability, and Accountable Delivery."
-          text="We provide everything from individual specialists to fully managed teams ensuring seamless execution, transparent communication, and measurable outcomes."
+          title="Staffing and Delivery Models"
+          titleAccent="That Fit Your Needs"
+          text="Hire individual specialists, build a dedicated team, or have us deliver a project. Choose the model that suits your timeline and budget."
         />
 
         <div className="service-models-section">
@@ -290,12 +313,28 @@ export default function ServicesPage() {
           {deliveryServices.map((service) => renderServiceCard(service))}
         </div>
 
+        <section className="service-models-section" aria-labelledby="technology-delivery-title">
+          <h2 id="technology-delivery-title">Technology Delivery</h2>
+          <div className="card-grid three-up talent-model-grid">
+            {technologyDeliveryServices.map((service) => (
+              <article className="content-card service-detail-card talent-model-card" key={service.title}>
+                <div className="service-detail-card-header"><ServiceIcon title={service.title} /><h3>{service.title}</h3></div>
+                <p>{service.description}</p>
+                <div className="service-deliverables">
+                  <strong>What we deliver:</strong>
+                  <ul className="service-check-list">{service.deliverables.map(item => <li key={item}>✔ {item}</li>)}</ul>
+                </div>
+                <Link to="/get-started">Explore Solution →</Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <div className="cta-inline services-cta-inline">
           <div>
-            <h3>Selecting the right engagement model is critical to project success.</h3>
+            <h3>Not sure which model fits?</h3>
             <p>
-              We provide expert consultation to align your delivery strategy with your
-              business goals, timelines, and budget expectations.
+              Tell us your requirement and we’ll recommend the right approach, with no obligation.
             </p>
           </div>
           <Link className="button button-primary" to="/get-started">

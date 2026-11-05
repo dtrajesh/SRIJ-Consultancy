@@ -1,3 +1,4 @@
+import { usePageMeta } from "../usePageMeta";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { adminLogin } from "../services/api";
@@ -8,6 +9,11 @@ const initialState = {
 };
 
 export default function AdminLoginPage() {
+  usePageMeta({
+    title: "Admin | Trinexora",
+    path: "/admin/login",
+    noindex: true
+  });
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState({ type: "", message: "" });
   const navigate = useNavigate();
@@ -37,7 +43,7 @@ export default function AdminLoginPage() {
       <div className="admin-card">
         <div className="section-header">
           <span className="eyebrow">Admin Access</span>
-          <h2>Log in to review website leads</h2>
+          <h1>Log in to review website leads</h1>
           <p>
             This dashboard shows everyone who submitted the Contact and Get Started
             forms.
@@ -63,7 +69,7 @@ export default function AdminLoginPage() {
             Login
           </button>
           {status.message ? (
-            <p className={`form-status ${status.type}`}>{status.message}</p>
+            <p role={status.type === "error" ? "alert" : "status"} aria-live="polite" className={`form-status ${status.type}`}>{status.message}</p>
           ) : null}
         </form>
       </div>

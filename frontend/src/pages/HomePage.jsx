@@ -1,6 +1,9 @@
+import { siteConfig } from "../config/siteConfig";
+import { usePageMeta } from "../usePageMeta";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
-import { products, testimonials } from "../data/siteContent";
+import { products } from "../data/siteContent";
 import requirementDiscoveryImage from "../assets/how-it-works/requirement-discovery.jpeg";
 import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
 import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
@@ -61,117 +64,90 @@ const homeServices = [
 const trustStripItems = [
   {
     icon: "globe",
-    title: "Global Delivery Model",
-    text: "Across 20+ Countries"
+    title: "Based in Hyderabad",
+    text: "Serving clients across India"
   },
   {
     icon: "expert",
     title: "Pre-vetted Experts",
-    text: "Top 1% Tech Talent"
+    text: "Screened before submission"
   },
   {
     icon: "teams",
-    title: "Scalable Teams",
-    text: "On Demand"
+    title: "Flexible Hiring",
+    text: "Contract, contract-to-hire, permanent"
   },
   {
     icon: "support",
-    title: "24/7 Support",
-    text: "Follow-the-sun Model"
+    title: "Quick Response",
+    text: "Reply within one business day"
   },
   {
     icon: "shield",
-    title: "Secure & Compliant",
-    text: "ISO 27001 Certified"
+    title: "Confidential Process",
+    text: "Your data and profiles stay private"
   }
 ];
 
 function TrustStripIcon({ type }) {
-  const commonProps = {
-    className: "trust-strip-svg",
-    viewBox: "0 0 48 48",
-    role: "img",
-    "aria-hidden": "true"
+  const paths = {
+    globe: <><path d="M20 10a8 8 0 0 1 8 8c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 8-8Z" /><circle cx="20" cy="18" r="2.5" /></>,
+    expert: <><circle cx="17" cy="14" r="5" /><path d="M7 31v-3a10 10 0 0 1 20 0v3M27 15l3 3 5-6" /></>,
+    teams: <><rect x="7" y="14" width="26" height="18" rx="3" /><path d="M15 14v-3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3M7 21a31 31 0 0 0 26 0M18 23h4" /></>,
+    support: <><path d="M30 21V10a3 3 0 0 0-3-3H10a3 3 0 0 0-3 3v21l7-6h6" /><circle cx="28" cy="28" r="8" /><path d="M28 23v5l3 2M13 13h11M13 18h7" /></>,
+    shield: <><rect x="9" y="18" width="22" height="16" rx="3" /><path d="M14 18v-6a6 6 0 0 1 12 0v6M20 25v3" /><circle cx="20" cy="24" r="1" /></>
   };
-
-  if (type === "globe") {
-    return (
-      <svg {...commonProps}>
-        <circle cx="24" cy="24" r="17" />
-        <path d="M7 24h34M24 7c5 5 8 11 8 17s-3 12-8 17M24 7c-5 5-8 11-8 17s3 12 8 17" />
-        <path d="M11 15h26M11 33h26" />
-      </svg>
-    );
-  }
-
-  if (type === "expert") {
-    return (
-      <svg {...commonProps}>
-        <circle cx="24" cy="15" r="6" />
-        <path d="M13 37v-4c0-7 5-12 11-12s11 5 11 12v4" />
-        <path d="M18 37h12M35 17l3 3 6-8" />
-      </svg>
-    );
-  }
-
-  if (type === "teams") {
-    return (
-      <svg {...commonProps}>
-        <circle cx="24" cy="13" r="5" />
-        <circle cx="13" cy="23" r="4" />
-        <circle cx="35" cy="23" r="4" />
-        <path d="M16 39v-4c0-5 3-9 8-9s8 4 8 9v4M5 39v-3c0-4 3-7 8-7M43 39v-3c0-4-3-7-8-7" />
-      </svg>
-    );
-  }
-
-  if (type === "support") {
-    return (
-      <svg {...commonProps}>
-        <circle cx="24" cy="25" r="14" />
-        <path d="M24 11V6M18 6h12M24 25l7-6M13 12l-4-4M35 12l4-4" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg {...commonProps}>
-      <path d="M24 6 38 12v12c0 10-6 16-14 19-8-3-14-9-14-19V12z" />
-      <path d="M17 25l5 5 10-12" />
-    </svg>
-  );
+  return <svg className="trust-strip-svg" viewBox="0 0 40 40" aria-hidden="true">{paths[type]}</svg>;
 }
 
 export default function HomePage() {
+  usePageMeta({
+    title: "Trinexora | IT Staffing & Technology Solutions in Hyderabad",
+    path: "/",
+    description: "IT staffing and technology solutions from Hyderabad. We help companies hire skilled professionals and build and deliver technology projects."
+  });
+  const [processTrack, setProcessTrack] = useState("hiring");
+
+  function handleTrackKey(event) {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === "Home" ? "hiring" : event.key === "End" ? "project" : processTrack === "hiring" ? "project" : "hiring";
+    setProcessTrack(next);
+    document.getElementById(`process-tab-${next}`)?.focus();
+  }
+
   return (
     <>
       <section className="hero">
         <div className="container hero-grid home-hero-grid">
           <div className="hero-copy">
             <h1>
-              <span className="home-title-main">Build, Scale &amp; Deliver</span>
-              <span className="home-title-accent">Technology Faster</span>
+              <span className="home-title-main">IT Staffing &amp;</span>
+              <span className="home-title-accent">Technology Solutions</span>
             </h1>
             <p>
-              End-to-end IT services and talent solutions that help enterprises accelerate
-              innovation, reduce risk, and achieve measurable business outcomes.
+              Hire skilled technology professionals, or have us build and deliver
+              your project. One partner for talent and delivery.
             </p>
             <div className="hero-actions">
               <Link className="button button-primary" to="/get-started">
-                Schedule A Consultation
+                Share Your Requirement
               </Link>
-              <Link className="button button-secondary" to="/services">
-                Explore Our Services
+              <Link className="button button-primary" to="/services">
+                Explore Services
+              </Link>
+              <Link className="button button-primary" to="/careers">
+                Find a Job
               </Link>
             </div>
           </div>
-          <div className="home-hero-logo-wrap" aria-label="Trinexora, IT Staffing, IT Solutions, IT Expansion">
+          <div className="home-hero-logo-wrap" aria-label="Trinexora, IT Staffing, IT Solutions, IT Delivery">
             <img className="home-hero-brand-symbol" src={headerSymbol} alt="" aria-hidden="true" />
             <span className="home-hero-brand-copy">
               <span className="home-hero-brand-name" aria-hidden="true">
                 <span className="home-hero-brand-name-blue">TR<span className="home-hero-brand-accent-letter">I</span></span>NEXORA
               </span>
-              <span className="home-hero-brand-tagline">IT Staffing | IT Solutions | IT Expansion</span>
+              <span className="home-hero-brand-tagline">IT Staffing | IT Solutions | IT Delivery</span>
             </span>
           </div>
         </div>
@@ -230,6 +206,12 @@ export default function HomePage() {
             <span className="how-it-works-line" />
           </div>
 
+          <div className="process-tabs" role="tablist" aria-label="Choose a process" onKeyDown={handleTrackKey}>
+            <button id="process-tab-hiring" type="button" role="tab" aria-selected={processTrack === "hiring"} aria-controls="process-panel-hiring" tabIndex={processTrack === "hiring" ? 0 : -1} onClick={() => setProcessTrack("hiring")}>Hiring talent</button>
+            <button id="process-tab-project" type="button" role="tab" aria-selected={processTrack === "project"} aria-controls="process-panel-project" tabIndex={processTrack === "project" ? 0 : -1} onClick={() => setProcessTrack("project")}>Building a project</button>
+          </div>
+
+          <div role="tabpanel" id="process-panel-hiring" aria-labelledby="process-tab-hiring" hidden={processTrack !== "hiring"} tabIndex={0}>
           <div className="how-it-works-grid">
             <article className="how-step-card">
               <div className="how-step-icon">
@@ -276,31 +258,43 @@ export default function HomePage() {
             </article>
           </div>
 
+          </div>
+          <div role="tabpanel" id="process-panel-project" aria-labelledby="process-tab-project" hidden={processTrack !== "project"} tabIndex={0}>
+            <div className="how-it-works-grid project-process-grid">
+              {[
+                { title: "Discover and scope", text: "Understand your goals, users and requirements, and agree what the project will cover.", icon: <><rect x="11" y="10" width="29" height="37" rx="4" /><path d="M19 20h13M19 28h9" /><circle cx="40" cy="39" r="9" /><path d="m47 46 7 7" /></> },
+                { title: "Plan and estimate", text: "Define milestones, responsibilities, timelines and costs before work begins.", icon: <><rect x="10" y="13" width="44" height="39" rx="5" /><path d="M10 25h44M22 8v10M42 8v10M20 34h7M36 34h7M20 43h7M36 43h7" /></> },
+                { title: "Build and test", text: "Build the agreed solution, test it against requirements, and review progress with you.", icon: <><rect x="7" y="10" width="50" height="39" rx="5" /><path d="M7 21h50M25 29l-7 6 7 6M39 29l7 6-7 6M36 26l-8 18M24 55h16" /></> },
+                { title: "Deliver and support", text: "Coordinate the release, hand over documentation, and provide support within the agreed scope.", icon: <><path d="m32 7 20 10v27L32 55 12 44V17Z M12 17l20 11 20-11M32 28v27M22 12l20 11" /><path d="m22 36 7 7 13-13" /></> }
+              ].map((step, index) => <article className="how-step-card" key={step.title}>
+                <div className="project-step-icon" aria-hidden="true"><svg viewBox="0 0 64 64">{step.icon}</svg><span>{index + 1}</span></div>
+                <h3>{step.title}</h3><p>{step.text}</p>
+              </article>)}
+            </div>
+          </div>
+
           <p className="how-it-works-caption">
-            <strong>No lengthy hiring cycles. No administrative overhead.</strong>
+            <strong>A clear process, whether you’re hiring or building.</strong>
           </p>
         </div>
       </section>
 
+      {siteConfig.showSolutions && (
       <section className="section home-section section-muted">
         <div className="container">
           <div className="home-section-label">
             <span className="how-it-works-line" />
-            <h2>Accelerators</h2>
+            <h2>Solutions</h2>
             <span className="how-it-works-line" />
           </div>
           <SectionHeader
             className="home-products-header"
-            title="Accelerators built to speed delivery and reduce execution risk"
-            text="Our productized accelerators help teams move faster across QA, cloud migration, DevOps, performance testing, and data analytics."
+            title="Accelerators in development"
+            text="Reusable frameworks and templates are in development, starting with QA automation and performance testing. These assets are not yet available."
           />
           <div className="product-list home-product-list">
-            {products.map((product, index) => {
-              const highlights = product.useCase
-                .replace(/^Highlights:\s*/i, "")
-                .split(",")
-                .map((item) => item.trim())
-                .filter(Boolean);
+            {products.slice(0, 2).map((product, index) => {
+              const highlights = product.highlights;
 
               return (
                 <article key={product.title} className="product-list-item">
@@ -309,7 +303,7 @@ export default function HomePage() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <h3>{product.title}</h3>
-                    <span className="product-list-hint">Hover to view details</span>
+                    <span className="accelerator-status">{product.status}</span>
                   </div>
 
                   <div className="product-list-details">
@@ -321,34 +315,37 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                    <Link to="/products">Explore accelerators</Link>
+                    <Link to="/solutions">Solutions</Link>
                   </div>
                 </article>
               );
             })}
           </div>
+          <p className="accelerator-roadmap-link"><Link to="/solutions">Solutions</Link></p>
         </div>
       </section>
+      )}
 
-      <section className="section home-section">
+      <section className="section home-section" aria-labelledby="working-together-title">
         <div className="container">
           <div className="home-section-label">
             <span className="how-it-works-line" />
-            <h2>Client Feedback</h2>
+            <h2 id="working-together-title">How We Work With You</h2>
             <span className="how-it-works-line" />
           </div>
-          <SectionHeader
-            className="home-testimonials-header"
-            title="Trusted by leaders to deliver fast, reliable outcomes."
-          />
           <div className="card-grid three-up">
-            {testimonials.map((testimonial) => (
-              <article key={testimonial.name} className="content-card testimonial-card">
-                <p>"{testimonial.quote}"</p>
-                <strong>{testimonial.name}</strong>
-                <span>{testimonial.company}</span>
-              </article>
-            ))}
+            <article className="content-card">
+              <h3>Clear communication</h3>
+              <p>A single point of contact and replies within one business day.</p>
+            </article>
+            <article className="content-card">
+              <h3>Quality first</h3>
+              <p>Only profiles and deliverables that match your requirement.</p>
+            </article>
+            <article className="content-card">
+              <h3>Accountable delivery</h3>
+              <p>Defined scope, regular updates, and support after go-live.</p>
+            </article>
           </div>
         </div>
       </section>
@@ -357,10 +354,9 @@ export default function HomePage() {
         <div className="container cta-panel">
           <div>
             <span className="eyebrow">Get Started</span>
-            <h2>Scale your team faster. Deliver with confidence</h2>
+            <h2>Tell us what you need: a hire or a project</h2>
             <p>
-              Tell us your requirement—we’ll align the right talent and delivery
-              model to meet your goals.
+              Share your requirement and we’ll respond within one business day.
             </p>
           </div>
           <Link className="button button-primary" to="/contact">

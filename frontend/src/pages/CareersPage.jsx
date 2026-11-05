@@ -1,3 +1,5 @@
+import { usePageMeta } from "../usePageMeta";
+import CareerBenefitIcon from "../components/CareerBenefitIcon";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/careers-hero-background.png";
@@ -5,78 +7,76 @@ import { getPublicJobs } from "../services/api";
 
 const reasonsToChoose = [
   {
-    icon: "🚀",
-    title: "Premium Opportunities",
-    text: "Access top clients and exciting projects across enterprise and digital transformation teams."
+    "icon": "match",
+    "title": "Relevant Opportunities",
+    "text": "Roles matched to your skills, experience and career goals."
   },
   {
-    icon: "💼",
-    title: "Contract & Full-Time Roles",
-    text: "Flexible options that fit your career goals, availability, and preferred working model."
+    "icon": "briefcase",
+    "title": "Contract & Full-Time Roles",
+    "text": "Flexible options that fit your career goals, availability, and preferred working model."
   },
   {
-    icon: "🌐",
-    title: "Remote & Hybrid Jobs",
-    text: "Opportunities across the U.S. with onsite, hybrid, and remote roles."
+    "icon": "location",
+    "title": "Onsite, Hybrid & Remote",
+    "text": "Opportunities in Hyderabad and across India, with onsite, hybrid and remote options."
   },
   {
-    icon: "⚡",
-    title: "Quick Placements",
-    text: "Faster turnaround and recruiter feedback so you can move quickly."
+    "icon": "feedback",
+    "title": "Prompt Feedback",
+    "text": "We share updates after screening and interviews so you’re never left waiting."
   },
   {
-    icon: "🤝",
-    title: "Dedicated Recruiter Support",
-    text: "One-on-one guidance through screening, interviews, offers, and onboarding."
+    "icon": "support",
+    "title": "Dedicated Recruiter Support",
+    "text": "One point of contact from screening through to joining."
   },
   {
-    icon: "📈",
-    title: "Career Growth",
-    text: "Build your skills and grow with opportunities aligned to long-term career progress."
+    "icon": "guidance",
+    "title": "Honest Career Guidance",
+    "text": "Straight advice on roles, skills and market expectations."
   }
 ];
 
 const hiringSteps = [
   {
-    step: "1",
-    title: "Submit Resume",
-    text: "Share your updated resume with us so we can match you to open roles."
+    "step": "1",
+    "title": "Submit Resume",
+    "text": "Share your updated resume so we can match you to suitable roles."
   },
   {
-    step: "2",
-    title: "Recruiter Connect",
-    text: "We understand your skills, goals, and preferred role expectations."
+    "step": "2",
+    "title": "Recruiter Conversation",
+    "text": "We discuss your skills, goals and expectations."
   },
   {
-    step: "3",
-    title: "Client Interview",
-    text: "Interview with our client teams for the role that best fits your profile."
+    "step": "3",
+    "title": "Client Interview",
+    "text": "Interview with the client team for the role that fits your profile."
   },
   {
-    step: "4",
-    title: "Offer & Onboarding",
-    text: "Receive your offer and start your next opportunity with confidence."
+    "step": "4",
+    "title": "Offer & Joining Support",
+    "text": "We help with the offer, notice period and joining."
   }
 ];
 
-const candidateTestimonials = [
+const candidateFaqs = [
   {
-    quote:
-      "Trinexora helped me secure a remote role within two weeks. Great team and smooth process.",
-    name: "Sandeep R.",
-    role: "DevOps Engineer"
+    "question": "Is there any fee for candidates?",
+    "answer": "No. Our services are free for candidates."
   },
   {
-    quote:
-      "Very transparent recruiters and quality opportunities. Highly recommended for technology professionals.",
-    name: "Priya M.",
-    role: "QA Lead"
+    "question": "Will you share my resume without asking?",
+    "answer": "No. We share your profile with a client only with your consent."
   },
   {
-    quote:
-      "Excellent support throughout the hiring process. They truly care about candidates and fit.",
-    name: "Karthik P.",
-    role: "Data Engineer"
+    "question": "How soon will I hear back?",
+    "answer": "Our recruiters respond within one business day of reviewing your profile."
+  },
+  {
+    "question": "Can I be considered for more than one role?",
+    "answer": "Yes. Tell us your preferences and we’ll match you to suitable openings."
   }
 ];
 
@@ -153,6 +153,11 @@ function getJobBadgeColor(index) {
 }
 
 export default function CareersPage() {
+  usePageMeta({
+    title: "IT Jobs & Careers in Hyderabad | Trinexora",
+    path: "/careers",
+    description: "Submit your resume or join our talent network. We match IT professionals with contract and permanent roles across Hyderabad and India."
+  });
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -213,15 +218,12 @@ export default function CareersPage() {
               <span className="careers-hero-title-accent">Move with Trinexora</span>
             </h1>
             <p>
-              Connecting skilled IT professionals with high-impact opportunities across
-              leading enterprises, startups, and digital transformation programs.
+              We connect skilled IT professionals with contract and permanent
+              opportunities across Hyderabad and India.
             </p>
             <div className="careers-hero-actions">
-              <a className="button button-primary" href="#open-opportunities">
-                View Open Jobs
-              </a>
               <Link
-                className="button button-secondary careers-outline-button"
+                className="button button-primary"
                 to="/careers/talent-profile?type=submit_resume&jobTitle=General%20Application"
               >
                 Submit Resume
@@ -232,6 +234,9 @@ export default function CareersPage() {
               >
                 Join Talent Network
               </Link>
+              <a className="careers-jobs-link" href="#open-opportunities">
+                View Open Jobs
+              </a>
             </div>
           </div>
 
@@ -251,9 +256,7 @@ export default function CareersPage() {
           <div className="careers-benefits-grid">
             {reasonsToChoose.map((item) => (
               <article key={item.title} className="careers-benefit-card">
-                <span className="careers-benefit-icon" aria-hidden="true">
-                  {item.icon}
-                </span>
+                <CareerBenefitIcon type={item.icon} />
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>
@@ -266,9 +269,10 @@ export default function CareersPage() {
         <div className="container">
           <div className="careers-opening-header">
             <h2>Open Opportunities</h2>
-            <Link to="/contact">View All Jobs →</Link>
+            <a href="#open-opportunities">View All Jobs →</a>
           </div>
 
+          {jobs.length > 0 && (
           <div className="careers-filter-bar">
             <input
               type="text"
@@ -297,17 +301,22 @@ export default function CareersPage() {
               ))}
             </select>
           </div>
+          )}
 
           {loading ? <p className="form-status loading">Loading openings...</p> : null}
           {error ? <p className="form-status error">{error}</p> : null}
 
           {!loading && !error && filteredJobs.length === 0 ? (
             <div className="empty-state careers-empty-state">
-              <h3>No openings right now</h3>
+              <h3>No matching openings right now</h3>
               <p>
-                There are currently no active job openings matching your search. Please
-                check back later or submit your resume to stay on our radar.
+                Submit your resume or join our Talent Network, and we’ll contact
+                you when a role matches your skills.
               </p>
+              <div className="careers-empty-actions">
+                <Link className="button button-primary" to="/careers/talent-profile?type=submit_resume&jobTitle=General%20Application">Submit Resume</Link>
+                <Link className="button button-secondary" to="/careers/talent-profile?type=join_talent_network&jobTitle=Talent%20Network">Join Talent Network</Link>
+              </div>
             </div>
           ) : null}
 
@@ -350,19 +359,17 @@ export default function CareersPage() {
             </div>
           </div>
 
-          <div className="careers-testimonials-panel">
-            <h2>What Our Candidates Say</h2>
-            <div className="careers-testimonials-grid">
-              {candidateTestimonials.map((item) => (
-                <article key={item.name} className="careers-testimonial-card">
-                  <span className="careers-stars">★★★★★</span>
-                  <p>"{item.quote}"</p>
-                  <strong>{item.name}</strong>
-                  <span>{item.role}</span>
+          <section className="candidate-faqs" aria-labelledby="candidate-faqs-title">
+            <h2 id="candidate-faqs-title">Candidate FAQs</h2>
+            <div className="candidate-faq-list">
+              {candidateFaqs.map(item => (
+                <article className="candidate-faq-item" key={item.question}>
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
                 </article>
               ))}
             </div>
-          </div>
+          </section>
         </div>
       </section>
 
@@ -375,6 +382,7 @@ export default function CareersPage() {
               opportunity becomes available.
             </p>
           </div>
+          <div className="careers-band-action-group">
           <div className="careers-band-actions">
             <Link
               className="button button-primary"
@@ -389,16 +397,18 @@ export default function CareersPage() {
               Join Talent Network
             </Link>
           </div>
+            <p className="careers-privacy-note">We use your details only to consider you for suitable roles. See our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
+          </div>
         </div>
       </section>
 
       <section className="section careers-section careers-internal-section">
         <div className="container careers-internal-grid">
           <div className="careers-internal-copy">
-            <h2>Join Our Internal Team</h2>
+            <h2>Join Our Team</h2>
             <p>
-              Explore exciting career opportunities within Trinexora and grow with our
-              recruitment and delivery teams.
+              We’re building a team of recruiters and delivery professionals in Hyderabad.
+              If you enjoy connecting people with the right opportunities, we’d like to hear from you.
             </p>
             <Link className="button button-primary" to="/careers/internal">
               View Internal Careers
@@ -406,15 +416,11 @@ export default function CareersPage() {
           </div>
 
           <div className="careers-internal-cards">
-            {internalRoles.map((role) => (
+            {internalRoles.map(role => (
               <article key={role.title} className="careers-internal-card">
-                <span className="careers-internal-icon" aria-hidden="true">
-                  <InternalRoleIcon type={role.icon} />
-                </span>
+                <span className="careers-internal-icon" aria-hidden="true"><InternalRoleIcon type={role.icon} /></span>
                 <h3>{role.title}</h3>
-                <Link to="/careers/internal">
-                  View Openings {"->"}
-                </Link>
+                <Link to="/careers/internal">View Openings →</Link>
               </article>
             ))}
           </div>
