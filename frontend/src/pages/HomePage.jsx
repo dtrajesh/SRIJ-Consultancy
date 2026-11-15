@@ -139,7 +139,7 @@ export default function HomePage() {
         <div className="container">
           <div className="home-services-label">
             <span className="how-it-works-line" />
-            <h2>What We Do</h2>
+            <h2>How Trinexora Can Help You</h2>
             <span className="how-it-works-line" />
           </div>
           <div className="home-overview-layout">
