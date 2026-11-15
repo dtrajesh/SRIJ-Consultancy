@@ -7250,3 +7250,17 @@ main .service-detail-card > a {
 .engagement-expertise-card:hover { border-color: #8fafe5; box-shadow: 0 6px 20px #17345b12; }
 .engagement-expertise-card:focus-visible { outline: 3px solid #2869d1; outline-offset: 4px; }
 .expertise-band { scroll-margin-top: 140px; }
+
+/* Trust cards: restrained color accents and purpose-specific icons. */
+.home-trust-cards { gap: 22px; }
+.home-trust-cards .home-trust-card { --trust-accent: #2563c4; --trust-soft: #eaf2ff; position: relative; padding: 28px; border-radius: 20px; border: 1px solid #e0e7ef; border-top: 3px solid var(--trust-accent); background: linear-gradient(150deg, var(--trust-soft), white 48%); box-shadow: 0 7px 24px #18355207; }
+.home-trust-cards .trust-delivery { --trust-accent: #7650ad; --trust-soft: #f1eafa; }
+.home-trust-cards .trust-privacy { --trust-accent: #097d70; --trust-soft: #e4f6f1; }
+.home-trust-cards .trust-security { --trust-accent: #276588; --trust-soft: #e7f3fa; }
+.home-trust-cards .trust-quality { --trust-accent: #a66b15; --trust-soft: #fff3dc; }
+.home-trust-cards .trust-support { --trust-accent: #ae496c; --trust-soft: #fcebf1; }
+.home-trust-icon { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; margin-bottom: 20px; border-radius: 15px; background: var(--trust-soft); color: var(--trust-accent); border: 1px solid color-mix(in srgb, var(--trust-accent) 15%, transparent); }
+.home-trust-icon svg { width: 27px; height: 27px; }
+.home-trust-cards .home-trust-card h3 { color: #183552; font-size: 1.15rem; line-height: 1.35; margin: 0 0 14px; }
+.home-trust-cards .home-trust-card p { color: #526176; line-height: 1.75; font-size: .96rem; margin: 0; }
+@media(max-width: 600px) { .home-trust-cards .home-trust-card { padding: 24px; } }

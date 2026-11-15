@@ -219,27 +219,33 @@ export default function HomePage() {
             <span className="how-it-works-line" />
           </div>
           <div className="card-grid three-up home-trust-cards">
-            <article className="content-card">
+            <article className="content-card home-trust-card trust-communication">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11a8 8 0 0 1-8 8H7l-5 3V10a8 8 0 0 1 8-8h3a8 8 0 0 1 8 9Z" /><path d="M7 8h9M7 12h6" /></svg></span>
               <h3>Clear Communication</h3>
               <p>A dedicated point of contact, regular progress updates and clear answers to your questions.</p>
             </article>
-            <article className="content-card">
+            <article className="content-card home-trust-card trust-delivery">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="4" width="14" height="18" rx="2" /><path d="M9 4V2h6v2M9 10h6m-6 5 2 2 4-4" /></svg></span>
               <h3>Accountable Delivery</h3>
               <p>Agreed responsibilities, defined milestones and transparent tracking from kickoff to handover.</p>
             </article>
-            <article className="content-card">
+            <article className="content-card home-trust-card trust-privacy">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="10" width="14" height="12" rx="3" /><path d="M8 10V6a4 4 0 0 1 8 0v4" /><circle cx="12" cy="15" r="1" /><path d="M12 16v2" /></svg></span>
               <h3>Privacy &amp; Confidentiality</h3>
               <p>Your business information and candidate details are handled with care. Profiles are shared with client teams only with candidate consent.</p>
             </article>
-            <article className="content-card">
+            <article className="content-card home-trust-card trust-security">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6l9-4Z" /><path d="m8 12 3 3 5-6" /></svg></span>
               <h3>Security-Conscious Practices</h3>
               <p>We align with your access requirements and security policies, with clear expectations for handling project information.</p>
             </article>
-            <article className="content-card">
+            <article className="content-card home-trust-card trust-quality">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="9" r="7" /><path d="m8 9 3 3 5-5M7 15l-2 7 7-3 7 3-2-7" /></svg></span>
               <h3>Quality at Every Step</h3>
               <p>Relevant candidate screening and software quality checks against agreed requirements help keep your goals in focus.</p>
             </article>
-            <article className="content-card">
+            <article className="content-card home-trust-card trust-support">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 12H2v7h4v-7H4Zm16 0h2v7h-4v-7h2Zm0 7c0 3-4 3-8 3" /></svg></span>
               <h3>Support When You Need It</h3>
               <p>Ongoing assistance with agreed response times and escalation paths. 24/7 support is available through a dedicated support agreement.</p>
             </article>
