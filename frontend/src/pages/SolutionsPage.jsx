@@ -1,81 +1,23 @@
 import { usePageMeta } from "../usePageMeta";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
-import { solutions } from "../data/solutions";
-
-const hiringSkills = ["Cloud", "DevOps", "Data Engineering", "Integration & APIs", "ServiceNow / ITSM", "React & Angular", "Cybersecurity"];
+import { products } from "../data/siteContent";
 
 export default function SolutionsPage() {
-  usePageMeta({
-    title: "Solutions | Trinexora",
-    description: "Practical ways Trinexora can help with performance testing, test automation, CI/CD and contract hiring.",
-    path: "/solutions"
-  });
-
+  usePageMeta({ title: "Our Innovations | Products & Accelerators by Trinexora", description: "Explore products, reusable frameworks and delivery accelerators being developed by the Trinexora team.", path: "/our-innovations" });
   return (
-    <section className="section page-intro accelerators-page solutions-page">
+    <section className="section page-intro accelerators-page innovations-page">
       <div className="container">
-        <div className="accelerators-hero">
-          <SectionHeader as="h1"
-            title="Explore Delivery Approaches"
-            titleAccent="For Your Project Needs"
-            text="Explore ways we can help with delivery workflows, testing and automation. These are potential engagement areas; scope and suitability depend on your requirements."
-          />
-        </div>
-        <div className="accelerators-heading">
-          <h2>Where We Can Help</h2>
-          <p>Practical ways we can start, based on your requirements.</p>
-        </div>
-        <div className="accelerator-grid">
-          {solutions.map((solution, index) => (
-            <article key={solution.id} className="accelerator-card">
-              <div className="accelerator-card-header">
-                <h3>{index + 1}. {solution.title}</h3>
-              </div>
-              <div className="accelerator-copy-block">
-                <strong>The challenge</strong>
-                <p>{solution.challenge}</p>
-              </div>
-              <div className="accelerator-copy-block">
-                <strong>Example engagement</strong>
-                <p>{solution.example}</p>
-              </div>
-              {solution.tools.length > 0 && (
-                <div className="accelerator-detail">
-                  <strong>Typical tools</strong>
-                  <div className="accelerator-tags">
-                    {solution.tools.map((tool) => <span key={tool}>{tool}</span>)}
-                  </div>
-                </div>
-              )}
-              <div className="accelerator-value">
-                <strong>What we can help with</strong>
-                <ul className="solutions-help">
-                  {solution.help.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </div>
-              <Link className="accelerator-link" to={`/get-started?type=${solution.engagementType}`}>
-                Discuss this
-              </Link>
-            </article>
-          ))}
-        </div>
-        <div className="solutions-skills">
-          <div>
-            <strong>Skills we hire for:</strong>
-            <div className="accelerator-tags">
-              {hiringSkills.map((skill) => <span key={skill}>{skill}</span>)}
-            </div>
-          </div>
-          <Link className="button button-primary" to="/get-started?type=hiring">Share your requirement</Link>
-        </div>
-        <div className="accelerators-cta">
-          <div>
-            <h3>Not sure where to start?</h3>
-            <p>Tell us what you're trying to achieve and we'll suggest a practical first step.</p>
-          </div>
-          <Link className="button button-primary" to="/get-started">Share Your Requirement</Link>
-        </div>
+        <div className="accelerators-hero"><SectionHeader as="h1" title="Our Innovations" titleAccent="Built by Trinexora" text="Products, reusable frameworks and accelerators created by our team to simplify testing and technology delivery. Explore what we’re building and each item’s current development status." /></div>
+        <div className="accelerators-heading"><h2>Our Products &amp; Accelerators</h2><p>These initiatives are in development and are not yet available for general use.</p></div>
+        <div className="accelerator-grid">{products.map((product, index) => <article className="accelerator-card" key={product.title}>
+          <div className="accelerator-card-header"><h3>{index + 1}. {product.title}</h3></div>
+          <span className="accelerator-status">{product.status}</span>
+          <div className="accelerator-copy-block"><p>{product.description}</p></div>
+          <div className="accelerator-detail"><strong>Planned Capabilities</strong><div className="accelerator-tags">{product.highlights.map(item => <span key={item}>{item}</span>)}</div></div>
+          <Link className="accelerator-link" to="/get-started">Ask About This Innovation →</Link>
+        </article>)}</div>
+        <div className="accelerators-cta"><div><h3>Interested in What We’re Building?</h3><p>Talk to our team about an innovation or share the challenge you want to solve.</p></div><Link className="button button-primary" to="/get-started">Talk to Our Team</Link></div>
       </div>
     </section>
   );

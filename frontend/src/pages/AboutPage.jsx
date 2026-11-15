@@ -9,7 +9,6 @@ import flexibleWorkforceIcon from "../assets/what-you-gain/flexible-workforce.pn
 import improvedDeliveryIcon from "../assets/what-you-gain/improved-delivery.png";
 import reducedHiringEffortIcon from "../assets/what-you-gain/reduced-hiring-effort.png";
 import reliablePartnershipIcon from "../assets/what-you-gain/reliable-partnership.png";
-import joinTeamBanner from "../assets/join-team-banner.png";
 
 function CoreValueIcon({ type }) {
   const commonProps = {
@@ -453,13 +452,6 @@ export default function AboutPage() {
               <p>{about.advisorDescription}</p>
             </article>
           </div>
-          <section className="content-card about-experience" aria-labelledby="about-experience-title">
-            <h3 id="about-experience-title">Industry Experience</h3>
-            <p>{about.industryDescription}</p>
-            <div className="accelerator-tags">
-              {about.industries.map((industry) => <span key={industry}>{industry}</span>)}
-            </div>
-          </section>
         </div>
       </section>
 
@@ -614,29 +606,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section about-section careers-cta-section" id="join-team">
-        <div className="container careers-cta-grid">
-          <div className="careers-cta-copy" data-scroll-anchor>
-            <h2>
-              Careers at <span>Trinexora</span>
-            </h2>
-            <p>
-              We’re building a team of recruiters and delivery professionals.
-              If you enjoy connecting people with the right opportunities,
-              we’d like to hear from you.
-            </p>
-            <Link className="button button-primary careers-cta-button" to="/careers">
-              View Careers
-            </Link>
-          </div>
 
-          <img
-            className="careers-team-banner"
-            src={joinTeamBanner}
-            alt="Professionals collaborating around a laptop"
-          />
-        </div>
-      </section>
     </>
   );
 }

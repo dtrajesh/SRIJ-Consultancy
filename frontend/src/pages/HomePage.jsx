@@ -1,63 +1,25 @@
 import { siteConfig } from "../config/siteConfig";
 import { usePageMeta } from "../usePageMeta";
-import { useState } from "react";
+import ProcessGraph from "../components/ProcessGraph";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { products } from "../data/siteContent";
-import requirementDiscoveryImage from "../assets/how-it-works/requirement-discovery.jpeg";
-import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
-import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
-import executionScalingImage from "../assets/how-it-works/execution-scaling.jpeg";
 import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 
 const homeServices = [
   {
-    icon: "👥",
-    title: "IT Staffing & Augmentation",
-    description:
-      "Access pre-vetted, highly skilled professionals across engineering, QA, cloud, and data ready to contribute from day one."
+    title: "Bring Your Product to Life",
+    description: "Have an idea or a project to move forward? Our delivery team helps you turn business needs into software that’s ready to use.",
+    href: "/services#software-delivery",
+    cta: "Build with Us",
+    icon: "build"
   },
   {
-    icon: "🚀",
-    title: "Project Outsourcing",
-    description:
-      "End-to-end ownership of software delivery with dedicated teams managing planning, execution, and continuous improvement."
-  },
-  {
-    icon: "☁️",
-    title: "Cloud & Data Engineering",
-    description:
-      "Design scalable cloud architectures, enable seamless migrations, and build modern data pipelines for real-time insights."
-  },
-  {
-    icon: "🤖",
-    title: "AI & Data Solutions",
-    description:
-      "Leverage AI, machine learning, and advanced analytics to automate workflows and unlock data-driven decision making."
-  },
-  {
-    icon: "🛡️",
-    title: "Cybersecurity & Performance",
-    description:
-      "Strengthen application security, ensure compliance, and optimize performance with proactive monitoring and testing."
-  },
-  {
-    icon: "⚙️",
-    title: "Application Support & Maintenance",
-    description:
-      "Ensure system stability with 24/7 support, incident management, and continuous enhancements."
-  },
-  {
-    icon: "🔄",
-    title: "QA & Test Automation",
-    description:
-      "Improve product quality with robust manual and automated testing strategies that reduce release risk."
-  },
-  {
-    icon: "📊",
-    title: "Digital Transformation Consulting",
-    description:
-      "Align technology with business strategy through process optimization, modernization, and scalable delivery models."
+    title: "Add the Expertise You Need",
+    description: "Strengthen your team with technology professionals who fit your skills, timeline and working model.",
+    href: "/services#it-staffing",
+    cta: "Find Your Talent",
+    icon: "talent"
   }
 ];
 
@@ -68,29 +30,30 @@ const trustStripItems = [
     text: "Serving clients across India"
   },
   {
+    icon: "delivery",
+    title: "Software Delivery",
+    text: "Discovery to deployment & support"
+  },
+  {
     icon: "expert",
-    title: "Pre-vetted Experts",
-    text: "Screened before submission"
+    title: "IT Staffing",
+    text: "Contract, permanent & contract-to-hire"
   },
   {
     icon: "teams",
-    title: "Flexible Hiring",
-    text: "Contract, contract-to-hire, permanent"
+    title: "Flexible Engagements",
+    text: "Individual experts or dedicated teams"
   },
   {
     icon: "support",
     title: "Quick Response",
     text: "Reply within one business day"
-  },
-  {
-    icon: "shield",
-    title: "Confidential Process",
-    text: "Your data and profiles stay private"
   }
 ];
 
 function TrustStripIcon({ type }) {
   const paths = {
+    delivery: <><rect x="5" y="7" width="30" height="25" rx="3" /><path d="M5 14h30M15 19l-5 4 5 4m10-8 5 4-5 4m-3-10-4 14" /></>,
     globe: <><path d="M20 10a8 8 0 0 1 8 8c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 8-8Z" /><circle cx="20" cy="18" r="2.5" /></>,
     expert: <><circle cx="17" cy="14" r="5" /><path d="M7 31v-3a10 10 0 0 1 20 0v3M27 15l3 3 5-6" /></>,
     teams: <><rect x="7" y="14" width="26" height="18" rx="3" /><path d="M15 14v-3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3M7 21a31 31 0 0 0 26 0M18 23h4" /></>,
@@ -106,15 +69,6 @@ export default function HomePage() {
     path: "/",
     description: "IT staffing and technology solutions from Hyderabad. We help companies hire skilled professionals and build and deliver technology projects."
   });
-  const [processTrack, setProcessTrack] = useState("hiring");
-
-  function handleTrackKey(event) {
-    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-    event.preventDefault();
-    const next = event.key === "Home" ? "hiring" : event.key === "End" ? "project" : processTrack === "hiring" ? "project" : "hiring";
-    setProcessTrack(next);
-    document.getElementById(`process-tab-${next}`)?.focus();
-  }
 
   return (
     <>
@@ -134,10 +88,7 @@ export default function HomePage() {
                 Share Your Requirement
               </Link>
               <Link className="button button-primary" to="/services">
-                Explore Services
-              </Link>
-              <Link className="button button-primary" to="/careers">
-                Find a Job
+                What We Offer
               </Link>
             </div>
           </div>
@@ -173,27 +124,28 @@ export default function HomePage() {
         <div className="container">
           <div className="home-services-label">
             <span className="how-it-works-line" />
-            <h2>What We Do</h2>
+            <h2>How We Help Your Business</h2>
             <span className="how-it-works-line" />
           </div>
-          <SectionHeader
-            className="home-services-header"
-            title="End-to-End IT Services Built for Scale, Speed, and Reliability"
-            text="From rapid talent augmentation to full-scale project delivery, we help organizations accelerate innovation, reduce operational risk, and achieve measurable business outcomes."
-          />
-          <div className="card-grid three-up home-services-grid">
-            {homeServices.map((service) => (
-              <article key={service.title} className="content-card home-service-card">
-                <div className="home-service-card-header">
-                  <span className="home-service-icon" aria-hidden="true">
-                    {service.icon}
+          <div className="home-overview-layout">
+            <div className="home-overview-intro">
+              <span className="home-overview-eyebrow">Your Next Step Starts Here</span>
+              <h2>Move Your Business Forward.</h2>
+              <p>Great technology starts with the right people and a clear plan. We bring both, helping you build what’s next and grow the team behind it.</p>
+              <Link className="button button-primary" to="/services">Explore What We Offer →</Link>
+            </div>
+            <div className="home-overview-options">
+              {homeServices.map(service => (
+                <article className="home-overview-option" key={service.title}>
+                  <span className="home-overview-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      {service.icon === "build" ? <><rect x="3" y="4" width="18" height="15" rx="2" /><path d="M3 9h18m-12 3-3 2 3 2m6-4 3 2-3 2M7 7h.01M10 7h.01" /></> : <><circle cx="9" cy="8" r="3" /><path d="M3 20v-2a6 6 0 0 1 12 0v2m1-15a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2" /></>}
+                    </svg>
                   </span>
-                  <h3>{service.title}</h3>
-                </div>
-                <p>{service.description}</p>
-                <Link to="/services">Explore Solution →</Link>
-              </article>
-            ))}
+                  <div><h3>{service.title}</h3><p>{service.description}</p><Link to={service.href}>{service.cta} <span aria-hidden="true">→</span></Link></div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -206,72 +158,7 @@ export default function HomePage() {
             <span className="how-it-works-line" />
           </div>
 
-          <div className="process-tabs" role="tablist" aria-label="Choose a process" onKeyDown={handleTrackKey}>
-            <button id="process-tab-hiring" type="button" role="tab" aria-selected={processTrack === "hiring"} aria-controls="process-panel-hiring" tabIndex={processTrack === "hiring" ? 0 : -1} onClick={() => setProcessTrack("hiring")}>Hiring talent</button>
-            <button id="process-tab-project" type="button" role="tab" aria-selected={processTrack === "project"} aria-controls="process-panel-project" tabIndex={processTrack === "project" ? 0 : -1} onClick={() => setProcessTrack("project")}>Building a project</button>
-          </div>
-
-          <div role="tabpanel" id="process-panel-hiring" aria-labelledby="process-tab-hiring" hidden={processTrack !== "hiring"} tabIndex={0}>
-          <div className="how-it-works-grid">
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={curatedTalentDeliveryImage} alt="Requirement discovery" />
-              </div>
-              <h3>Requirement Discovery</h3>
-              <p>
-                Engage with our team to define objectives, technical scope, and
-                delivery expectations.
-              </p>
-            </article>
-
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={requirementDiscoveryImage} alt="Curated talent delivery" />
-              </div>
-              <h3>Curated Talent Delivery</h3>
-              <p>
-                Receive a curated pool of highly skilled, pre-vetted professionals
-                aligned to your needs.
-              </p>
-            </article>
-
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={executionScalingImage} alt="Selection and alignment" />
-              </div>
-              <h3>Selection &amp; Alignment</h3>
-              <p>
-                Assess candidates efficiently and align the right talent with your
-                project goals.
-              </p>
-            </article>
-
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={selectionAlignmentImage} alt="Execution and scaling" />
-              </div>
-              <h3>Execution &amp; Scaling</h3>
-              <p>
-                Drive outcomes faster with scalable teams and ongoing delivery
-                support.
-              </p>
-            </article>
-          </div>
-
-          </div>
-          <div role="tabpanel" id="process-panel-project" aria-labelledby="process-tab-project" hidden={processTrack !== "project"} tabIndex={0}>
-            <div className="how-it-works-grid project-process-grid">
-              {[
-                { title: "Discover and scope", text: "Understand your goals, users and requirements, and agree what the project will cover.", icon: <><rect x="11" y="10" width="29" height="37" rx="4" /><path d="M19 20h13M19 28h9" /><circle cx="40" cy="39" r="9" /><path d="m47 46 7 7" /></> },
-                { title: "Plan and estimate", text: "Define milestones, responsibilities, timelines and costs before work begins.", icon: <><rect x="10" y="13" width="44" height="39" rx="5" /><path d="M10 25h44M22 8v10M42 8v10M20 34h7M36 34h7M20 43h7M36 43h7" /></> },
-                { title: "Build and test", text: "Build the agreed solution, test it against requirements, and review progress with you.", icon: <><rect x="7" y="10" width="50" height="39" rx="5" /><path d="M7 21h50M25 29l-7 6 7 6M39 29l7 6-7 6M36 26l-8 18M24 55h16" /></> },
-                { title: "Deliver and support", text: "Coordinate the release, hand over documentation, and provide support within the agreed scope.", icon: <><path d="m32 7 20 10v27L32 55 12 44V17Z M12 17l20 11 20-11M32 28v27M22 12l20 11" /><path d="m22 36 7 7 13-13" /></> }
-              ].map((step, index) => <article className="how-step-card" key={step.title}>
-                <div className="project-step-icon" aria-hidden="true"><svg viewBox="0 0 64 64">{step.icon}</svg><span>{index + 1}</span></div>
-                <h3>{step.title}</h3><p>{step.text}</p>
-              </article>)}
-            </div>
-          </div>
+          <ProcessGraph />
 
           <p className="how-it-works-caption">
             <strong>A clear process, whether you’re hiring or building.</strong>
@@ -284,13 +171,13 @@ export default function HomePage() {
         <div className="container">
           <div className="home-section-label">
             <span className="how-it-works-line" />
-            <h2>Solutions</h2>
+            <h2>Our Innovations</h2>
             <span className="how-it-works-line" />
           </div>
           <SectionHeader
             className="home-products-header"
-            title="Accelerators in development"
-            text="Reusable frameworks and templates are in development, starting with QA automation and performance testing. These assets are not yet available."
+            title="Built by Trinexora. Designed for Real Challenges."
+            text="Explore the products and accelerators our team is developing to simplify testing and technology delivery. See each item’s current development status."
           />
           <div className="product-list home-product-list">
             {products.slice(0, 2).map((product, index) => {
@@ -315,13 +202,12 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                    <Link to="/solutions">Solutions</Link>
+                    <Link to="/our-innovations">Explore Our Innovations →</Link>
                   </div>
                 </article>
               );
             })}
           </div>
-          <p className="accelerator-roadmap-link"><Link to="/solutions">Solutions</Link></p>
         </div>
       </section>
       )}
@@ -330,21 +216,39 @@ export default function HomePage() {
         <div className="container">
           <div className="home-section-label">
             <span className="how-it-works-line" />
-            <h2 id="working-together-title">How We Work With You</h2>
+            <h2 id="working-together-title">Why Trust Us</h2>
             <span className="how-it-works-line" />
           </div>
-          <div className="card-grid three-up">
-            <article className="content-card">
-              <h3>Clear communication</h3>
-              <p>A single point of contact and replies within one business day.</p>
+          <div className="card-grid three-up home-trust-cards">
+            <article className="content-card home-trust-card trust-communication">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11a8 8 0 0 1-8 8H7l-5 3V10a8 8 0 0 1 8-8h3a8 8 0 0 1 8 9Z" /><path d="M7 8h9M7 12h6" /></svg></span>
+              <h3>Clear Communication</h3>
+              <p>A dedicated point of contact, regular progress updates and clear answers to your questions.</p>
             </article>
-            <article className="content-card">
-              <h3>Quality first</h3>
-              <p>Only profiles and deliverables that match your requirement.</p>
+            <article className="content-card home-trust-card trust-delivery">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="4" width="14" height="18" rx="2" /><path d="M9 4V2h6v2M9 10h6m-6 5 2 2 4-4" /></svg></span>
+              <h3>Accountable Delivery</h3>
+              <p>Agreed responsibilities, defined milestones and transparent tracking from kickoff to handover.</p>
             </article>
-            <article className="content-card">
-              <h3>Accountable delivery</h3>
-              <p>Defined scope, regular updates, and support after go-live.</p>
+            <article className="content-card home-trust-card trust-privacy">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="10" width="14" height="12" rx="3" /><path d="M8 10V6a4 4 0 0 1 8 0v4" /><circle cx="12" cy="15" r="1" /><path d="M12 16v2" /></svg></span>
+              <h3>Privacy &amp; Confidentiality</h3>
+              <p>Your business information and candidate details are handled with care. Profiles are shared with client teams only with candidate consent.</p>
+            </article>
+            <article className="content-card home-trust-card trust-security">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6l9-4Z" /><path d="m8 12 3 3 5-6" /></svg></span>
+              <h3>Security-Conscious Practices</h3>
+              <p>We align with your access requirements and security policies, with clear expectations for handling project information.</p>
+            </article>
+            <article className="content-card home-trust-card trust-quality">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="9" r="7" /><path d="m8 9 3 3 5-5M7 15l-2 7 7-3 7 3-2-7" /></svg></span>
+              <h3>Quality at Every Step</h3>
+              <p>Relevant candidate screening and software quality checks against agreed requirements help keep your goals in focus.</p>
+            </article>
+            <article className="content-card home-trust-card trust-support">
+              <span className="home-trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 12H2v7h4v-7H4Zm16 0h2v7h-4v-7h2Zm0 7c0 3-4 3-8 3" /></svg></span>
+              <h3>Support When You Need It</h3>
+              <p>Ongoing assistance with agreed response times and escalation paths. 24/7 support is available through a dedicated support agreement.</p>
             </article>
           </div>
         </div>
@@ -354,12 +258,12 @@ export default function HomePage() {
         <div className="container cta-panel">
           <div>
             <span className="eyebrow">Get Started</span>
-            <h2>Tell us what you need: a hire or a project</h2>
+            <h2>Let’s Build Your Team or Deliver Your Next Project</h2>
             <p>
-              Share your requirement and we’ll respond within one business day.
+              Share your IT staffing or software development requirements. Our team will help you choose the right engagement model for your business.
             </p>
           </div>
-          <Link className="button button-primary" to="/contact">
+          <Link className="button button-primary" to="/get-started">
             Contact Us
           </Link>
         </div>

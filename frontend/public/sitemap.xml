@@ -3,14 +3,13 @@
   <url><loc>https://www.trinexora.com/</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/services</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/industries</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://www.trinexora.com/technologies</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://www.trinexora.com/our-expertise</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/about</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/careers</loc><lastmod>2026-11-03</lastmod></url>
-  <url><loc>https://www.trinexora.com/contact</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/get-started</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/privacy-policy</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/terms</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/careers/internal</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/careers/talent-profile</loc><lastmod>2026-11-03</lastmod></url>
-  <!-- Solutions page is hidden; add it back when showSolutions is true -->
+  <url><loc>https://www.trinexora.com/our-innovations</loc></url>
 </urlset>

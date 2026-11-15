@@ -28,15 +28,14 @@ const activeSocialLinks = Object.entries(socialLinks).filter(
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
+  { label: "What We Offer", to: "/services" },
   { label: "Industries", to: "/industries" },
-  { label: "Technologies", to: "/technologies" },
-  ...(siteConfig.showSolutions ? [{ label: "Solutions", to: "/solutions" }] : [])
+  { label: "Our Expertise", to: "/our-expertise" },
+  ...(siteConfig.showSolutions ? [{ label: "Our Innovations", to: "/our-innovations" }] : [])
 ];
 
 const navItemsAfterAbout = [
-  { label: "Careers", to: "/careers" },
-  { label: "Contact", to: "/contact" }
+  { label: "Careers", to: "/careers" }
 ];
 
 const aboutItems = [
@@ -46,7 +45,6 @@ const aboutItems = [
   { label: "Core Values", to: "/about#core-values" },
   { label: "Leadership", to: "/about#leadership" },
   { label: "Why Choose Trinexora", to: "/about#why-choose-us" },
-  { label: "Careers at Trinexora", to: "/about#join-team" }
 ];
 
 function HashScroll() {
@@ -260,10 +258,9 @@ export default function Layout() {
               </span>
             </div>
             <p>
-              IT staffing and technology solutions from Hyderabad.
-              <br />
-              We help companies hire skilled professionals and build and deliver
-              technology projects.
+              Your partner for IT staffing and software delivery. We connect
+              businesses with skilled technology professionals and deliver software
+              solutions from concept to deployment.
             </p>
             {activeSocialLinks.length > 0 && (
               <div className="footer-social-links">
@@ -288,31 +285,28 @@ export default function Layout() {
             <div className="footer-links">
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">About</NavLink>
-              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/services">What We Offer</NavLink>
               <NavLink to="/industries">Industries</NavLink>
-              <NavLink to="/technologies">Technologies</NavLink>
-              {siteConfig.showSolutions && <NavLink to="/solutions">Solutions</NavLink>}
+              <NavLink to="/our-expertise">Our Expertise</NavLink>
+              {siteConfig.showSolutions && <NavLink to="/our-innovations">Our Innovations</NavLink>}
               <NavLink to="/careers">Careers</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
               <NavLink to="/get-started">Get Started</NavLink>
-              <NavLink to="/admin/login">Admin</NavLink>
             </div>
           </nav>
-          <nav className="footer-section" aria-label="Services">
-            <h3>Services</h3>
-            <div className="footer-links">
-              {siteConfig.footerServices.map(({ label, href }) => (
-                <NavLink key={label} to={href}>{label}</NavLink>
+          <div className="footer-section">
+            <h3>What We Offer</h3>
+            <div className="footer-links footer-services">
+              {siteConfig.footerServices.map(({ label }) => (
+                <span key={label}>{label}</span>
               ))}
             </div>
-          </nav>
+          </div>
           <div className="footer-section footer-contact-section">
             <h3>Contact Info</h3>
             <div className="footer-links footer-contact">
               <span className="footer-company-detail">{siteConfig.legalName}</span>
               <address className="footer-company-detail">{siteConfig.address}</address>
               <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}>{siteConfig.phone}</a>
-              <span>{siteConfig.officeHours}</span>
               <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
               <span>GSTIN: {siteConfig.gstin}</span>
             </div>

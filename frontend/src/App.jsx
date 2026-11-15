@@ -16,7 +16,6 @@ import ServicesPage from "./pages/ServicesPage";
 import TechnologiesPage from "./pages/TechnologiesPage";
 import IndustriesPage from "./pages/IndustriesPage";
 import AboutPage from "./pages/AboutPage";
-import ContactPage from "./pages/ContactPage";
 import GetStartedPage from "./pages/GetStartedPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsPage from "./pages/TermsPage";
@@ -43,10 +42,12 @@ export default function App() {
       />
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/solutions" element={siteConfig.showSolutions ? <SolutionsPage /> : <Navigate to="/services" replace />} />
-        <Route path="/accelerators" element={<Navigate to="/solutions" replace />} />
-        <Route path="/products" element={<Navigate to="/solutions" replace />} />
-        <Route path="/technologies" element={<TechnologiesPage />} />
+        <Route path="/our-innovations" element={siteConfig.showSolutions ? <SolutionsPage /> : <Navigate to="/services" replace />} />
+        <Route path="/solutions" element={<Navigate to="/our-innovations" replace />} />
+        <Route path="/accelerators" element={<Navigate to="/our-innovations" replace />} />
+        <Route path="/products" element={<Navigate to="/our-innovations" replace />} />
+        <Route path="/our-expertise" element={<TechnologiesPage />} />
+        <Route path="/technologies" element={<Navigate to="/our-expertise" replace />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/careers/internal" element={<CareerInternalPage />} />
         <Route path="/careers/:jobId/apply" element={<CareerApplyPage />} />
@@ -54,7 +55,7 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/contact" element={<Navigate to="/get-started" replace />} />
         <Route path="/get-started" element={<GetStartedPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms" element={<TermsPage />} />

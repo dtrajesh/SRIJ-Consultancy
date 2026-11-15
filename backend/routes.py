@@ -1,8 +1,9 @@
 from functools import wraps
 import os
+from io import BytesIO
 import uuid
 
-from flask import Blueprint, current_app, jsonify, request, send_from_directory
+from flask import Blueprint, current_app, jsonify, request, send_file, send_from_directory
 from itsdangerous import BadSignature, URLSafeSerializer
 from werkzeug.utils import secure_filename
 
@@ -14,6 +15,7 @@ from models import (
     JobApplication,
     JobOpening,
     Service,
+    ResumeDocument,
     TalentProfileSubmission,
     Testimonial,
     db,
@@ -35,6 +37,10 @@ def remove_resume_file(file_name):
     if not file_name:
         return
 
+    document = db.session.get(ResumeDocument, file_name)
+    if document is not None:
+        db.session.delete(document)
+
     resume_path = os.path.join(current_app.config["UPLOAD_FOLDER"], file_name)
     if not os.path.exists(resume_path):
         return
@@ -43,6 +49,15 @@ def remove_resume_file(file_name):
         os.remove(resume_path)
     except OSError:
         current_app.logger.warning("Could not delete resume file: %s", resume_path)
+
+
+def send_resume(file_name, original_name):
+    document = db.session.get(ResumeDocument, file_name)
+    if document is not None:
+        return send_file(BytesIO(document.content), mimetype="application/octet-stream",
+                         as_attachment=True, download_name=original_name)
+    return send_from_directory(current_app.config["UPLOAD_FOLDER"], file_name,
+                               as_attachment=True, download_name=original_name)
 
 
 def serialize_job(job):
@@ -178,8 +193,10 @@ def apply_to_job(job_id):
     original_name = secure_filename(resume.filename)
     extension = original_name.rsplit(".", 1)[-1].lower()
     stored_name = f"{uuid.uuid4().hex}.{extension}"
-    upload_path = os.path.join(current_app.config["UPLOAD_FOLDER"], stored_name)
-    resume.save(upload_path)
+    content = resume.read()
+    if not content:
+        return jsonify({"message": "Resume file must not be empty."}), 400
+    db.session.add(ResumeDocument(file_name=stored_name, content=content))
 
     application = JobApplication(
         job_id=job.id,
@@ -232,8 +249,10 @@ def submit_talent_profile():
     original_name = secure_filename(resume.filename)
     extension = original_name.rsplit(".", 1)[-1].lower()
     stored_name = f"{uuid.uuid4().hex}.{extension}"
-    upload_path = os.path.join(current_app.config["UPLOAD_FOLDER"], stored_name)
-    resume.save(upload_path)
+    content = resume.read()
+    if not content:
+        return jsonify({"message": "Resume file must not be empty."}), 400
+    db.session.add(ResumeDocument(file_name=stored_name, content=content))
 
     submission = TalentProfileSubmission(
         submission_type=form["submission_type"].strip(),
@@ -556,12 +575,7 @@ def download_resume(application_id):
     if application is None:
         return jsonify({"message": "Job application not found."}), 404
 
-    return send_from_directory(
-        current_app.config["UPLOAD_FOLDER"],
-        application.resume_file_name,
-        as_attachment=True,
-        download_name=application.resume_original_name,
-    )
+    return send_resume(application.resume_file_name, application.resume_original_name)
 
 
 @api.get("/admin/talent-submissions/<int:submission_id>/resume")
@@ -572,12 +586,7 @@ def download_talent_resume(submission_id):
     if submission is None:
         return jsonify({"message": "Talent submission not found."}), 404
 
-    return send_from_directory(
-        current_app.config["UPLOAD_FOLDER"],
-        submission.resume_file_name,
-        as_attachment=True,
-        download_name=submission.resume_original_name,
-    )
+    return send_resume(submission.resume_file_name, submission.resume_original_name)
 
 
 @api.get("/services")

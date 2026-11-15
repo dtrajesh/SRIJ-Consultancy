@@ -54,10 +54,16 @@ export default function CareerApplyPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (status.type === "loading") return;
     if (!validateConsent(event.currentTarget)) return;
 
     if (!resume) {
       setStatus({ type: "error", message: "Please upload your resume." });
+      return;
+    }
+
+    if (resume.size > 10 * 1024 * 1024) {
+      setStatus({ type: "error", message: "Resume must be 10 MB or smaller." });
       return;
     }
 
@@ -111,18 +117,20 @@ export default function CareerApplyPage() {
 
   return (
     <section className="section page-intro">
-      <div className="container contact-layout">
+      <div className="container career-application-layout">
         <div>
-          <span className="eyebrow">Apply Now</span>
+          <Link to="/careers">← Back to Careers</Link>
+          <p className="career-job-id">Job ID: {job.id}</p>
           <h1>{job.title}</h1>
           <div className="job-meta">
             <span>{job.department}</span>
             <span>{job.location}</span>
             <span>{job.employment_type}</span>
           </div>
+          <h2>Job Description</h2>
           <p className="lead-text">{job.summary}</p>
 
-          <div className="highlight-panel compact">
+          <div className="highlight-panel compact career-job-description">
             <h3>Responsibilities</h3>
             <p>{job.responsibilities}</p>
             <h3>Requirements</h3>
@@ -131,6 +139,8 @@ export default function CareerApplyPage() {
         </div>
 
         <form className="form-card" onSubmit={handleSubmit} noValidate>
+          <h2>Apply for this role</h2>
+          <p>Job ID: {job.id} · {job.title}</p>
           <div className="form-grid">
             <label>
               Full Name
@@ -183,12 +193,13 @@ export default function CareerApplyPage() {
 
           <label>
             Upload Resume
+            <small>PDF, DOC or DOCX, up to 10 MB.</small>
             <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           </label>
 
           <ConsentCheckbox {...consentProps} />
 
-          <button className="button button-primary" type="submit">
+          <button className="button button-primary" type="submit" disabled={status.type === "loading"}>
             Submit Application
           </button>
 

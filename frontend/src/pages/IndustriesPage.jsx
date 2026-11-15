@@ -7,32 +7,32 @@ const industries = [
   {
     "icon": "banking",
     "name": "Banking, Financial Services & Insurance",
-    "description": "Engineers, data specialists and application support teams who help banking, payments and insurance platforms run securely, reliably and at the speed customers expect."
+    "description": "IT staffing and software delivery for banking, payments and insurance applications, with a focus on reliable integrations, data processing and application support."
   },
   {
     "icon": "retail",
     "name": "Retail & E-commerce",
-    "description": "Full-stack developers, cloud engineers and testers who keep online stores fast, stable and ready for peak shopping periods, from product pages through to checkout."
+    "description": "Engineering, cloud and quality assurance support for online stores, order management and retail platforms, from product discovery through checkout and fulfilment."
   },
   {
     "icon": "healthcare",
     "name": "Healthcare",
-    "description": "Software, data and integration professionals who build and support healthcare applications, handling sensitive patient and operational information with the care it requires."
+    "description": "Software development, data integration and application support for healthcare platforms, aligned with your requirements for handling sensitive patient and operational information."
   },
   {
     "icon": "telecom",
-    "name": "Telecom",
-    "description": "Software engineers, DevOps and support specialists for telecom systems and customer platforms that need dependable performance across large numbers of users and connected services."
+    "name": "Telecommunications",
+    "description": "Software, DevOps and application support for telecommunications providers, helping teams develop and maintain customer portals, service platforms and connected systems."
   },
   {
     "icon": "manufacturing",
     "name": "Manufacturing & Supply Chain",
-    "description": "SAP, ERP and supply chain systems professionals who help manufacturing and logistics teams keep production, inventory and deliveries connected and running smoothly."
+    "description": "ERP, integration and data specialists who help connect production, inventory, procurement and logistics systems across manufacturing and supply chain operations."
   },
   {
     "icon": "software",
     "name": "IT & Software",
-    "description": "Developers, DevOps, cloud and data engineers for product companies and technology services firms, available as individual hires or as dedicated teams for your projects."
+    "description": "Software engineers, QA specialists, cloud professionals and data teams for product companies and IT firms, through individual staffing or end-to-end project delivery."
   }
 ];
 
@@ -58,18 +58,18 @@ export default function IndustriesPage() {
           <SectionHeader as="h1"
             title="Technology Talent and Delivery"
             titleAccent="for Your Industry"
-            text="We help companies across key sectors hire skilled professionals and deliver technology projects, with teams who understand your domain."
+            text="We help businesses hire technology professionals and deliver software projects tailored to their industry, systems and operational needs."
           />
         </div>
 
         <div className="industries-section-heading">
-          <h2>Industry Expertise That Delivers Business Impact</h2>
-          <p>Industries we serve</p>
+          <h2>IT Expertise for Your Industry</h2>
+          <p>Specialist talent and software delivery aligned with your sector.</p>
         </div>
 
         <div className="industries-grid">
           {industries.map((industry) => (
-            <article key={industry.name} className="industry-card">
+            <article key={industry.name} className={`industry-card industry-${industry.icon}`}>
               <IndustryIcon type={industry.icon} />
               <h3>{industry.name}</h3>
               <p>{industry.description}</p>
@@ -90,13 +90,13 @@ export default function IndustriesPage() {
 
         <div className="industries-cta">
           <div>
-            <span>Need Specialized Talent for Your Industry?</span>
+            <span>Need Technology Talent or Delivery Support?</span>
             <p>
-              From strategic staffing to managed delivery, we help businesses scale
-              with domain-ready professionals.
+              Share your industry, technology stack and business goals. We’ll help
+              you choose the right staffing or software delivery model.
             </p>
           </div>
-          <Link className="button button-primary" to="/contact">
+          <Link className="button button-primary" to="/get-started">
             Share Your Requirement
           </Link>
         </div>

@@ -1,3 +1,4 @@
+import { siteConfig } from "../config/siteConfig";
 import { usePageMeta } from "../usePageMeta";
 import ContactIcon from "../components/ContactIcon";
 import GetStartedForm from "../components/GetStartedForm";
@@ -52,6 +53,10 @@ export default function GetStartedPage() {
 
         <GetStartedForm />
       </div>
+      <section className="container get-started-location" aria-labelledby="office-map-title">
+        <div className="office-map-heading"><div><h2 id="office-map-title">Visit Our Office</h2><p>{siteConfig.legalName}<br />{siteConfig.address}</p></div><a className="button button-secondary" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address)}`} target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></div>
+        <iframe title="Trinexora office location in Kukatpally, Hyderabad" src={`https://maps.google.com/maps?q=${encodeURIComponent(siteConfig.address)}&z=16&output=embed`} width="100%" height="450" style={{ border: 0 }} loading="lazy" allowFullScreen referrerPolicy="no-referrer-when-downgrade" />
+      </section>
     </section>
   );
 }
