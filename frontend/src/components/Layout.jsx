@@ -28,7 +28,7 @@ const activeSocialLinks = Object.entries(socialLinks).filter(
 
 const navItems = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/services" },
+  { label: "What We Offer", to: "/services" },
   { label: "Industries", to: "/industries" },
   { label: "Our Expertise", to: "/our-expertise" },
   ...(siteConfig.showSolutions ? [{ label: "Our Innovations", to: "/our-innovations" }] : [])
@@ -286,7 +286,7 @@ export default function Layout() {
             <div className="footer-links">
               <NavLink to="/">Home</NavLink>
               <NavLink to="/about">About</NavLink>
-              <NavLink to="/services">Services</NavLink>
+              <NavLink to="/services">What We Offer</NavLink>
               <NavLink to="/industries">Industries</NavLink>
               <NavLink to="/our-expertise">Our Expertise</NavLink>
               {siteConfig.showSolutions && <NavLink to="/our-innovations">Our Innovations</NavLink>}
@@ -295,7 +295,7 @@ export default function Layout() {
             </div>
           </nav>
           <div className="footer-section">
-            <h3>Services</h3>
+            <h3>What We Offer</h3>
             <div className="footer-links footer-services">
               {siteConfig.footerServices.map(({ label }) => (
                 <span key={label}>{label}</span>

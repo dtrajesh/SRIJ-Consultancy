@@ -88,7 +88,7 @@ export default function HomePage() {
                 Share Your Requirement
               </Link>
               <Link className="button button-primary" to="/services">
-                Explore Services
+                What We Offer
               </Link>
             </div>
           </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
               <span className="home-overview-eyebrow">Your Next Step Starts Here</span>
               <h2>Move Your Business Forward.</h2>
               <p>Great technology starts with the right people and a clear plan. We bring both, helping you build what’s next and grow the team behind it.</p>
-              <Link className="button button-primary" to="/services">Discover Our Services →</Link>
+              <Link className="button button-primary" to="/services">Explore What We Offer →</Link>
             </div>
             <div className="home-overview-options">
               {homeServices.map(service => (

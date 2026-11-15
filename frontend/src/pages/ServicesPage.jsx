@@ -52,7 +52,7 @@ function ExpertiseIcon({ type }) {
 }
 
 export default function ServicesPage() {
-  usePageMeta({ title: "IT Staffing & Software Delivery Services | Trinexora", path: "/services", description: "Flexible engagement models for end-to-end software development, IT staffing, resource augmentation, and technology delivery." });
+  usePageMeta({ title: "What We Offer | IT Staffing & Software Delivery | Trinexora", path: "/services", description: "Flexible engagement models for end-to-end software development, IT staffing, resource augmentation, and technology delivery." });
   return (
     <div className="engagement-page">
       <section className="engagement-hero">
@@ -62,7 +62,7 @@ export default function ServicesPage() {
             <h1>Staffing & Delivery Models <span>That Fit Your Needs</span></h1>
             <p>From complete software delivery to specialized IT talent, we provide flexible engagement models that help businesses build, scale and deliver technology solutions.</p>
             <div className="engagement-actions">
-              <a className="button button-primary" href="#engagement-models">Explore Our Services <span aria-hidden="true">→</span></a>
+              <a className="button button-primary" href="#engagement-models">Explore What We Offer <span aria-hidden="true">→</span></a>
               <Link className="engagement-secondary-link" to="/get-started">Talk to Our Team <span aria-hidden="true">→</span></Link>
             </div>
           </div>
