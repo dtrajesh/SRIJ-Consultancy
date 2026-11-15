@@ -69,24 +69,15 @@ export default function CareersPage() {
         <div className="career-resume-banner">
           <div>
             <h2 id="career-followup-title">Didn’t Find the Right Opportunity?</h2>
-            <p>Upload your resume and our recruiters will reach out when a matching opportunity becomes available.</p>
+            <p>Join our talent network and our recruiters will reach out when a matching opportunity becomes available.</p>
           </div>
           <div>
             <div className="career-resume-actions">
-              <Link className="button button-primary" to="/careers/talent-profile?type=submit_resume">Upload Resume</Link>
               <Link className="button button-primary" to="/careers/talent-profile?type=join_talent_network">Join Talent Network</Link>
             </div>
             <p className="career-resume-privacy">We use your details only to consider you for suitable roles. See our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
           </div>
         </div>
-      </section>
-      <section className="container career-internal-entry" aria-labelledby="career-internal-title">
-        <div>
-          <span className="eyebrow">Internal Careers</span>
-          <h2 id="career-internal-title">Join Our Team at Trinexora</h2>
-          <p>Explore opportunities in recruiting, account management, sales, HR, and operations.</p>
-        </div>
-        <Link className="button career-purple-button" to="/careers/internal">View Internal Openings</Link>
       </section>
     </div>
   );
