@@ -258,10 +258,9 @@ export default function Layout() {
               </span>
             </div>
             <p>
-              IT staffing and technology solutions from Hyderabad.
-              <br />
-              We help companies hire skilled professionals and build and deliver
-              technology projects.
+              Your partner for IT staffing and software delivery. We connect
+              businesses with skilled technology professionals and deliver software
+              solutions from concept to deployment.
             </p>
             {activeSocialLinks.length > 0 && (
               <div className="footer-social-links">
