@@ -31,11 +31,11 @@ const models = [
 ];
 
 const expertise = [
-  { target: "software-engineering", name: "Software Engineering", icon: "code", detail: "Build & integrate" },
-  { target: "qa-performance", name: "QA & Test Automation", icon: "check", detail: "Test & improve" },
+  { target: "software-engineering", name: "Software Engineering", icon: "code", detail: "Java, .NET, React, Python, Flask & Django" },
+  { target: "qa-performance", name: "QA & Test Automation", icon: "check", detail: "Selenium, Playwright & JMeter" },
   { target: "cloud", name: "Cloud & DevOps", icon: "cloud", detail: "Deploy & scale" },
-  { target: "data-engineering", name: "Data Engineering", icon: "data", detail: "Connect & transform" },
-  { target: "ai-genai", name: "AI & GenAI Solutions", icon: "spark", detail: "Explore & innovate" },
+  { target: "data-engineering", name: "Data Engineering", icon: "data", detail: "Databricks, Apache Spark & SQL" },
+  { target: "ai-genai", name: "AI & GenAI Solutions", icon: "spark", detail: "LangChain, LangGraph & machine learning" },
   { target: "application-support", name: "Application Support", icon: "support", detail: "Maintain & optimize" }
 ];
 
