@@ -38,9 +38,10 @@ function ProcessIcon({ type }) {
 export default function ProcessGraph() {
   const [track, setTrack] = useState("hiring");
   const [stepIndex, setStepIndex] = useState(0);
+  const [previewIndex, setPreviewIndex] = useState(null);
   const { steps } = tracks[track];
   const selected = steps[stepIndex];
-  function changeTrack(next) { setTrack(next); setStepIndex(0); }
+  function changeTrack(next) { setTrack(next); setStepIndex(0); setPreviewIndex(null); }
   function handleTrackKey(event) {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
     event.preventDefault();
@@ -49,19 +50,26 @@ export default function ProcessGraph() {
     document.getElementById(`process-tab-${next}`)?.focus();
   }
   return (
-    <div className="process-graph">
+    <div className="process-graph" onKeyDown={event => { if (event.key === "Escape") { setPreviewIndex(null); event.stopPropagation(); } }}>
       <div className="process-tabs" role="tablist" aria-label="Choose a process" onKeyDown={handleTrackKey}>
         {Object.entries(tracks).map(([key, value]) => <button key={key} id={`process-tab-${key}`} type="button" role="tab" aria-selected={track === key} aria-controls={`process-panel-${key}`} tabIndex={track === key ? 0 : -1} onClick={() => changeTrack(key)}>{value.label}</button>)}
       </div>
-      <p className="process-graph-hint">Select a step to explore how we work with you.</p>
+      <p className="process-graph-hint">Hover over a node for a quick overview, or select it to explore the full step.</p>
       {Object.keys(tracks).map(key => <div key={key} role="tabpanel" id={`process-panel-${key}`} aria-labelledby={`process-tab-${key}`} hidden={track !== key}>
         {track === key && <>
           <ol className="process-graph-nodes" aria-label={`${tracks[track].label} steps`}>
-            {steps.map((step, index) => <li key={step.title} className={index === stepIndex ? "is-selected" : ""}>
-              <button type="button" className="process-graph-node" aria-pressed={index === stepIndex} aria-controls={`process-detail-${track}`} onClick={() => setStepIndex(index)}>
+            {steps.map((step, index) => <li key={step.title} className={index === stepIndex ? "is-selected" : ""}
+              onMouseEnter={() => setPreviewIndex(index)} onMouseLeave={() => setPreviewIndex(null)}
+              onFocus={() => setPreviewIndex(index)} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPreviewIndex(null); }}>
+              <button type="button" className="process-graph-node" aria-pressed={index === stepIndex} aria-controls={`process-detail-${track}`} aria-describedby={previewIndex === index ? `process-preview-${track}-${index}` : undefined} onClick={() => { setStepIndex(index); setPreviewIndex(index); }}>
                 <span className="process-node-icon"><ProcessIcon type={step.icon} /><span className="process-node-number">{index + 1}</span></span>
                 <span className="process-node-title">{step.title}</span><span className="process-node-summary">{step.summary}</span>
               </button>
+              {previewIndex === index && <div className="process-node-preview" role="tooltip" id={`process-preview-${track}-${index}`}>
+                <span className="process-preview-label">Step {index + 1}</span>
+                <strong>{step.title}</strong><p>{step.description}</p>
+                <span className="process-preview-outcome">{step.outcome}</span>
+              </div>}
             </li>)}
           </ol>
           <div className="process-detail" id={`process-detail-${track}`} role="region" aria-label="Selected step details">
