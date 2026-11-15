@@ -12,20 +12,18 @@ import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 
 const homeServices = [
   {
-    icon: "01",
-    title: "End-to-End Software Development & Delivery",
-    description: "We take ownership of the complete software development lifecycle, from initial discovery to production deployment and ongoing support.",
-    highlights: ["Discovery, architecture & solution design", "Development, integration & quality engineering", "DevOps, deployment & production support"],
+    title: "Bring Your Product to Life",
+    description: "Have an idea or a project to move forward? Our delivery team helps you turn business needs into software that’s ready to use.",
     href: "/services#software-delivery",
-    cta: "Explore Software Delivery"
+    cta: "Build with Us",
+    icon: "build"
   },
   {
-    icon: "02",
-    title: "IT Staffing & Resource Augmentation",
-    description: "Access skilled technology professionals to strengthen your existing teams, accelerate projects and meet changing workforce demands.",
-    highlights: ["Contract, permanent & contract-to-hire staffing", "On-demand specialists & dedicated teams", "Short-term & long-term resource support"],
+    title: "Add the Expertise You Need",
+    description: "Strengthen your team with technology professionals who fit your skills, timeline and working model.",
     href: "/services#it-staffing",
-    cta: "Explore IT Staffing"
+    cta: "Find Your Talent",
+    icon: "talent"
   }
 ];
 
@@ -144,29 +142,25 @@ export default function HomePage() {
             <h2>What We Do</h2>
             <span className="how-it-works-line" />
           </div>
-          <SectionHeader
-            className="home-services-header"
-            title="Two Models. One Technology Partner."
-            text="From complete software delivery to specialized IT talent, we adapt to your business requirements with flexible engagement models."
-          />
-          <div className="card-grid home-services-grid home-engagement-grid">
-            {homeServices.map((service) => (
-              <article key={service.title} className="content-card home-service-card">
-                <div className="home-service-card-header">
-                  <span className="home-service-icon" aria-hidden="true">
-                    {service.icon}
+          <div className="home-overview-layout">
+            <div className="home-overview-intro">
+              <span className="home-overview-eyebrow">Your Next Step Starts Here</span>
+              <h2>Move Your Business Forward.</h2>
+              <p>Great technology starts with the right people and a clear plan. We bring both, helping you build what’s next and grow the team behind it.</p>
+              <Link className="button button-primary" to="/services">Discover Our Services →</Link>
+            </div>
+            <div className="home-overview-options">
+              {homeServices.map(service => (
+                <article className="home-overview-option" key={service.title}>
+                  <span className="home-overview-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      {service.icon === "build" ? <><rect x="3" y="4" width="18" height="15" rx="2" /><path d="M3 9h18m-12 3-3 2 3 2m6-4 3 2-3 2M7 7h.01M10 7h.01" /></> : <><circle cx="9" cy="8" r="3" /><path d="M3 20v-2a6 6 0 0 1 12 0v2m1-15a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2" /></>}
+                    </svg>
                   </span>
-                  <h3>{service.title}</h3>
-                </div>
-                <p>{service.description}</p>
-                <ul className="home-engagement-highlights">{service.highlights.map(item => <li key={item}>{item}</li>)}</ul>
-                <Link to={service.href}>{service.cta} →</Link>
-              </article>
-            ))}
-          </div>
-          <div className="home-engagement-expertise">
-            <h3>Technology Expertise</h3>
-            <ul>{["Software Engineering", "QA & Test Automation", "Cloud & DevOps", "Data Engineering", "AI & GenAI Solutions", "Application Support"].map(item => <li key={item}>{item}</li>)}</ul>
+                  <div><h3>{service.title}</h3><p>{service.description}</p><Link to={service.href}>{service.cta} <span aria-hidden="true">→</span></Link></div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
