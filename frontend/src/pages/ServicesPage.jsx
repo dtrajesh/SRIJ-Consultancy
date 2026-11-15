@@ -1,347 +1,89 @@
-import { usePageMeta } from "../usePageMeta";
-import ServiceIcon from "../components/ServiceIcon";
-import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import SectionHeader from "../components/SectionHeader";
-import { services } from "../data/siteContent";
+import { usePageMeta } from "../usePageMeta";
+import deliveryImage from "../assets/home-hero-team-background.png";
+import staffingImage from "../assets/careers-hero-background.png";
 
-const talentAcquisitionTitles = new Set([
-  "Hiring Consultation",
-  "Niche & Specialist Hiring",
-  "Talent Sourcing"
-]);
-
-const teamDeliveryTitles = new Set([
-  "Dedicated Project Teams",
-  "Cloud & Digital Transformation Talent Pods",
-  "Managed Recruitment Services (RPO Model)"
-]);
-
-const flexibleHiringTitles = new Set([
-  "Contract-to-Hire Solutions",
-  "Urgent Requirements"
-]);
-
-const talentAcquisitionTitleLabels = {
-  "Niche & Specialist Hiring": "Niche & Specialist Hiring"
-};
-
-const teamDeliveryTitleLabels = {
-  "Cloud & Digital Transformation Talent Pods": "Cloud, DevOps & Data Support",
-  "Managed Recruitment Services (RPO Model)": "Recruitment Support"
-};
-
-const technologyDeliveryServices = [
+const models = [
   {
-    title: "Project-Based Delivery",
-    description: "Scope, build, test and deliver a technology project against agreed requirements.",
-    deliverables: ["Discovery, scope and delivery milestones", "Build, testing and handover", "Fixed-price or time-and-material options, agreed up front"]
+    number: "01",
+    title: "End-to-End Software Development & Delivery",
+    description: "We take ownership of the complete software development lifecycle, delivering solutions from initial discovery to production deployment and ongoing support.",
+    listTitle: "What we handle:",
+    items: ["Business requirements and technical discovery", "Architecture and solution design", "Software development and integration", "Quality engineering and automation testing", "DevOps, CI/CD and deployment", "Production support and maintenance"],
+    image: deliveryImage,
+    alt: "Technology team coordinating software delivery",
+    cta: "Discuss a Project",
+    to: "/get-started"
   },
   {
-    title: "QA & Performance Testing Services",
-    description: "Dedicated testing support to assess software quality and application behaviour under load.",
-    deliverables: ["Functional, regression and API testing", "Test automation for agreed scenarios", "Load and performance testing with findings and recommendations"]
-  },
-  {
-    title: "Application Support",
-    description: "Maintain and enhance your applications during agreed support hours.",
-    deliverables: ["Issue investigation and maintenance", "Scoped enhancements and release support", "Support hours, priorities and response expectations agreed in advance"]
+    number: "02",
+    title: "IT Staffing & Resource Augmentation",
+    description: "We help organizations access skilled technology professionals to strengthen existing teams, accelerate projects and meet changing workforce demands.",
+    listTitle: "What we provide:",
+    items: ["Contract staffing", "Permanent recruitment", "Contract-to-hire resources", "On-demand technical specialists", "Dedicated development teams", "Short-term and long-term resource support"],
+    image: staffingImage,
+    alt: "Professionals collaborating on technology projects",
+    cta: "Request Talent",
+    to: "/get-started"
   }
 ];
 
+const expertise = [
+  { name: "Software Engineering", icon: "code", detail: "Build & integrate" },
+  { name: "QA & Test Automation", icon: "check", detail: "Test & improve" },
+  { name: "Cloud & DevOps", icon: "cloud", detail: "Deploy & scale" },
+  { name: "Data Engineering", icon: "data", detail: "Connect & transform" },
+  { name: "AI & GenAI Solutions", icon: "spark", detail: "Explore & innovate" },
+  { name: "Application Support", icon: "support", detail: "Maintain & optimize" }
+];
+
+function ExpertiseIcon({ type }) {
+  const paths = {
+    code: <><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18" /></>,
+    check: <><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6l8-4Z" /><path d="m8 12 3 3 5-6" /></>,
+    cloud: <><path d="M6 19a5 5 0 0 1-1-10 7 7 0 0 1 13-2 6 6 0 0 1 0 12H6Z" /><path d="m9 13 3-3 3 3m-3-3v7" /></>,
+    data: <><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0" /></>,
+    spark: <><path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" /></>,
+    support: <><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 12H2v7h4v-7H4Zm16 0h2v7h-4v-7h2Zm0 7c0 3-4 3-8 3" /></>
+  };
+  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[type]}</svg>;
+}
+
 export default function ServicesPage() {
-  usePageMeta({
-    title: "IT Staffing & Technology Services | Trinexora",
-    path: "/services",
-    description: "Contract and permanent IT hiring, software development, and QA and performance testing for companies across India."
-  });
-  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
-  const [activePreviewTitle, setActivePreviewTitle] = useState(null);
-  const hoverLockUntilRef = useRef(0);
-
-  const handlePreviewOpen = (event) => {
-    const trigger = event.currentTarget;
-    const previewTitle = trigger.dataset.previewTitle;
-    const now = Date.now();
-
-    if (activePreviewTitle && activePreviewTitle !== previewTitle && now < hoverLockUntilRef.current) {
-      return;
-    }
-
-    setIsPreviewOpen(true);
-    setActivePreviewTitle(previewTitle);
-
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        const preview = trigger.querySelector(".service-preview-card");
-        if (!preview) {
-          return;
-        }
-        if (trigger.dataset.previewPosition?.startsWith("up")) {
-          preview.classList.remove("service-preview-card-flip");
-          return;
-        }
-
-        const previewBounds = preview.getBoundingClientRect();
-        const viewportBottom = window.innerHeight - 48;
-        const viewportRight = window.innerWidth - 24;
-        const headerHeight = document.querySelector(".site-header")?.offsetHeight ?? 0;
-        const desiredTop = headerHeight + 96;
-
-        if (previewBounds.right > viewportRight) {
-          preview.classList.add("service-preview-card-flip");
-        } else {
-          preview.classList.remove("service-preview-card-flip");
-        }
-
-        if (previewBounds.bottom > viewportBottom) {
-          hoverLockUntilRef.current = Date.now() + 900;
-          const overflow = previewBounds.bottom - viewportBottom + 32;
-          const maxScrollBeforeTopGetsTooHigh = Math.max(previewBounds.top - desiredTop, 0);
-          window.scrollBy({
-            top: Math.min(overflow, maxScrollBeforeTopGetsTooHigh || overflow),
-            behavior: "smooth"
-          });
-        } else if (previewBounds.top < desiredTop) {
-          hoverLockUntilRef.current = Date.now() + 900;
-          window.scrollBy({
-            top: previewBounds.top - desiredTop,
-            behavior: "smooth"
-          });
-        }
-      });
-    });
-  };
-
-  const handlePreviewBlur = (event) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      hoverLockUntilRef.current = 0;
-      setIsPreviewOpen(false);
-      setActivePreviewTitle(null);
-    }
-  };
-
-  const handlePreviewLeave = (event) => {
-    if (Date.now() < hoverLockUntilRef.current) {
-      return;
-    }
-
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setIsPreviewOpen(false);
-      setActivePreviewTitle(null);
-    }
-  };
-
-  const talentAcquisitionModels = services.filter((service) =>
-    talentAcquisitionTitles.has(service.title)
-  );
-  const teamDeliveryModels = services.filter((service) => teamDeliveryTitles.has(service.title));
-  const flexibleHiringModels = services.filter((service) =>
-    flexibleHiringTitles.has(service.title)
-  );
-  const deliveryServices = services.filter(
-    (service) =>
-      !talentAcquisitionTitles.has(service.title) &&
-      !teamDeliveryTitles.has(service.title) &&
-      !flexibleHiringTitles.has(service.title)
-  );
-
-  const renderServiceCard = (service, options = {}) => {
-    const title = options.title || service.tileTitle || service.title;
-    const cardDescription = service.tileDescription || service.description;
-    const cardDeliverables = service.tileDeliverables || service.deliverables;
-    const cardDeliverablesLabel = service.tileDeliverablesLabel || service.deliverablesLabel || "What we deliver:";
-    const cardOutcome = service.tileOutcome || service.outcome;
-    const previewTitle = service.previewTitle || title;
-    const previewSubtitle = service.previewSubtitle;
-    const previewDescription = service.previewDescription || service.description;
-    const previewDeliverables = service.previewDeliverables || service.deliverables || [previewDescription];
-    const previewDeliverablesLabel =
-      service.previewDeliverablesLabel || service.deliverablesLabel || "What we deliver:";
-    const previewIdealFor = service.previewIdealFor;
-    const previewIdealForLabel = service.previewIdealForLabel || "Ideal For";
-    const previewOutcomes = service.previewOutcomes || (service.outcome ? [service.outcome] : []);
-    const previewOutcomeLabel = service.previewOutcomeLabel || service.outcomeLabel || "Outcome";
-
-    return (
-      <article
-        key={service.title}
-        className={`content-card service-detail-card${options.isModel ? " talent-model-card" : ""}`}
-      >
-        <div className="service-detail-card-header">
-          <ServiceIcon title={title} />
-          <h3>{title}</h3>
-        </div>
-        <p>{cardDescription}</p>
-        {cardDeliverables && (
-          <div className="service-deliverables">
-            <strong>{cardDeliverablesLabel}</strong>
-            <ul className={service.tileDeliverables ? "service-check-list" : undefined}>
-              {cardDeliverables.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {cardOutcome && (
-          <p className="service-outcome">
-            <span className="service-outcome-icon" aria-hidden="true">👉</span>
-            <span className="service-outcome-copy"><strong>Outcome:</strong> {cardOutcome}</span>
-          </p>
-        )}
-        <div
-          className={`service-preview-trigger${
-            activePreviewTitle === service.title ? " service-preview-trigger-open" : ""
-          }`}
-          data-preview-title={service.title}
-          data-preview-position={service.title === "Hiring Consultation" ? "up" : "up-low"}
-          onMouseEnter={handlePreviewOpen}
-          onMouseLeave={handlePreviewLeave}
-          onFocus={handlePreviewOpen}
-          onBlur={handlePreviewBlur}
-        >
-          <Link to="/get-started">Explore Solution →</Link>
-          <div
-            className={`service-preview-card${
-              service.previewLayout === "vertical" ? " service-preview-card-vertical" : ""
-            }`}
-            aria-hidden="true"
-          >
-            <div className="service-preview-window">
-              <span className="service-preview-close">×</span>
-              <h4>{previewTitle}</h4>
-              {previewSubtitle && <p className="service-preview-subtitle">{previewSubtitle}</p>}
-              <p className="service-preview-summary">{previewDescription}</p>
-              <div className="service-preview-grid">
-                <div className="service-preview-panel">
-                  <strong>{previewDeliverablesLabel}</strong>
-                  <ul>
-                    {previewDeliverables.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                {previewIdealFor && (
-                  <div className="service-preview-panel">
-                    <strong>{previewIdealForLabel}</strong>
-                    <ul>
-                      {previewIdealFor.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <div className="service-preview-panel">
-                  <strong>{previewOutcomeLabel}</strong>
-                  {previewOutcomes.length > 1 ? (
-                    <ul className="service-preview-outcomes">
-                      {previewOutcomes.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>{previewOutcomes[0] || "A focused solution aligned to your hiring and delivery goals."}</p>
-                  )}
-                </div>
-              </div>
-              {!service.previewHideBenefits && (
-                <div className="service-preview-benefits">
-                  <strong>Key Benefits</strong>
-                  {(service.deliverables || []).slice(0, 3).map((item) => (
-                    <span key={item}>{item}</span>
-                  ))}
-                  {service.deliverablesLabel && <span>Global reach</span>}
-                </div>
-              )}
-              <div className="service-preview-actions">
-                <Link to="/contact">{service.previewPrimaryCta || "View Talent Pool"}</Link>
-                <Link to="/get-started">{service.previewSecondaryCta || "Request a Consultant →"}</Link>
-              </div>
+  usePageMeta({ title: "IT Staffing & Software Delivery Services | Trinexora", path: "/services", description: "Flexible engagement models for end-to-end software development, IT staffing, resource augmentation, and technology delivery." });
+  return (
+    <div className="engagement-page">
+      <section className="engagement-hero">
+        <div className="container engagement-hero-grid">
+          <div>
+            <span className="engagement-eyebrow">Flexible Engagement Models</span>
+            <h1>Staffing & Delivery Models <span>That Fit Your Needs</span></h1>
+            <p>From complete software delivery to specialized IT talent, we provide flexible engagement models that help businesses build, scale and deliver technology solutions.</p>
+            <div className="engagement-actions">
+              <a className="button button-primary" href="#engagement-models">Explore Our Services <span aria-hidden="true">→</span></a>
+              <Link className="engagement-secondary-link" to="/contact">Talk to Our Team <span aria-hidden="true">→</span></Link>
             </div>
           </div>
-        </div>
-      </article>
-    );
-  };
-
-  return (
-    <section className={`section page-intro${isPreviewOpen ? " services-preview-open" : ""}`}>
-      <div className="container">
-        <SectionHeader as="h1"
-          className="services-page-header"
-          title="Staffing and Delivery Models"
-          titleAccent="That Fit Your Needs"
-          text="Hire individual specialists, build a dedicated team, or have us deliver a project. Choose the model that suits your timeline and budget."
-        />
-
-        <div className="service-models-section">
-          <h2>Talent Acquisition Models</h2>
-          <div className="card-grid three-up talent-model-grid">
-            {talentAcquisitionModels.map((service) =>
-              renderServiceCard(service, {
-                isModel: true,
-                title: talentAcquisitionTitleLabels[service.title] || service.title
-              })
-            )}
+          <div className="engagement-hero-art" aria-hidden="true">
+            <div className="engagement-orbit" />
+            <span className="engagement-art-label">YOUR GOALS. OUR EXPERTISE.</span>
+            <div className="engagement-art-card"><span>01 / DELIVERY</span><strong>From vision<br />to production.</strong><div className="engagement-art-track"><i /><i /><i /><i /></div></div>
+            <div className="engagement-art-card engagement-art-card-two"><span>02 / STAFFING</span><strong>The right talent.<br />At the right time.</strong><div className="engagement-art-people"><i /><i /><i /><span>+</span></div></div>
+            <span className="engagement-art-bottom">ONE TECHNOLOGY PARTNER</span>
           </div>
         </div>
-
-        <div className="service-models-section">
-          <h2>Team-Based Delivery Models</h2>
-          <div className="card-grid three-up talent-model-grid">
-            {teamDeliveryModels.map((service) =>
-              renderServiceCard(service, {
-                isModel: true,
-                title: teamDeliveryTitleLabels[service.title] || service.title
-              })
-            )}
-          </div>
-        </div>
-
-        <div className="service-models-section">
-          <h2>Flexible Hiring Models</h2>
-          <div className="card-grid flexible-hiring-grid talent-model-grid">
-            {flexibleHiringModels.map((service) =>
-              renderServiceCard(service, {
-                isModel: true
-              })
-            )}
-          </div>
-        </div>
-
-        <div className="card-grid">
-          {deliveryServices.map((service) => renderServiceCard(service))}
-        </div>
-
-        <section className="service-models-section" aria-labelledby="technology-delivery-title">
-          <h2 id="technology-delivery-title">Technology Delivery</h2>
-          <div className="card-grid three-up talent-model-grid">
-            {technologyDeliveryServices.map((service) => (
-              <article className="content-card service-detail-card talent-model-card" key={service.title}>
-                <div className="service-detail-card-header"><ServiceIcon title={service.title} /><h3>{service.title}</h3></div>
-                <p>{service.description}</p>
-                <div className="service-deliverables">
-                  <strong>What we deliver:</strong>
-                  <ul className="service-check-list">{service.deliverables.map(item => <li key={item}>✔ {item}</li>)}</ul>
-                </div>
-                <Link to="/get-started">Explore Solution →</Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <div className="cta-inline services-cta-inline">
-          <div>
-            <h3>Not sure which model fits?</h3>
-            <p>
-              Tell us your requirement and we’ll recommend the right approach, with no obligation.
-            </p>
-          </div>
-          <Link className="button button-primary" to="/get-started">
-            Talk to Our Team
-          </Link>
-        </div>
-      </div>
-    </section>
+      </section>
+      <section className="container engagement-models" id="engagement-models" aria-labelledby="engagement-models-title">
+        <div className="engagement-section-heading"><span className="engagement-eyebrow">How We Work</span><h2 id="engagement-models-title">Two Models. One Technology Partner.</h2><p>Whether you need a complete delivery partner or skilled professionals, we adapt to your business requirements.</p></div>
+        <div className="engagement-model-grid">{models.map(model => (
+          <article className="engagement-model-card" key={model.number}>
+            <div className="engagement-model-image"><img src={model.image} alt={model.alt} loading="lazy" /><span>Model {model.number}</span></div>
+            <div className="engagement-model-content"><h3>{model.title}</h3><p>{model.description}</p><h4>{model.listTitle}</h4><ul>{model.items.map(item => <li key={item}>{item}</li>)}</ul><Link className="engagement-model-cta" to={model.to}>{model.cta} <span aria-hidden="true">→</span></Link></div>
+          </article>
+        ))}</div>
+      </section>
+      <section className="engagement-expertise" aria-labelledby="engagement-expertise-title"><div className="container"><div className="engagement-section-heading"><span className="engagement-eyebrow">Built on Technical Depth</span><h2 id="engagement-expertise-title">Technology Expertise</h2></div><div className="engagement-expertise-grid">{expertise.map(item => <article key={item.name}><ExpertiseIcon type={item.icon} /><h3>{item.name}</h3><p>{item.detail}</p></article>)}</div></div></section>
+      <section className="container engagement-contact"><div><span className="engagement-eyebrow">Let’s Get Started</span><h2>Let’s Build Something Together</h2><p>Tell us about your project or staffing requirements. Let’s find the right engagement model for your business.</p></div><Link className="button button-primary" to="/contact">Contact Our Team <span aria-hidden="true">→</span></Link></section>
+    </div>
   );
 }
