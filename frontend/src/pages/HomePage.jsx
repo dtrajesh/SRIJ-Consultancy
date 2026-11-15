@@ -89,9 +89,6 @@ export default function HomePage() {
               <Link className="button button-primary" to="/services">
                 Explore Services
               </Link>
-              <Link className="button button-primary" to="/careers">
-                Find a Job
-              </Link>
             </div>
           </div>
           <div className="home-hero-logo-wrap" aria-label="Trinexora, IT Staffing, IT Solutions, IT Delivery">

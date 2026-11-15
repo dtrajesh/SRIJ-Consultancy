@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { solutions } from "../data/solutions";
 
-const hiringSkills = ["Cloud", "DevOps", "Data Engineering", "Integration & APIs", "ServiceNow / ITSM", "React & Angular", "Cybersecurity"];
 
 export default function SolutionsPage() {
   usePageMeta({
@@ -59,15 +58,6 @@ export default function SolutionsPage() {
               </Link>
             </article>
           ))}
-        </div>
-        <div className="solutions-skills">
-          <div>
-            <strong>Skills we hire for:</strong>
-            <div className="accelerator-tags">
-              {hiringSkills.map((skill) => <span key={skill}>{skill}</span>)}
-            </div>
-          </div>
-          <Link className="button button-primary" to="/get-started?type=hiring">Share your requirement</Link>
         </div>
         <div className="accelerators-cta">
           <div>

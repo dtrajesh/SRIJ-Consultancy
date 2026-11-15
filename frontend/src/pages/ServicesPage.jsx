@@ -31,12 +31,12 @@ const models = [
 ];
 
 const expertise = [
-  { name: "Software Engineering", icon: "code", detail: "Build & integrate" },
-  { name: "QA & Test Automation", icon: "check", detail: "Test & improve" },
-  { name: "Cloud & DevOps", icon: "cloud", detail: "Deploy & scale" },
-  { name: "Data Engineering", icon: "data", detail: "Connect & transform" },
-  { name: "AI & GenAI Solutions", icon: "spark", detail: "Explore & innovate" },
-  { name: "Application Support", icon: "support", detail: "Maintain & optimize" }
+  { target: "software-engineering", name: "Software Engineering", icon: "code", detail: "Build & integrate" },
+  { target: "qa-performance", name: "QA & Test Automation", icon: "check", detail: "Test & improve" },
+  { target: "cloud", name: "Cloud & DevOps", icon: "cloud", detail: "Deploy & scale" },
+  { target: "data-engineering", name: "Data Engineering", icon: "data", detail: "Connect & transform" },
+  { target: "ai-genai", name: "AI & GenAI Solutions", icon: "spark", detail: "Explore & innovate" },
+  { target: "application-support", name: "Application Support", icon: "support", detail: "Maintain & optimize" }
 ];
 
 function ExpertiseIcon({ type }) {
@@ -84,7 +84,7 @@ export default function ServicesPage() {
           </article>
         ))}</div>
       </section>
-      <section className="engagement-expertise" aria-labelledby="engagement-expertise-title"><div className="container"><div className="engagement-section-heading"><span className="engagement-eyebrow">Built on Technical Depth</span><h2 id="engagement-expertise-title">Technology Expertise</h2></div><div className="engagement-expertise-grid">{expertise.map(item => <article key={item.name}><ExpertiseIcon type={item.icon} /><h3>{item.name}</h3><p>{item.detail}</p></article>)}</div></div></section>
+      <section className="engagement-expertise" aria-labelledby="engagement-expertise-title"><div className="container"><div className="engagement-section-heading"><span className="engagement-eyebrow">Built on Technical Depth</span><h2 id="engagement-expertise-title">Technology Expertise</h2></div><div className="engagement-expertise-grid">{expertise.map(item => <Link className="engagement-expertise-card" key={item.name} to={`/our-expertise#${item.target}`}><ExpertiseIcon type={item.icon} /><h3>{item.name}</h3><p>{item.detail}</p></Link>)}</div></div></section>
       <section className="container engagement-contact"><div><span className="engagement-eyebrow">Let’s Get Started</span><h2>Let’s Build Something Together</h2><p>Tell us about your project or staffing requirements. Let’s find the right engagement model for your business.</p></div><Link className="button button-primary" to="/get-started">Contact Our Team <span aria-hidden="true">→</span></Link></section>
     </div>
   );
