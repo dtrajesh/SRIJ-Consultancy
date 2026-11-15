@@ -218,18 +218,30 @@ export default function HomePage() {
             <h2 id="working-together-title">Why Trust Us</h2>
             <span className="how-it-works-line" />
           </div>
-          <div className="card-grid three-up">
+          <div className="card-grid three-up home-trust-cards">
             <article className="content-card">
-              <h3>Clear communication</h3>
-              <p>A single point of contact and replies within one business day.</p>
+              <h3>Clear Communication</h3>
+              <p>A dedicated point of contact, regular progress updates and clear answers to your questions.</p>
             </article>
             <article className="content-card">
-              <h3>Quality first</h3>
-              <p>Only profiles and deliverables that match your requirement.</p>
+              <h3>Accountable Delivery</h3>
+              <p>Agreed responsibilities, defined milestones and transparent tracking from kickoff to handover.</p>
             </article>
             <article className="content-card">
-              <h3>Accountable delivery</h3>
-              <p>Defined scope, regular updates, and support after go-live.</p>
+              <h3>Privacy &amp; Confidentiality</h3>
+              <p>Your business information and candidate details are handled with care. Profiles are shared with client teams only with candidate consent.</p>
+            </article>
+            <article className="content-card">
+              <h3>Security-Conscious Practices</h3>
+              <p>We align with your access requirements and security policies, with clear expectations for handling project information.</p>
+            </article>
+            <article className="content-card">
+              <h3>Quality at Every Step</h3>
+              <p>Relevant candidate screening and software quality checks against agreed requirements help keep your goals in focus.</p>
+            </article>
+            <article className="content-card">
+              <h3>Support When You Need It</h3>
+              <p>Ongoing assistance with agreed response times and escalation paths. 24/7 support is available through a dedicated support agreement.</p>
             </article>
           </div>
         </div>
