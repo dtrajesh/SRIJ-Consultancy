@@ -30,29 +30,30 @@ const trustStripItems = [
     text: "Serving clients across India"
   },
   {
+    icon: "delivery",
+    title: "Software Delivery",
+    text: "Discovery to deployment & support"
+  },
+  {
     icon: "expert",
-    title: "Pre-vetted Experts",
-    text: "Screened before submission"
+    title: "IT Staffing",
+    text: "Contract, permanent & contract-to-hire"
   },
   {
     icon: "teams",
-    title: "Flexible Hiring",
-    text: "Contract, contract-to-hire, permanent"
+    title: "Flexible Engagements",
+    text: "Individual experts or dedicated teams"
   },
   {
     icon: "support",
     title: "Quick Response",
     text: "Reply within one business day"
-  },
-  {
-    icon: "shield",
-    title: "Confidential Process",
-    text: "Your data and profiles stay private"
   }
 ];
 
 function TrustStripIcon({ type }) {
   const paths = {
+    delivery: <><rect x="5" y="7" width="30" height="25" rx="3" /><path d="M5 14h30M15 19l-5 4 5 4m10-8 5 4-5 4m-3-10-4 14" /></>,
     globe: <><path d="M20 10a8 8 0 0 1 8 8c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 8-8Z" /><circle cx="20" cy="18" r="2.5" /></>,
     expert: <><circle cx="17" cy="14" r="5" /><path d="M7 31v-3a10 10 0 0 1 20 0v3M27 15l3 3 5-6" /></>,
     teams: <><rect x="7" y="14" width="26" height="18" rx="3" /><path d="M15 14v-3a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3M7 21a31 31 0 0 0 26 0M18 23h4" /></>,
