@@ -295,24 +295,22 @@ export default function Layout() {
               <NavLink to="/careers">Careers</NavLink>
               <NavLink to="/contact">Contact</NavLink>
               <NavLink to="/get-started">Get Started</NavLink>
-              <NavLink to="/admin/login">Admin</NavLink>
             </div>
           </nav>
-          <nav className="footer-section" aria-label="Services">
+          <div className="footer-section">
             <h3>Services</h3>
-            <div className="footer-links">
-              {siteConfig.footerServices.map(({ label, href }) => (
-                <NavLink key={label} to={href}>{label}</NavLink>
+            <div className="footer-links footer-services">
+              {siteConfig.footerServices.map(({ label }) => (
+                <span key={label}>{label}</span>
               ))}
             </div>
-          </nav>
+          </div>
           <div className="footer-section footer-contact-section">
             <h3>Contact Info</h3>
             <div className="footer-links footer-contact">
               <span className="footer-company-detail">{siteConfig.legalName}</span>
               <address className="footer-company-detail">{siteConfig.address}</address>
               <a href={`tel:${siteConfig.phone.replace(/[^+\d]/g, "")}`}>{siteConfig.phone}</a>
-              <span>{siteConfig.officeHours}</span>
               <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
               <span>GSTIN: {siteConfig.gstin}</span>
             </div>

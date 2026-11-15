@@ -3767,6 +3767,7 @@ textarea {
 }
 
 .site-footer p,
+.footer-services span,
 .site-footer a {
   display: block;
   color: rgba(229, 231, 235, 0.9);
