@@ -7264,3 +7264,12 @@ main .service-detail-card > a {
 .home-trust-cards .home-trust-card h3 { color: #183552; font-size: 1.15rem; line-height: 1.35; margin: 0 0 14px; }
 .home-trust-cards .home-trust-card p { color: #526176; line-height: 1.75; font-size: .96rem; margin: 0; }
 @media(max-width: 600px) { .home-trust-cards .home-trust-card { padding: 24px; } }
+
+/* Compact homepage enquiry banner. */
+.home-section.cta-section .cta-panel { padding: 24px 30px; gap: 28px; }
+.home-section.cta-section .cta-panel > div { min-width: 0; }
+.home-section.cta-section .cta-panel .eyebrow { font-size: .8rem; margin-bottom: 8px; }
+.home-section.cta-section .cta-panel h2 { font-size: clamp(1.2rem, 2vw, 1.65rem); line-height: 1.3; margin: 0 0 10px; }
+.home-section.cta-section .cta-panel p { font-size: .92rem; line-height: 1.6; margin: 0; max-width: 850px; }
+.home-section.cta-section .cta-panel > .button { flex-shrink: 0; white-space: nowrap; padding: 12px 24px; font-size: .95rem; }
+@media (max-width: 600px) { .home-section.cta-section .cta-panel { padding: 22px; gap: 20px; } }
