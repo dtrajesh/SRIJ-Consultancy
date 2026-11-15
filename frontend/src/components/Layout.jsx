@@ -30,13 +30,12 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
   { label: "Industries", to: "/industries" },
-  { label: "Technologies", to: "/technologies" },
+  { label: "Our Expertise", to: "/our-expertise" },
   ...(siteConfig.showSolutions ? [{ label: "Solutions", to: "/solutions" }] : [])
 ];
 
 const navItemsAfterAbout = [
-  { label: "Careers", to: "/careers" },
-  { label: "Contact", to: "/contact" }
+  { label: "Careers", to: "/careers" }
 ];
 
 const aboutItems = [
@@ -290,10 +289,9 @@ export default function Layout() {
               <NavLink to="/about">About</NavLink>
               <NavLink to="/services">Services</NavLink>
               <NavLink to="/industries">Industries</NavLink>
-              <NavLink to="/technologies">Technologies</NavLink>
+              <NavLink to="/our-expertise">Our Expertise</NavLink>
               {siteConfig.showSolutions && <NavLink to="/solutions">Solutions</NavLink>}
               <NavLink to="/careers">Careers</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
               <NavLink to="/get-started">Get Started</NavLink>
             </div>
           </nav>

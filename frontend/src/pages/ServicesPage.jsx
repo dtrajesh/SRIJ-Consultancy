@@ -63,7 +63,7 @@ export default function ServicesPage() {
             <p>From complete software delivery to specialized IT talent, we provide flexible engagement models that help businesses build, scale and deliver technology solutions.</p>
             <div className="engagement-actions">
               <a className="button button-primary" href="#engagement-models">Explore Our Services <span aria-hidden="true">→</span></a>
-              <Link className="engagement-secondary-link" to="/contact">Talk to Our Team <span aria-hidden="true">→</span></Link>
+              <Link className="engagement-secondary-link" to="/get-started">Talk to Our Team <span aria-hidden="true">→</span></Link>
             </div>
           </div>
           <div className="engagement-hero-art" aria-hidden="true">
@@ -85,7 +85,7 @@ export default function ServicesPage() {
         ))}</div>
       </section>
       <section className="engagement-expertise" aria-labelledby="engagement-expertise-title"><div className="container"><div className="engagement-section-heading"><span className="engagement-eyebrow">Built on Technical Depth</span><h2 id="engagement-expertise-title">Technology Expertise</h2></div><div className="engagement-expertise-grid">{expertise.map(item => <article key={item.name}><ExpertiseIcon type={item.icon} /><h3>{item.name}</h3><p>{item.detail}</p></article>)}</div></div></section>
-      <section className="container engagement-contact"><div><span className="engagement-eyebrow">Let’s Get Started</span><h2>Let’s Build Something Together</h2><p>Tell us about your project or staffing requirements. Let’s find the right engagement model for your business.</p></div><Link className="button button-primary" to="/contact">Contact Our Team <span aria-hidden="true">→</span></Link></section>
+      <section className="container engagement-contact"><div><span className="engagement-eyebrow">Let’s Get Started</span><h2>Let’s Build Something Together</h2><p>Tell us about your project or staffing requirements. Let’s find the right engagement model for your business.</p></div><Link className="button button-primary" to="/get-started">Contact Our Team <span aria-hidden="true">→</span></Link></section>
     </div>
   );
 }

@@ -210,7 +210,6 @@ export default function HomePage() {
               );
             })}
           </div>
-          <p className="accelerator-roadmap-link"><Link to="/solutions">Solutions</Link></p>
         </div>
       </section>
       )}
@@ -248,7 +247,7 @@ export default function HomePage() {
               Share your requirement and we’ll respond within one business day.
             </p>
           </div>
-          <Link className="button button-primary" to="/contact">
+          <Link className="button button-primary" to="/get-started">
             Contact Us
           </Link>
         </div>

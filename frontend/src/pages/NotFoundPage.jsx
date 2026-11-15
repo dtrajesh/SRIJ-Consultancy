@@ -19,7 +19,7 @@ export default function NotFoundPage() {
         </div>
         <div className="hero-actions">
           <Link className="button button-primary" to="/">Go to Home</Link>
-          <Link className="button button-secondary" to="/contact">Contact us</Link>
+          <Link className="button button-secondary" to="/get-started">Contact us</Link>
         </div>
       </div>
     </section>

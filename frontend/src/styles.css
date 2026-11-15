@@ -7200,3 +7200,48 @@ main .service-detail-card > a {
   .process-node-preview { top: calc(100% - 4px); left: 8px; transform: none; width: min(320px, calc(100vw - 70px)); }
   .process-node-preview::before { left: 20px; }
 }
+
+/* Expertise: alternating technology and description bands. */
+.expertise-page { background: white; color: #475569; }
+.expertise-intro { padding-top: 60px; padding-bottom: 50px; text-align: center; }
+.expertise-intro > span { display: block; color: #6550a4; font-size: .75rem; text-transform: uppercase; font-weight: 800; letter-spacing: .14em; margin-bottom: 16px; }
+.expertise-intro h1 { color: #172b48; font-size: clamp(2.2rem, 4vw, 3.5rem); margin: 0 0 20px; letter-spacing: -.035em; }
+.expertise-intro p { max-width: 960px; margin: auto; font-size: 1.1rem; line-height: 1.8; }
+.expertise-band { padding: 55px 0; }
+.expertise-band-reverse { background: #f3f3f9; }
+.expertise-band-inner { display: grid; grid-template-columns: 1fr 1.15fr; gap: 70px; align-items: center; }
+.expertise-band-reverse .expertise-brand-grid { order: 2; }
+.expertise-band-reverse .expertise-band-copy { order: 1; }
+.expertise-brand-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 25px 35px; }
+.expertise-brand-grid figure { margin: 0; width: 105px; text-align: center; }
+.expertise-brand-grid img { display: block; width: 90px; height: 75px; object-fit: contain; margin: 0 auto 13px; }
+.expertise-brand-grid figcaption { font-size: .8rem; color: #526176; font-weight: 600; }
+.expertise-band-copy h2 { color: #603ca1; font-size: clamp(1.65rem, 2.5vw, 2.1rem); line-height: 1.25; margin: 0 0 16px; letter-spacing: -.025em; }
+.expertise-band-copy p { margin: 0 0 20px; font-size: 1.04rem; line-height: 1.8; }
+.expertise-band-copy ul { display: flex; flex-wrap: wrap; list-style: none; gap: 8px; margin: 0; padding: 0; }
+.expertise-band-copy li { background: #f6f2fc; color: #5c4487; border: 1px solid #e6dff0; padding: 6px 11px; border-radius: 6px; font-size: .78rem; }
+.expertise-band-reverse .expertise-band-copy li { background: white; }
+.expertise-enquiry { display: flex; justify-content: space-between; align-items: center; gap: 30px; padding-top: 50px; padding-bottom: 55px; }
+.expertise-enquiry h2 { color: #172b48; margin: 0 0 12px; font-size: 1.65rem; }
+.expertise-enquiry p { margin: 0; }
+.expertise-enquiry .button { flex-shrink: 0; }
+.get-started-location { margin-top: 50px; }
+.office-map-heading { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-bottom: 25px; }
+.office-map-heading h2 { color: #172b48; margin: 0 0 12px; }
+.office-map-heading p { margin: 0; line-height: 1.8; }
+.office-map-heading .button { flex-shrink: 0; }
+.get-started-location iframe { display: block; border-radius: 16px; background: #e8eef5; }
+@media(max-width: 850px) {
+  .expertise-band-inner { gap: 30px; grid-template-columns: 1fr 1fr; }
+  .expertise-brand-grid { gap: 20px; }
+  .expertise-enquiry, .office-map-heading { flex-direction: column; align-items: flex-start; }
+}
+@media(max-width: 650px) {
+  .expertise-intro { padding-top: 40px; padding-bottom: 25px; }
+  .expertise-band { padding: 35px 0; }
+  .expertise-band-inner { grid-template-columns: 1fr; gap: 30px; }
+  .expertise-band-reverse .expertise-brand-grid { order: 0; }
+  .expertise-brand-grid figure { width: 85px; }
+  .expertise-brand-grid img { width: 70px; height: 60px; }
+  .get-started-location iframe { height: 360px; }
+}

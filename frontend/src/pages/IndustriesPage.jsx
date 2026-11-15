@@ -96,7 +96,7 @@ export default function IndustriesPage() {
               with domain-ready professionals.
             </p>
           </div>
-          <Link className="button button-primary" to="/contact">
+          <Link className="button button-primary" to="/get-started">
             Share Your Requirement
           </Link>
         </div>
