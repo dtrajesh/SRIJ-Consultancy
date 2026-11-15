@@ -452,13 +452,6 @@ export default function AboutPage() {
               <p>{about.advisorDescription}</p>
             </article>
           </div>
-          <section className="content-card about-experience" aria-labelledby="about-experience-title">
-            <h3 id="about-experience-title">Industry Experience</h3>
-            <p>{about.industryDescription}</p>
-            <div className="accelerator-tags">
-              {about.industries.map((industry) => <span key={industry}>{industry}</span>)}
-            </div>
-          </section>
         </div>
       </section>
 
