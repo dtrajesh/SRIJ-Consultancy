@@ -47,8 +47,11 @@ export default function CareersPage() {
           {!loading && !error && jobs.length > 0 && <div className="career-current-list">{jobs.map(job => (
             <article className="career-current-job" key={job.id}>
               <span className="career-job-id">Job ID: {job.id}</span><h3>{job.title}</h3>
-              <p>{[job.location, job.employment_type, job.department].filter(Boolean).join(" · ")}</p>
-              <p>{job.summary}</p>
+              <dl className="career-listing-details">
+                <div><dt>Skills Required</dt><dd>{job.requirements}</dd></div>
+                <div><dt>Location</dt><dd>{job.location}</dd></div>
+                <div><dt>Job Type</dt><dd>{job.employment_type}</dd></div>
+              </dl>
               <Link className="button career-purple-button" to={`/careers/${job.id}/apply`}>Apply Now</Link>
             </article>
           ))}</div>}
@@ -61,6 +64,29 @@ export default function CareersPage() {
             </article>
           ))}</div>
         </section>
+      </section>
+      <section className="container career-followup" aria-labelledby="career-followup-title">
+        <div className="career-resume-banner">
+          <div>
+            <h2 id="career-followup-title">Didn’t Find the Right Opportunity?</h2>
+            <p>Upload your resume and our recruiters will reach out when a matching opportunity becomes available.</p>
+          </div>
+          <div>
+            <div className="career-resume-actions">
+              <Link className="button button-primary" to="/careers/talent-profile?type=submit_resume">Upload Resume</Link>
+              <Link className="button button-primary" to="/careers/talent-profile?type=join_talent_network">Join Talent Network</Link>
+            </div>
+            <p className="career-resume-privacy">We use your details only to consider you for suitable roles. See our <Link to="/privacy-policy">Privacy Policy</Link>.</p>
+          </div>
+        </div>
+      </section>
+      <section className="container career-internal-entry" aria-labelledby="career-internal-title">
+        <div>
+          <span className="eyebrow">Internal Careers</span>
+          <h2 id="career-internal-title">Join Our Team at Trinexora</h2>
+          <p>Explore opportunities in recruiting, account management, sales, HR, and operations.</p>
+        </div>
+        <Link className="button career-purple-button" to="/careers/internal">View Internal Openings</Link>
       </section>
     </div>
   );

@@ -6953,7 +6953,7 @@ main .service-detail-card > a {
 .career-refresh-hero p { font-size: clamp(1.1rem, 1.7vw, 1.7rem); line-height: 1.45; max-width: 650px; margin-bottom: 34px; color: #151526; }
 .career-refresh .career-purple-button { background: #5540ad; border: 1px solid #48349c; color: white; border-radius: 17px; padding: 15px 34px; font-weight: 700; font-size: 1.1rem; }
 .career-refresh .career-purple-button:hover { background: #423087; }
-.career-refresh-panels { display: grid; grid-template-columns: .85fr 1.15fr; gap: 30px; padding-top: 45px; padding-bottom: 48px; align-items: start; }
+.career-refresh-panels { display: grid; grid-template-columns: 1.3fr 1fr; gap: 30px; padding-top: 45px; padding-bottom: 48px; align-items: start; }
 .career-openings-panel, .career-benefits-panel { border-radius: 22px; min-width: 0; min-height: 430px; padding: 28px 30px; }
 .career-openings-panel { background: #eeebfc; text-align: center; display: flex; flex-direction: column; justify-content: center; }
 .career-openings-heading .career-benefit-line-icon { height: 70px; width: 70px; color: #473296; margin-bottom: 12px; }
@@ -7002,3 +7002,36 @@ main .service-detail-card > a {
 
 .career-refresh .career-benefit-line-icon { display: inline-flex; align-items: center; justify-content: center; }
 .career-refresh .career-benefit-line-icon svg { width: 100%; height: 100%; }
+
+.career-listing-details { display: grid; gap: 12px; margin: 18px 0 22px; }
+.career-listing-details > div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; }
+.career-listing-details dt { font-weight: 700; }
+.career-listing-details dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+.career-followup { padding-bottom: 35px; }
+.career-resume-banner { display: grid; grid-template-columns: 1.1fr 1fr; gap: 35px; align-items: center; padding: 34px; border-radius: 22px; background: linear-gradient(110deg, #081a36, #135bc2); color: white; }
+.career-refresh .career-resume-banner h2 { color: white; font-size: clamp(1.5rem, 2vw, 2rem); margin-bottom: 10px; }
+.career-resume-banner p { margin: 0; }
+.career-resume-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.career-resume-actions .button { border-radius: 40px; padding: 14px 24px; }
+.career-resume-privacy { font-size: .85rem; color: #d5e6ff; }
+.career-resume-privacy a { color: inherit; text-decoration: underline; }
+.career-internal-entry { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding-top: 12px; padding-bottom: 48px; }
+.career-internal-entry h2 { font-size: clamp(1.5rem, 2vw, 2rem); margin-bottom: 10px; }
+.career-internal-entry p { margin: 0; }
+.career-internal-entry .button { flex-shrink: 0; }
+@media (min-width: 1001px) {
+  .career-refresh-benefits { grid-template-columns: 1fr 1fr; }
+  .career-refresh-benefit:nth-child(n) { grid-column: auto; padding: 16px 12px; border: 0; border-bottom: 1px solid #e4e2ee; }
+  .career-refresh-benefit:nth-child(odd) { padding-left: 0; }
+  .career-refresh-benefit:nth-child(even) { border-left: 1px solid #e4e2ee; }
+  .career-refresh-benefit:last-child { grid-column: 1 / -1; border-bottom: 0; }
+}
+@media (max-width: 1000px) {
+  .career-resume-banner { grid-template-columns: 1fr; gap: 24px; }
+  .career-internal-entry { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 650px) {
+  .career-listing-details > div { grid-template-columns: 1fr; gap: 4px; }
+  .career-resume-banner { padding: 25px 20px; }
+  .career-resume-actions { flex-direction: column; align-items: stretch; }
+}
