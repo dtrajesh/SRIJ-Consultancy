@@ -7130,3 +7130,43 @@ main .service-detail-card > a {
 .home-overview-option a { display: inline-flex; gap: 12px; color: #2361c1; font-weight: 800; }
 @media (max-width: 850px) { .home-overview-layout { grid-template-columns: 1fr; gap: 20px; } .home-overview-intro h2 { max-width: 100%; } }
 @media (max-width: 420px) { .home-overview-option { grid-template-columns: 40px 1fr; gap: 14px; } .home-overview-icon { width: 40px; height: 40px; border-radius: 11px; } .home-overview-icon svg { width: 24px; height: 24px; } }
+
+/* Interactive process graph. */
+.process-graph-hint { text-align: center; color: #61728a; font-size: .9rem; margin: 0 0 30px; }
+.process-graph-nodes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; padding: 0; margin: 0 0 32px; gap: 24px; }
+.process-graph-nodes > li { min-width: 0; position: relative; }
+.process-graph-nodes > li:not(:last-child)::after { content: ''; position: absolute; top: 42px; left: calc(50% + 48px); width: calc(100% - 72px); height: 2px; background: #c9d9f0; pointer-events: none; }
+.process-graph-nodes > li:not(:last-child)::before { content: ''; position: absolute; top: 39px; right: -15px; width: 8px; height: 8px; border-top: 2px solid #91acd3; border-right: 2px solid #91acd3; transform: rotate(45deg); }
+.process-graph-node { width: 100%; display: flex; flex-direction: column; align-items: center; border: 0; border-radius: 14px; background: transparent; padding: 0 10px 14px; color: #203958; cursor: pointer; font: inherit; text-align: center; }
+.process-node-icon { width: 84px; height: 84px; display: flex; align-items: center; justify-content: center; position: relative; border-radius: 24px; border: 1px solid #d6e2f3; background: #edf3ff; color: #3374d8; margin-bottom: 22px; transition: background .18s, box-shadow .18s; }
+.process-node-icon svg { width: 34px; height: 34px; }
+.process-node-number { position: absolute; bottom: -9px; right: -6px; width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; background: white; border: 1px solid #c7d8f1; color: #3269bb; font-size: .72rem; font-weight: 800; }
+.process-node-title { font-weight: 800; font-size: 1.03rem; line-height: 1.35; margin-bottom: 9px; }
+.process-node-summary { color: #63758a; font-size: .87rem; line-height: 1.6; max-width: 220px; }
+.is-selected .process-node-icon { color: white; background: #2869d1; border-color: #2869d1; box-shadow: 0 0 0 7px #e4edfc; }
+.is-selected .process-node-number { color: white; background: #143d78; border-color: white; }
+.is-selected .process-node-title { color: #205fbe; }
+.process-graph-node:hover .process-node-icon { box-shadow: 0 0 0 7px #e4edfc; }
+.process-graph-node:focus-visible { outline: 3px solid #2869d1; outline-offset: 5px; }
+.process-detail { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; border: 1px solid #dce6f4; border-radius: 20px; padding: 32px; background: white; box-shadow: 0 12px 35px #1b447509; }
+.process-detail-label { display: block; font-size: .7rem; color: #2869d1; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; margin-bottom: 14px; }
+.process-detail h3 { color: #183552; font-size: 1.5rem; margin: 0 0 14px; line-height: 1.3; }
+.process-detail-intro > p { color: #52667e; line-height: 1.75; margin: 0 0 20px; }
+.process-detail-intro > a { font-size: .9rem; color: #2361c1; font-weight: 800; }
+.process-detail h4 { font-size: .95rem; color: #183552; margin: 0 0 16px; }
+.process-detail ul { list-style: none; display: grid; gap: 12px; padding: 0; margin: 0 0 20px; }
+.process-detail li { position: relative; padding-left: 22px; color: #52667e; font-size: .9rem; line-height: 1.6; }
+.process-detail li::before { content: '✓'; position: absolute; left: 0; color: #2869d1; font-weight: 800; }
+.process-detail-outcome { background: #f0f5fc; border-radius: 9px; padding: 13px 16px; font-size: .86rem; color: #24466d; line-height: 1.6; margin: 0; }
+@media(max-width: 700px) {
+  .process-graph-nodes { grid-template-columns: 1fr; gap: 0; }
+  .process-graph-node { display: grid; grid-template-columns: 58px 1fr; column-gap: 22px; padding: 14px 4px; text-align: left; align-items: center; }
+  .process-node-icon { grid-row: span 2; width: 56px; height: 56px; border-radius: 16px; margin: 0; }
+  .process-node-icon svg { width: 26px; height: 26px; }
+  .process-node-title { margin: 0 0 4px; }
+  .process-node-summary { max-width: none; }
+  .process-graph-nodes > li:not(:last-child)::after { top: 76px; bottom: -5px; left: 31px; height: auto; width: 2px; }
+  .process-graph-nodes > li:not(:last-child)::before { display: none; }
+  .process-detail { grid-template-columns: 1fr; gap: 24px; padding: 24px 20px; }
+}
+@media(prefers-reduced-motion: reduce) { .process-node-icon { transition: none; } }

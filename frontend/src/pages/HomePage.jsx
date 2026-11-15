@@ -1,13 +1,9 @@
 import { siteConfig } from "../config/siteConfig";
 import { usePageMeta } from "../usePageMeta";
-import { useState } from "react";
+import ProcessGraph from "../components/ProcessGraph";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { products } from "../data/siteContent";
-import requirementDiscoveryImage from "../assets/how-it-works/requirement-discovery.jpeg";
-import curatedTalentDeliveryImage from "../assets/how-it-works/curated-talent-delivery.jpeg";
-import selectionAlignmentImage from "../assets/how-it-works/selection-alignment.jpeg";
-import executionScalingImage from "../assets/how-it-works/execution-scaling.jpeg";
 import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 
 const homeServices = [
@@ -72,15 +68,6 @@ export default function HomePage() {
     path: "/",
     description: "IT staffing and technology solutions from Hyderabad. We help companies hire skilled professionals and build and deliver technology projects."
   });
-  const [processTrack, setProcessTrack] = useState("hiring");
-
-  function handleTrackKey(event) {
-    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-    event.preventDefault();
-    const next = event.key === "Home" ? "hiring" : event.key === "End" ? "project" : processTrack === "hiring" ? "project" : "hiring";
-    setProcessTrack(next);
-    document.getElementById(`process-tab-${next}`)?.focus();
-  }
 
   return (
     <>
@@ -173,72 +160,7 @@ export default function HomePage() {
             <span className="how-it-works-line" />
           </div>
 
-          <div className="process-tabs" role="tablist" aria-label="Choose a process" onKeyDown={handleTrackKey}>
-            <button id="process-tab-hiring" type="button" role="tab" aria-selected={processTrack === "hiring"} aria-controls="process-panel-hiring" tabIndex={processTrack === "hiring" ? 0 : -1} onClick={() => setProcessTrack("hiring")}>Hiring talent</button>
-            <button id="process-tab-project" type="button" role="tab" aria-selected={processTrack === "project"} aria-controls="process-panel-project" tabIndex={processTrack === "project" ? 0 : -1} onClick={() => setProcessTrack("project")}>Building a project</button>
-          </div>
-
-          <div role="tabpanel" id="process-panel-hiring" aria-labelledby="process-tab-hiring" hidden={processTrack !== "hiring"} tabIndex={0}>
-          <div className="how-it-works-grid">
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={curatedTalentDeliveryImage} alt="Requirement discovery" />
-              </div>
-              <h3>Requirement Discovery</h3>
-              <p>
-                Engage with our team to define objectives, technical scope, and
-                delivery expectations.
-              </p>
-            </article>
-
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={requirementDiscoveryImage} alt="Curated talent delivery" />
-              </div>
-              <h3>Curated Talent Delivery</h3>
-              <p>
-                Receive a curated pool of highly skilled, pre-vetted professionals
-                aligned to your needs.
-              </p>
-            </article>
-
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={executionScalingImage} alt="Selection and alignment" />
-              </div>
-              <h3>Selection &amp; Alignment</h3>
-              <p>
-                Assess candidates efficiently and align the right talent with your
-                project goals.
-              </p>
-            </article>
-
-            <article className="how-step-card">
-              <div className="how-step-icon">
-                <img src={selectionAlignmentImage} alt="Execution and scaling" />
-              </div>
-              <h3>Execution &amp; Scaling</h3>
-              <p>
-                Drive outcomes faster with scalable teams and ongoing delivery
-                support.
-              </p>
-            </article>
-          </div>
-
-          </div>
-          <div role="tabpanel" id="process-panel-project" aria-labelledby="process-tab-project" hidden={processTrack !== "project"} tabIndex={0}>
-            <div className="how-it-works-grid project-process-grid">
-              {[
-                { title: "Discover and scope", text: "Understand your goals, users and requirements, and agree what the project will cover.", icon: <><rect x="11" y="10" width="29" height="37" rx="4" /><path d="M19 20h13M19 28h9" /><circle cx="40" cy="39" r="9" /><path d="m47 46 7 7" /></> },
-                { title: "Plan and estimate", text: "Define milestones, responsibilities, timelines and costs before work begins.", icon: <><rect x="10" y="13" width="44" height="39" rx="5" /><path d="M10 25h44M22 8v10M42 8v10M20 34h7M36 34h7M20 43h7M36 43h7" /></> },
-                { title: "Build and test", text: "Build the agreed solution, test it against requirements, and review progress with you.", icon: <><rect x="7" y="10" width="50" height="39" rx="5" /><path d="M7 21h50M25 29l-7 6 7 6M39 29l7 6-7 6M36 26l-8 18M24 55h16" /></> },
-                { title: "Deliver and support", text: "Coordinate the release, hand over documentation, and provide support within the agreed scope.", icon: <><path d="m32 7 20 10v27L32 55 12 44V17Z M12 17l20 11 20-11M32 28v27M22 12l20 11" /><path d="m22 36 7 7 13-13" /></> }
-              ].map((step, index) => <article className="how-step-card" key={step.title}>
-                <div className="project-step-icon" aria-hidden="true"><svg viewBox="0 0 64 64">{step.icon}</svg><span>{index + 1}</span></div>
-                <h3>{step.title}</h3><p>{step.text}</p>
-              </article>)}
-            </div>
-          </div>
+          <ProcessGraph />
 
           <p className="how-it-works-caption">
             <strong>A clear process, whether you’re hiring or building.</strong>
