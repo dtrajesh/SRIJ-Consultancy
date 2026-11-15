@@ -258,9 +258,9 @@ export default function HomePage() {
         <div className="container cta-panel">
           <div>
             <span className="eyebrow">Get Started</span>
-            <h2>Tell us what you need: a hire or a project</h2>
+            <h2>Let’s Build Your Team or Deliver Your Next Project</h2>
             <p>
-              Share your requirement and we’ll respond within one business day.
+              Share your IT staffing or software development requirements. Our team will help you choose the right engagement model for your business.
             </p>
           </div>
           <Link className="button button-primary" to="/get-started">
