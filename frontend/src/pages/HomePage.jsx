@@ -215,7 +215,7 @@ export default function HomePage() {
         <div className="container">
           <div className="home-section-label">
             <span className="how-it-works-line" />
-            <h2 id="working-together-title">How We Work With You</h2>
+            <h2 id="working-together-title">Why Trust Us</h2>
             <span className="how-it-works-line" />
           </div>
           <div className="card-grid three-up">
