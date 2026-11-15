@@ -12,52 +12,20 @@ import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 
 const homeServices = [
   {
-    icon: "👥",
-    title: "IT Staffing & Augmentation",
-    description:
-      "Access pre-vetted, highly skilled professionals across engineering, QA, cloud, and data ready to contribute from day one."
+    icon: "01",
+    title: "End-to-End Software Development & Delivery",
+    description: "We take ownership of the complete software development lifecycle, from initial discovery to production deployment and ongoing support.",
+    highlights: ["Discovery, architecture & solution design", "Development, integration & quality engineering", "DevOps, deployment & production support"],
+    href: "/services#software-delivery",
+    cta: "Explore Software Delivery"
   },
   {
-    icon: "🚀",
-    title: "Project Outsourcing",
-    description:
-      "End-to-end ownership of software delivery with dedicated teams managing planning, execution, and continuous improvement."
-  },
-  {
-    icon: "☁️",
-    title: "Cloud & Data Engineering",
-    description:
-      "Design scalable cloud architectures, enable seamless migrations, and build modern data pipelines for real-time insights."
-  },
-  {
-    icon: "🤖",
-    title: "AI & Data Solutions",
-    description:
-      "Leverage AI, machine learning, and advanced analytics to automate workflows and unlock data-driven decision making."
-  },
-  {
-    icon: "🛡️",
-    title: "Cybersecurity & Performance",
-    description:
-      "Strengthen application security, ensure compliance, and optimize performance with proactive monitoring and testing."
-  },
-  {
-    icon: "⚙️",
-    title: "Application Support & Maintenance",
-    description:
-      "Ensure system stability with 24/7 support, incident management, and continuous enhancements."
-  },
-  {
-    icon: "🔄",
-    title: "QA & Test Automation",
-    description:
-      "Improve product quality with robust manual and automated testing strategies that reduce release risk."
-  },
-  {
-    icon: "📊",
-    title: "Digital Transformation Consulting",
-    description:
-      "Align technology with business strategy through process optimization, modernization, and scalable delivery models."
+    icon: "02",
+    title: "IT Staffing & Resource Augmentation",
+    description: "Access skilled technology professionals to strengthen your existing teams, accelerate projects and meet changing workforce demands.",
+    highlights: ["Contract, permanent & contract-to-hire staffing", "On-demand specialists & dedicated teams", "Short-term & long-term resource support"],
+    href: "/services#it-staffing",
+    cta: "Explore IT Staffing"
   }
 ];
 
@@ -178,10 +146,10 @@ export default function HomePage() {
           </div>
           <SectionHeader
             className="home-services-header"
-            title="End-to-End IT Services Built for Scale, Speed, and Reliability"
-            text="From rapid talent augmentation to full-scale project delivery, we help organizations accelerate innovation, reduce operational risk, and achieve measurable business outcomes."
+            title="Two Models. One Technology Partner."
+            text="From complete software delivery to specialized IT talent, we adapt to your business requirements with flexible engagement models."
           />
-          <div className="card-grid three-up home-services-grid">
+          <div className="card-grid home-services-grid home-engagement-grid">
             {homeServices.map((service) => (
               <article key={service.title} className="content-card home-service-card">
                 <div className="home-service-card-header">
@@ -191,9 +159,14 @@ export default function HomePage() {
                   <h3>{service.title}</h3>
                 </div>
                 <p>{service.description}</p>
-                <Link to="/services">Explore Solution →</Link>
+                <ul className="home-engagement-highlights">{service.highlights.map(item => <li key={item}>{item}</li>)}</ul>
+                <Link to={service.href}>{service.cta} →</Link>
               </article>
             ))}
+          </div>
+          <div className="home-engagement-expertise">
+            <h3>Technology Expertise</h3>
+            <ul>{["Software Engineering", "QA & Test Automation", "Cloud & DevOps", "Data Engineering", "AI & GenAI Solutions", "Application Support"].map(item => <li key={item}>{item}</li>)}</ul>
           </div>
         </div>
       </section>

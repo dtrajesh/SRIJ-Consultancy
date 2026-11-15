@@ -7111,3 +7111,17 @@ main .service-detail-card > a {
 
 .engagement-model-image img { object-position: 75% center; }
 .engagement-art-card strong { font-style: normal; }
+
+main .home-engagement-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.home-engagement-grid .home-service-card { display: flex; flex-direction: column; }
+.home-engagement-grid .home-service-icon { font-size: 1rem; font-weight: 800; color: #2863ca; }
+.home-engagement-highlights { list-style: none; display: grid; gap: 12px; padding: 0; margin: 4px 0 24px; }
+.home-engagement-highlights li { padding-left: 24px; position: relative; line-height: 1.5; }
+.home-engagement-highlights li::before { content: '✓'; position: absolute; left: 0; color: #2863ca; font-weight: 800; }
+.home-engagement-grid .home-service-card > a { margin-top: auto; }
+.home-engagement-expertise { margin-top: 30px; padding: 24px; border: 1px solid #dfe6ef; border-radius: 14px; background: #f4f7fb; text-align: center; }
+.home-engagement-expertise h3 { color: #183552; font-size: 1.05rem; margin: 0 0 16px; }
+.home-engagement-expertise ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.home-engagement-expertise li { border: 1px solid #dfe6ef; background: white; border-radius: 30px; padding: 8px 14px; color: #334155; font-size: .9rem; }
+.engagement-model-card { scroll-margin-top: 140px; }
+@media (max-width: 700px) { main .home-engagement-grid { grid-template-columns: 1fr; } }

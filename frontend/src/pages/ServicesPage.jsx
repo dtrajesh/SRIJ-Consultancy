@@ -6,6 +6,7 @@ import staffingImage from "../assets/careers-hero-background.png";
 const models = [
   {
     number: "01",
+    id: "software-delivery",
     title: "End-to-End Software Development & Delivery",
     description: "We take ownership of the complete software development lifecycle, delivering solutions from initial discovery to production deployment and ongoing support.",
     listTitle: "What we handle:",
@@ -17,6 +18,7 @@ const models = [
   },
   {
     number: "02",
+    id: "it-staffing",
     title: "IT Staffing & Resource Augmentation",
     description: "We help organizations access skilled technology professionals to strengthen existing teams, accelerate projects and meet changing workforce demands.",
     listTitle: "What we provide:",
@@ -76,7 +78,7 @@ export default function ServicesPage() {
       <section className="container engagement-models" id="engagement-models" aria-labelledby="engagement-models-title">
         <div className="engagement-section-heading"><span className="engagement-eyebrow">How We Work</span><h2 id="engagement-models-title">Two Models. One Technology Partner.</h2><p>Whether you need a complete delivery partner or skilled professionals, we adapt to your business requirements.</p></div>
         <div className="engagement-model-grid">{models.map(model => (
-          <article className="engagement-model-card" key={model.number}>
+          <article className="engagement-model-card" id={model.id} key={model.number}>
             <div className="engagement-model-image"><img src={model.image} alt={model.alt} loading="lazy" /><span>Model {model.number}</span></div>
             <div className="engagement-model-content"><h3>{model.title}</h3><p>{model.description}</p><h4>{model.listTitle}</h4><ul>{model.items.map(item => <li key={item}>{item}</li>)}</ul><Link className="engagement-model-cta" to={model.to}>{model.cta} <span aria-hidden="true">→</span></Link></div>
           </article>
