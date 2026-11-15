@@ -7273,3 +7273,16 @@ main .service-detail-card > a {
 .home-section.cta-section .cta-panel p { font-size: .92rem; line-height: 1.6; margin: 0; max-width: 850px; }
 .home-section.cta-section .cta-panel > .button { flex-shrink: 0; white-space: nowrap; padding: 12px 24px; font-size: .95rem; }
 @media (max-width: 600px) { .home-section.cta-section .cta-panel { padding: 22px; gap: 20px; } }
+
+/* Industry-specific icon colors and subtle card accents. */
+.industries-page .industry-card { --industry-accent: #2563ba; --industry-soft: #eaf2ff; background: linear-gradient(145deg, var(--industry-soft), white 50%); border: 1px solid #dfe6ef; border-top: 3px solid var(--industry-accent); border-radius: 18px; box-shadow: 0 8px 25px #18355208; padding: 28px; }
+.industries-page .industry-retail { --industry-accent: #ac4975; --industry-soft: #fcecf3; }
+.industries-page .industry-healthcare { --industry-accent: #117d6b; --industry-soft: #e4f6ef; }
+.industries-page .industry-telecom { --industry-accent: #7350b6; --industry-soft: #f1ebfc; }
+.industries-page .industry-manufacturing { --industry-accent: #a36b17; --industry-soft: #fff3df; }
+.industries-page .industry-software { --industry-accent: #236e91; --industry-soft: #e6f4fa; }
+.industries-page .industry-line-icon { width: 58px; height: 58px; border-radius: 16px; background: var(--industry-soft); color: var(--industry-accent); border: 1px solid color-mix(in srgb, var(--industry-accent) 16%, transparent); margin-bottom: 20px; }
+.industries-page .industry-line-icon svg { width: 30px; height: 30px; }
+.industries-page .industry-card::before { display: none; }
+.industries-page .industry-card h3 { color: #183552; line-height: 1.35; }
+.industries-page .industry-card p { line-height: 1.75; color: #526176; }
