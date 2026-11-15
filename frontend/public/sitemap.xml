@@ -11,5 +11,5 @@
   <url><loc>https://www.trinexora.com/terms</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/careers/internal</loc><lastmod>2026-11-03</lastmod></url>
   <url><loc>https://www.trinexora.com/careers/talent-profile</loc><lastmod>2026-11-03</lastmod></url>
-  <!-- Solutions page is hidden; add it back when showSolutions is true -->
+  <url><loc>https://www.trinexora.com/our-innovations</loc></url>
 </urlset>

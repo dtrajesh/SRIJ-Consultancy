@@ -171,13 +171,13 @@ export default function HomePage() {
         <div className="container">
           <div className="home-section-label">
             <span className="how-it-works-line" />
-            <h2>Solutions</h2>
+            <h2>Our Innovations</h2>
             <span className="how-it-works-line" />
           </div>
           <SectionHeader
             className="home-products-header"
-            title="Accelerators in development"
-            text="Reusable frameworks and templates are in development, starting with QA automation and performance testing. These assets are not yet available."
+            title="Built by Trinexora. Designed for Real Challenges."
+            text="Explore the products and accelerators our team is developing to simplify testing and technology delivery. See each item’s current development status."
           />
           <div className="product-list home-product-list">
             {products.slice(0, 2).map((product, index) => {
@@ -202,7 +202,7 @@ export default function HomePage() {
                         </span>
                       ))}
                     </div>
-                    <Link to="/solutions">Solutions</Link>
+                    <Link to="/our-innovations">Explore Our Innovations →</Link>
                   </div>
                 </article>
               );

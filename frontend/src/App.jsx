@@ -42,9 +42,10 @@ export default function App() {
       />
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/solutions" element={siteConfig.showSolutions ? <SolutionsPage /> : <Navigate to="/services" replace />} />
-        <Route path="/accelerators" element={<Navigate to="/solutions" replace />} />
-        <Route path="/products" element={<Navigate to="/solutions" replace />} />
+        <Route path="/our-innovations" element={siteConfig.showSolutions ? <SolutionsPage /> : <Navigate to="/services" replace />} />
+        <Route path="/solutions" element={<Navigate to="/our-innovations" replace />} />
+        <Route path="/accelerators" element={<Navigate to="/our-innovations" replace />} />
+        <Route path="/products" element={<Navigate to="/our-innovations" replace />} />
         <Route path="/our-expertise" element={<TechnologiesPage />} />
         <Route path="/technologies" element={<Navigate to="/our-expertise" replace />} />
         <Route path="/careers" element={<CareersPage />} />

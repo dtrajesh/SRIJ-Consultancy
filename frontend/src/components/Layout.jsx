@@ -31,7 +31,7 @@ const navItems = [
   { label: "Services", to: "/services" },
   { label: "Industries", to: "/industries" },
   { label: "Our Expertise", to: "/our-expertise" },
-  ...(siteConfig.showSolutions ? [{ label: "Solutions", to: "/solutions" }] : [])
+  ...(siteConfig.showSolutions ? [{ label: "Our Innovations", to: "/our-innovations" }] : [])
 ];
 
 const navItemsAfterAbout = [
@@ -289,7 +289,7 @@ export default function Layout() {
               <NavLink to="/services">Services</NavLink>
               <NavLink to="/industries">Industries</NavLink>
               <NavLink to="/our-expertise">Our Expertise</NavLink>
-              {siteConfig.showSolutions && <NavLink to="/solutions">Solutions</NavLink>}
+              {siteConfig.showSolutions && <NavLink to="/our-innovations">Our Innovations</NavLink>}
               <NavLink to="/careers">Careers</NavLink>
               <NavLink to="/get-started">Get Started</NavLink>
             </div>
