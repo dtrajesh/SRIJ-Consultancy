@@ -76,10 +76,16 @@ export default function CareerTalentProfilePage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (status.type === "loading") return;
     if (!validateConsent(event.currentTarget)) return;
 
     if (!resume) {
       setStatus({ type: "error", message: "Please upload your resume." });
+      return;
+    }
+
+    if (resume.size > 10 * 1024 * 1024) {
+      setStatus({ type: "error", message: "Resume must be 10 MB or smaller." });
       return;
     }
 
@@ -286,12 +292,13 @@ export default function CareerTalentProfilePage() {
 
           <label>
             Upload Resume
+            <small>PDF, DOC or DOCX, up to 10 MB.</small>
             <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           </label>
 
           <ConsentCheckbox {...consentProps} />
 
-          <button className="button button-primary" type="submit">
+          <button className="button button-primary" type="submit" disabled={status.type === "loading"}>
             {content.buttonLabel}
           </button>
 

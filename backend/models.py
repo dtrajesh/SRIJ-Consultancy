@@ -126,3 +126,11 @@ class TalentProfileSubmission(db.Model, TimestampMixin):
     professional_summary = db.Column(db.Text, nullable=False)
     resume_file_name = db.Column(db.String(255), nullable=False)
     resume_original_name = db.Column(db.String(255), nullable=False)
+
+
+class ResumeDocument(db.Model, TimestampMixin):
+    """New uploads live in the database alongside candidate records."""
+    __tablename__ = "resume_documents"
+
+    file_name = db.Column(db.String(255), primary_key=True)
+    content = db.Column(db.LargeBinary, nullable=False)

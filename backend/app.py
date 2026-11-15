@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 from sqlalchemy import inspect, text
 
@@ -22,6 +22,10 @@ def create_app():
 
     db.init_app(app)
     app.register_blueprint(api)
+
+    @app.errorhandler(413)
+    def upload_too_large(error):
+        return jsonify({"message": "Upload is too large. Resume must be smaller than 10 MB."}), 413
 
     with app.app_context():
         db.create_all()

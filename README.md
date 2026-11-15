@@ -95,3 +95,19 @@ Then initialize tables by starting the Flask app once.
 
 - The implementation follows the visible consultancy/staffing blueprint themes already present in the original mockup.
 - If you want the content adjusted page-by-page to match the PDF exactly, send page screenshots or paste the page list and section copy.
+
+## Careers and resume storage
+
+- `/careers` lists active public jobs posted through the admin dashboard.
+- **Join Talent** opens a separate candidate profile form at `/careers/talent-profile?type=join_talent_network`.
+- **Apply Now** opens `/careers/:jobId/apply` with the job ID and description beside the application form.
+- New resume bytes are stored in `resume_documents`, matched to candidate records by `resume_file_name`. Job applications also store the `job_id` foreign key. Talent profiles are general submissions and do not need a job ID.
+- Restart the Flask backend after updating: startup creates the new resume table automatically without replacing existing candidate tables. Older resumes in `UPLOAD_FOLDER` remain downloadable; keep that folder for historical submissions.
+- Admin resume downloads require authentication. Deleting a candidate submission also deletes its stored resume.
+- Upload requests are limited to 10 MB, including multipart form overhead. PDF, DOC, and DOCX filename extensions are accepted.
+
+Run backend integration checks from `backend/`:
+
+```bash
+python -m unittest discover -s tests -v
+```
