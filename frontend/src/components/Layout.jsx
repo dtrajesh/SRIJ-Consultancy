@@ -45,7 +45,6 @@ const aboutItems = [
   { label: "Core Values", to: "/about#core-values" },
   { label: "Leadership", to: "/about#leadership" },
   { label: "Why Choose Trinexora", to: "/about#why-choose-us" },
-  { label: "Careers at Trinexora", to: "/about#join-team" }
 ];
 
 function HashScroll() {
