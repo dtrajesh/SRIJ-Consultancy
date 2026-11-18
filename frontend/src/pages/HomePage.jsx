@@ -71,7 +71,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero home-landing-hero">
         <div className="container hero-grid home-hero-grid">
           <div className="hero-copy">
             <h1>

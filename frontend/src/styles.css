@@ -7308,3 +7308,27 @@ main .service-detail-card > a {
 }
 
 .why-choose-banner .site-logo-image { width: 150px; height: 150px; object-fit: contain; }
+
+/* Balanced homepage headline and circular logo. */
+.home-landing-hero { padding: 54px 0; }
+.home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 60px; align-items: center; }
+.home-landing-hero .hero-copy { max-width: 650px; padding: 0; }
+.home-landing-hero .hero-copy h1 { margin: 0 0 22px; font-size: clamp(2rem, 3.05vw, 2.75rem); line-height: 1.2; letter-spacing: -.025em; }
+.home-landing-hero .hero-copy p { max-width: 570px; margin: 0; font-size: 1.05rem; line-height: 1.8; }
+.home-landing-hero .hero-actions { margin-top: 26px; gap: 14px; align-items: center; }
+.home-landing-hero .hero-actions .button { min-height: 48px; padding: 12px 22px; font-size: .9rem; }
+.home-landing-hero .home-hero-logo-wrap { min-height: 0; padding: 0; width: 100%; justify-self: center; }
+.home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 360px; max-width: 100%; height: auto; }
+@media (max-width: 1000px) and (min-width: 701px) {
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 30px; }
+  .home-landing-hero .hero-copy h1 { font-size: clamp(1.8rem, 3.4vw, 2.3rem); }
+}
+@media (max-width: 700px) {
+  .home-landing-hero { padding: 36px 0; }
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .home-landing-hero .hero-copy { text-align: center; }
+  .home-landing-hero .hero-copy h1 { font-size: clamp(1.8rem, 6.4vw, 2.5rem); }
+  .home-landing-hero .hero-copy p { margin: 0 auto; font-size: 1rem; }
+  .home-landing-hero .hero-actions { justify-content: center; }
+  .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 270px; }
+}
