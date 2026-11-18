@@ -7333,11 +7333,18 @@ main .service-detail-card > a {
   .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 270px; }
 }
 
-/* Keep the circular header logo and navigation in one balanced content row. */
+/* Larger branding and readable, evenly spaced desktop navigation. */
 @media (min-width: 1181px) {
-  .site-header .container.header-row { width: min(1120px, calc(100% - 48px)); display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: center; gap: 30px; padding: 10px 0; }
-  .site-header .site-logo-header { width: 90px; height: 90px; }
-  .site-header .nav { width: 100%; justify-content: center; padding-left: 0; gap: 10px; }
-  .site-header .nav-link { padding: 10px 8px; font-size: .92rem; white-space: nowrap; }
-  .site-header .nav .button { white-space: nowrap; padding: 13px 20px; font-size: .92rem; }
+  .site-header .container.header-row { width: min(1400px, calc(100% - 64px)); display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: center; gap: 32px; padding: 10px 0; }
+  .site-header .site-logo-header { width: 120px; height: 120px; }
+  .site-header .nav { width: 100%; justify-content: space-between; padding-left: 0; gap: 12px; }
+  .site-header .nav-link { padding: 11px 10px; font-size: 1.05rem; white-space: nowrap; }
+  .site-header .nav .button { white-space: nowrap; padding: 15px 24px; font-size: 1rem; }
+}
+@media (min-width: 1181px) and (max-width: 1350px) {
+  .site-header .container.header-row { width: calc(100% - 40px); grid-template-columns: 100px minmax(0, 1fr); gap: 24px; }
+  .site-header .site-logo-header { width: 100px; height: 100px; }
+  .site-header .nav { gap: 6px; }
+  .site-header .nav-link { font-size: .95rem; padding: 10px 7px; }
+  .site-header .nav .button { font-size: .95rem; padding: 13px 20px; }
 }
