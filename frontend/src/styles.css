@@ -7332,3 +7332,12 @@ main .service-detail-card > a {
   .home-landing-hero .hero-actions { justify-content: center; }
   .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 270px; }
 }
+
+/* Keep the circular header logo and navigation in one balanced content row. */
+@media (min-width: 1181px) {
+  .site-header .container.header-row { width: min(1240px, calc(100% - 64px)); display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 42px; padding: 12px 0; }
+  .site-header .site-logo-header { width: 96px; height: 96px; }
+  .site-header .nav { width: 100%; justify-content: space-between; padding-left: 0; gap: 8px; }
+  .site-header .nav-link { padding: 10px 8px; font-size: .96rem; white-space: nowrap; }
+  .site-header .nav .button { white-space: nowrap; padding: 14px 22px; }
+}
