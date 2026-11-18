@@ -7289,3 +7289,113 @@ main .service-detail-card > a {
 
 .required-marker { color: #b42335; font-weight: 700; }
 .required-fields-note { color: #526176; font-size: .85rem; margin: 0 0 16px; }
+
+/* Updated circular Trinexora logo supplied by the brand. */
+.site-logo-image { display: block; object-fit: contain; aspect-ratio: 1; height: auto; border-radius: 50%; }
+.site-header .brand { min-width: 0; width: auto; flex: 0 0 auto; }
+.site-header .site-logo-header { width: 102px; height: 102px; max-width: none; }
+.home-hero-logo-wrap .site-logo-hero { width: min(100%, 420px); height: auto; max-width: 100%; filter: drop-shadow(0 12px 30px #008cff20); }
+.home-hero-logo-wrap { justify-content: center; }
+.site-footer .footer-brand-lockup { max-width: 100%; justify-content: flex-start; }
+.site-footer .site-logo-footer { width: 190px; height: 190px; max-width: 100%; }
+@media (max-width: 900px) {
+  .site-header .site-logo-header { width: 82px; height: 82px; }
+  .home-hero-logo-wrap .site-logo-hero { width: min(100%, 330px); }
+}
+@media (max-width: 600px) {
+  .site-header .site-logo-header { width: 72px; height: 72px; }
+  .site-footer .site-logo-footer { width: 155px; height: 155px; }
+}
+
+.why-choose-banner .site-logo-image { width: 150px; height: 150px; object-fit: contain; }
+
+/* Balanced homepage headline and circular logo. */
+.home-landing-hero { padding: 54px 0; }
+.home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 60px; align-items: center; }
+.home-landing-hero .hero-copy { max-width: 650px; padding: 0; }
+.home-landing-hero .hero-copy h1 { margin: 0 0 22px; font-size: clamp(2rem, 3.05vw, 2.75rem); line-height: 1.2; letter-spacing: -.025em; }
+.home-landing-hero .hero-copy p { max-width: 570px; margin: 0; font-size: 1.05rem; line-height: 1.8; }
+.home-landing-hero .hero-actions { margin-top: 26px; gap: 14px; align-items: center; }
+.home-landing-hero .hero-actions .button { min-height: 48px; padding: 12px 22px; font-size: .9rem; }
+.home-landing-hero .home-hero-logo-wrap { min-height: 0; padding: 0; width: 100%; justify-self: center; }
+.home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 360px; max-width: 100%; height: auto; }
+@media (max-width: 1000px) and (min-width: 701px) {
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 30px; }
+  .home-landing-hero .hero-copy h1 { font-size: clamp(1.8rem, 3.4vw, 2.3rem); }
+}
+@media (max-width: 700px) {
+  .home-landing-hero { padding: 36px 0; }
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .home-landing-hero .hero-copy { text-align: center; }
+  .home-landing-hero .hero-copy h1 { font-size: clamp(1.8rem, 6.4vw, 2.5rem); }
+  .home-landing-hero .hero-copy p { margin: 0 auto; font-size: 1rem; }
+  .home-landing-hero .hero-actions { justify-content: center; }
+  .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 270px; }
+}
+
+/* Keep the circular header logo and navigation in one balanced content row. */
+@media (min-width: 1181px) {
+  .site-header .container.header-row { width: min(1120px, calc(100% - 48px)); display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: center; gap: 30px; padding: 10px 0; }
+  .site-header .site-logo-header { width: 90px; height: 90px; }
+  .site-header .nav { width: 100%; justify-content: center; padding-left: 0; gap: 10px; }
+  .site-header .nav-link { padding: 10px 8px; font-size: .92rem; white-space: nowrap; }
+  .site-header .nav .button { white-space: nowrap; padding: 13px 20px; font-size: .92rem; }
+}
+
+/* Use the available desktop width with consistent, modest side gutters. */
+@media (min-width: 1181px) {
+  .container,
+  .site-header .container.header-row { width: calc(100% - clamp(40px, 5vw, 96px)); max-width: none; }
+  .site-header .nav { justify-content: space-between; }
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 5vw, 96px); }
+  .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: clamp(340px, 27vw, 440px); }
+}
+
+/* Slightly larger desktop navigation labels. */
+@media (min-width: 1351px) {
+  .site-header .nav-link { font-size: 1.1rem; }
+  .site-header .nav .button { font-size: 1.05rem; }
+}
+@media (min-width: 1181px) and (max-width: 1350px) {
+  .site-header .nav-link { font-size: 1rem; }
+  .site-header .nav .button { font-size: 1rem; }
+}
+
+/* Original header proportions: blank emblem space, new logo in wordmark area. */
+@media (min-width: 1501px) {
+  .site-header .container.header-row { width: calc(100% - 32px); grid-template-columns: minmax(340px, 35%) minmax(0, 1fr); gap: 22px; padding: 10px 0; }
+  .site-header .brand { justify-self: start; padding-left: clamp(115px, 9vw, 180px); }
+  .site-header .site-logo-header { width: 112px; height: 112px; }
+  .site-header .nav { gap: 8px; justify-content: space-between; }
+  .site-header .nav-link { font-size: 1.08rem; padding: 10px 9px; }
+  .site-header .nav .button { font-size: 1.05rem; padding: 15px 24px; }
+}
+@media (min-width: 1181px) and (max-width: 1500px) {
+  .site-header .container.header-row { width: calc(100% - 32px); grid-template-columns: minmax(180px, 24%) minmax(0, 1fr); gap: 16px; }
+  .site-header .brand { justify-self: start; padding-left: clamp(60px, 7vw, 105px); }
+  .site-header .site-logo-header { width: 100px; height: 100px; }
+  .site-header .nav { gap: 4px; }
+  .site-header .nav-link { font-size: .98rem; padding: 10px 6px; }
+  .site-header .nav .button { font-size: 1rem; padding: 13px 18px; }
+}
+
+/* Restore the reference's centered content and generous desktop side margins. */
+@media (min-width: 1181px) {
+  main .container,
+  .site-footer .container { width: min(1120px, calc(100% - 48px)); margin-left: auto; margin-right: auto; }
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 60px; }
+  .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 360px; max-width: 100%; }
+}
+
+/* Compact footer branding and a small header logo offset. */
+@media (min-width: 1181px) {
+  .site-header .brand { transform: translateX(24px); }
+}
+.site-footer .site-logo-footer { width: 92px; height: 92px; }
+.site-footer .footer-brand-lockup { min-height: 0; margin: 0 0 10px; padding: 0; gap: 0; }
+.site-footer .footer-brand { gap: 8px; }
+.site-footer .footer-brand > p { margin: 0; max-width: 100%; line-height: 1.45; }
+.site-footer .footer-social-links { margin-top: 12px; }
+@media (min-width: 1001px) {
+  .site-footer .footer-grid { grid-template-columns: minmax(0, 1.65fr) minmax(0, .65fr) minmax(0, .95fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+}

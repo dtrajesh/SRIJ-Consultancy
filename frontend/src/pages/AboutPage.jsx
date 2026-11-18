@@ -2,7 +2,6 @@ import { about } from "../data/about";
 import { usePageMeta } from "../usePageMeta";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
-import trinexoraLogo from "../assets/trinexora-logo-transparent.png";
 import accessTopTalentIcon from "../assets/what-you-gain/access-top-talent.png";
 import fasterTeamScalingIcon from "../assets/what-you-gain/faster-team-scaling.png";
 import flexibleWorkforceIcon from "../assets/what-you-gain/flexible-workforce.png";
@@ -526,8 +525,8 @@ export default function AboutPage() {
 
           <div className="why-choose-banner">
             <img
-              className="why-choose-banner-logo"
-              src={trinexoraLogo}
+              className="why-choose-banner-logo site-logo-image"
+              src="/images/trinexora-logo.jpeg"
               alt="Trinexora IT Staffing, IT Solutions, IT Delivery"
             />
             <p>

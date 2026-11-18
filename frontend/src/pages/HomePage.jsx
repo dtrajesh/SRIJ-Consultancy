@@ -4,7 +4,6 @@ import ProcessGraph from "../components/ProcessGraph";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
 import { products } from "../data/siteContent";
-import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 
 const homeServices = [
   {
@@ -72,7 +71,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero home-landing-hero">
         <div className="container hero-grid home-hero-grid">
           <div className="hero-copy">
             <h1>
@@ -93,13 +92,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="home-hero-logo-wrap" aria-label="Trinexora, IT Staffing, IT Solutions, IT Delivery">
-            <img className="home-hero-brand-symbol" src={headerSymbol} alt="" aria-hidden="true" />
-            <span className="home-hero-brand-copy">
-              <span className="home-hero-brand-name" aria-hidden="true">
-                <span className="home-hero-brand-name-blue">TR<span className="home-hero-brand-accent-letter">I</span></span>NEXORA
-              </span>
-              <span className="home-hero-brand-tagline">IT Staffing | IT Solutions | IT Delivery</span>
-            </span>
+            <img className="site-logo-image site-logo-hero" src="/images/trinexora-logo.jpeg" alt="Trinexora — IT Staffing, IT Solutions, IT Delivery" width="1280" height="1280" />
           </div>
         </div>
       </section>
