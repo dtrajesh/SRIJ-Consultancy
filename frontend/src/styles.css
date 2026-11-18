@@ -7335,9 +7335,9 @@ main .service-detail-card > a {
 
 /* Keep the circular header logo and navigation in one balanced content row. */
 @media (min-width: 1181px) {
-  .site-header .container.header-row { width: min(1240px, calc(100% - 64px)); display: grid; grid-template-columns: 96px minmax(0, 1fr); align-items: center; gap: 42px; padding: 12px 0; }
-  .site-header .site-logo-header { width: 96px; height: 96px; }
-  .site-header .nav { width: 100%; justify-content: space-between; padding-left: 0; gap: 8px; }
-  .site-header .nav-link { padding: 10px 8px; font-size: .96rem; white-space: nowrap; }
-  .site-header .nav .button { white-space: nowrap; padding: 14px 22px; }
+  .site-header .container.header-row { width: min(1120px, calc(100% - 48px)); display: grid; grid-template-columns: 90px minmax(0, 1fr); align-items: center; gap: 30px; padding: 10px 0; }
+  .site-header .site-logo-header { width: 90px; height: 90px; }
+  .site-header .nav { width: 100%; justify-content: center; padding-left: 0; gap: 10px; }
+  .site-header .nav-link { padding: 10px 8px; font-size: .92rem; white-space: nowrap; }
+  .site-header .nav .button { white-space: nowrap; padding: 13px 20px; font-size: .92rem; }
 }
