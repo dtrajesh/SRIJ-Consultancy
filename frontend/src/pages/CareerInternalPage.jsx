@@ -275,26 +275,25 @@ export default function CareerInternalPage() {
             </div>
 
             <form className="form-card careers-talent-form" onSubmit={handleSubmit} noValidate>
-              <p className="required-fields-note"><span className="required-marker" aria-hidden="true">*</span> indicates a required field.</p>
-          <div className="form-grid">
+              <div className="form-grid">
                 <label>
-                  <span>Role Applied For <span className="required-marker" aria-hidden="true">*</span></span>
+                  Role Applied For
                   <input name="target_job_title" value={form.target_job_title} onChange={handleChange} required />
                 </label>
                 <label>
-                  <span>Full Name <span className="required-marker" aria-hidden="true">*</span></span>
+                  Full Name
                   <input name="full_name" value={form.full_name} onChange={handleChange} required />
                 </label>
                 <label>
-                  <span>Email <span className="required-marker" aria-hidden="true">*</span></span>
+                  Email
                   <input name="email" type="email" value={form.email} onChange={handleChange} required />
                 </label>
                 <label>
-                  <span>Phone <span className="required-marker" aria-hidden="true">*</span></span>
+                  Phone
                   <input name="phone" value={form.phone} onChange={handleChange} required />
                 </label>
                 <label>
-                  <span>Current Location <span className="required-marker" aria-hidden="true">*</span></span>
+                  Current Location
                   <input name="current_location" value={form.current_location} onChange={handleChange} required />
                 </label>
                 <label>
@@ -302,7 +301,7 @@ export default function CareerInternalPage() {
                   <input name="current_company" value={form.current_company} onChange={handleChange} />
                 </label>
                 <label>
-                  <span>Years of Experience <span className="required-marker" aria-hidden="true">*</span></span>
+                  Years of Experience
                   <input
                     name="years_of_experience"
                     value={form.years_of_experience}
@@ -311,7 +310,7 @@ export default function CareerInternalPage() {
                   />
                 </label>
                 <label>
-                  <span>Preferred Work Mode <span className="required-marker" aria-hidden="true">*</span></span>
+                  Preferred Work Mode
                   <select name="preferred_work_mode" value={form.preferred_work_mode} onChange={handleChange} required>
                     <option value="">Select one</option>
                     <option value="Onsite">Onsite</option>
@@ -330,7 +329,7 @@ export default function CareerInternalPage() {
                   />
                 </label>
                 <label>
-                  <span>Work Authorization <span className="required-marker" aria-hidden="true">*</span></span>
+                  Work Authorization
                   <input name="work_authorization" value={form.work_authorization} onChange={handleChange} required />
                 </label>
                 <label>
@@ -344,12 +343,12 @@ export default function CareerInternalPage() {
               </div>
 
               <label>
-                <span>Primary Skills <span className="required-marker" aria-hidden="true">*</span></span>
+                Primary Skills
                 <textarea name="primary_skills" rows="4" value={form.primary_skills} onChange={handleChange} required />
               </label>
 
               <label>
-                <span>Professional Summary <span className="required-marker" aria-hidden="true">*</span></span>
+                Professional Summary
                 <textarea
                   name="professional_summary"
                   rows="5"
@@ -360,7 +359,7 @@ export default function CareerInternalPage() {
               </label>
 
               <label>
-                <span>Upload Resume <span className="required-marker" aria-hidden="true">*</span></span>
+                Upload Resume
                 <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
               </label>
 

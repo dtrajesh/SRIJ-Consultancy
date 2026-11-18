@@ -59,9 +59,10 @@ export default function GetStartedForm() {
         <p>Share a few details so we can respond with the right next step.</p>
       </div>
 
+      <p className="required-fields-note"><span className="required-marker" aria-hidden="true">*</span> indicates a required field.</p>
       <div className="form-grid">
         <label>
-          Name (required)
+          <span>Name <span className="required-marker" aria-hidden="true">*</span></span>
           <input
             name="name"
             value={form.name}
@@ -71,7 +72,7 @@ export default function GetStartedForm() {
           />
         </label>
         <label>
-          Email (required)
+          <span>Email <span className="required-marker" aria-hidden="true">*</span></span>
           <input
             name="email"
             type="email"
@@ -127,7 +128,7 @@ export default function GetStartedForm() {
       </div>
 
       <label>
-        Requirement details (required)
+        <span>Requirement details <span className="required-marker" aria-hidden="true">*</span></span>
         <textarea
           name="goals"
           rows="5"

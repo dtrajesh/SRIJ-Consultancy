@@ -141,10 +141,9 @@ export default function CareerTalentProfilePage() {
         </div>
 
         <form className="form-card careers-talent-form" onSubmit={handleSubmit} noValidate>
-          <p className="required-fields-note"><span className="required-marker" aria-hidden="true">*</span> indicates a required field.</p>
           <div className="form-grid">
             <label>
-              <span>Job Title / Role Applied For <span className="required-marker" aria-hidden="true">*</span></span>
+              Job Title / Role Applied For
               <input
                 name="target_job_title"
                 value={form.target_job_title}
@@ -153,7 +152,7 @@ export default function CareerTalentProfilePage() {
               />
             </label>
             <label>
-              <span>Full Name <span className="required-marker" aria-hidden="true">*</span></span>
+              Full Name
               <input
                 name="full_name"
                 value={form.full_name}
@@ -162,7 +161,7 @@ export default function CareerTalentProfilePage() {
               />
             </label>
             <label>
-              <span>Email <span className="required-marker" aria-hidden="true">*</span></span>
+              Email
               <input
                 name="email"
                 type="email"
@@ -172,11 +171,11 @@ export default function CareerTalentProfilePage() {
               />
             </label>
             <label>
-              <span>Phone <span className="required-marker" aria-hidden="true">*</span></span>
+              Phone
               <input name="phone" value={form.phone} onChange={handleChange} required />
             </label>
             <label>
-              <span>Current Location <span className="required-marker" aria-hidden="true">*</span></span>
+              Current Location
               <input
                 name="current_location"
                 value={form.current_location}
@@ -193,7 +192,7 @@ export default function CareerTalentProfilePage() {
               />
             </label>
             <label>
-              <span>Years of Experience <span className="required-marker" aria-hidden="true">*</span></span>
+              Years of Experience
               <input
                 name="years_of_experience"
                 value={form.years_of_experience}
@@ -202,7 +201,7 @@ export default function CareerTalentProfilePage() {
               />
             </label>
             <label>
-              <span>Employment Preference <span className="required-marker" aria-hidden="true">*</span></span>
+              Employment Preference
               <select
                 name="employment_preference"
                 value={form.employment_preference}
@@ -217,7 +216,7 @@ export default function CareerTalentProfilePage() {
               </select>
             </label>
             <label>
-              <span>Preferred Work Mode <span className="required-marker" aria-hidden="true">*</span></span>
+              Preferred Work Mode
               <select
                 name="preferred_work_mode"
                 value={form.preferred_work_mode}
@@ -241,7 +240,7 @@ export default function CareerTalentProfilePage() {
               />
             </label>
             <label>
-              <span>Work Authorization <span className="required-marker" aria-hidden="true">*</span></span>
+              Work Authorization
               <input
                 name="work_authorization"
                 value={form.work_authorization}
@@ -268,7 +267,7 @@ export default function CareerTalentProfilePage() {
           </div>
 
           <label>
-            <span>Primary Skills <span className="required-marker" aria-hidden="true">*</span></span>
+            Primary Skills
             <textarea
               name="primary_skills"
               rows="4"
@@ -280,7 +279,7 @@ export default function CareerTalentProfilePage() {
           </label>
 
           <label>
-            <span>Professional Summary <span className="required-marker" aria-hidden="true">*</span></span>
+            Professional Summary
             <textarea
               name="professional_summary"
               rows="5"
@@ -292,7 +291,7 @@ export default function CareerTalentProfilePage() {
           </label>
 
           <label>
-            <span>Upload Resume <span className="required-marker" aria-hidden="true">*</span></span>
+            Upload Resume
             <small>PDF, DOC or DOCX, up to 10 MB.</small>
             <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           </label>
