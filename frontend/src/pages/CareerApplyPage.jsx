@@ -141,9 +141,10 @@ export default function CareerApplyPage() {
         <form className="form-card" onSubmit={handleSubmit} noValidate>
           <h2>Apply for this role</h2>
           <p>Job ID: {job.id} · {job.title}</p>
+          <p className="required-fields-note"><span className="required-marker" aria-hidden="true">*</span> indicates a required field.</p>
           <div className="form-grid">
             <label>
-              Full Name
+              <span>Full Name <span className="required-marker" aria-hidden="true">*</span></span>
               <input
                 name="full_name"
                 value={form.full_name}
@@ -152,11 +153,11 @@ export default function CareerApplyPage() {
               />
             </label>
             <label>
-              Email
+              <span>Email <span className="required-marker" aria-hidden="true">*</span></span>
               <input name="email" type="email" value={form.email} onChange={handleChange} required />
             </label>
             <label>
-              Phone
+              <span>Phone <span className="required-marker" aria-hidden="true">*</span></span>
               <input name="phone" value={form.phone} onChange={handleChange} required />
             </label>
             <label>
@@ -192,7 +193,7 @@ export default function CareerApplyPage() {
           </label>
 
           <label>
-            Upload Resume
+            <span>Upload Resume <span className="required-marker" aria-hidden="true">*</span></span>
             <small>PDF, DOC or DOCX, up to 10 MB.</small>
             <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} required />
           </label>
