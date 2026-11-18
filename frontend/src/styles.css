@@ -7360,3 +7360,21 @@ main .service-detail-card > a {
   .site-header .nav-link { font-size: 1rem; }
   .site-header .nav .button { font-size: 1rem; }
 }
+
+/* Original header proportions: blank emblem space, new logo in wordmark area. */
+@media (min-width: 1501px) {
+  .site-header .container.header-row { width: calc(100% - 32px); grid-template-columns: minmax(340px, 35%) minmax(0, 1fr); gap: 22px; padding: 10px 0; }
+  .site-header .brand { justify-self: start; padding-left: clamp(115px, 9vw, 180px); }
+  .site-header .site-logo-header { width: 112px; height: 112px; }
+  .site-header .nav { gap: 8px; justify-content: space-between; }
+  .site-header .nav-link { font-size: 1.08rem; padding: 10px 9px; }
+  .site-header .nav .button { font-size: 1.05rem; padding: 15px 24px; }
+}
+@media (min-width: 1181px) and (max-width: 1500px) {
+  .site-header .container.header-row { width: calc(100% - 32px); grid-template-columns: minmax(180px, 24%) minmax(0, 1fr); gap: 16px; }
+  .site-header .brand { justify-self: start; padding-left: clamp(60px, 7vw, 105px); }
+  .site-header .site-logo-header { width: 100px; height: 100px; }
+  .site-header .nav { gap: 4px; }
+  .site-header .nav-link { font-size: .98rem; padding: 10px 6px; }
+  .site-header .nav .button { font-size: 1rem; padding: 13px 18px; }
+}
