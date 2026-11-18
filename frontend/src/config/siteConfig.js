@@ -24,7 +24,7 @@ export const siteConfig = {
 export const socialLinks = {
   linkedin: "https://www.linkedin.com/company/trinexora/",
   facebook: "https://www.facebook.com/share/19hXMNVQKC/",
-  instagram: "https://www.instagram.com/trinexora/",
+  instagram: "https://www.instagram.com/trinexora_solutions?lqvp=MW95aGNnMnBsYzNmaQ==",
   x: "https://x.com/trinexora"
 };
 
