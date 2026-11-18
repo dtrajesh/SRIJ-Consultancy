@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { siteConfig } from "./config/siteConfig";
-import sharingLogo from "./assets/trinexora-banner-logo-transparent.png";
+const sharingLogo = "/images/trinexora-logo.jpeg";
 
 function updateHeadTag(selector, tagName, attributes, content) {
   const matches = [...document.head.querySelectorAll(selector)];
@@ -18,7 +18,6 @@ function updateHeadTag(selector, tagName, attributes, content) {
 export function usePageMeta({ title, description, path, noindex = false }) {
   useEffect(() => {
     const url = `${siteConfig.siteUrl}${path}`;
-    // A dedicated public/og-image.png is not available yet; reuse the existing logo.
     const imageUrl = new URL(sharingLogo, siteConfig.siteUrl).href;
     const meta = (attribute, name, content) => updateHeadTag(
       `meta[${attribute}="${name}"]`, "meta", { [attribute]: name }, content

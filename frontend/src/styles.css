@@ -7289,3 +7289,22 @@ main .service-detail-card > a {
 
 .required-marker { color: #b42335; font-weight: 700; }
 .required-fields-note { color: #526176; font-size: .85rem; margin: 0 0 16px; }
+
+/* Updated circular Trinexora logo supplied by the brand. */
+.site-logo-image { display: block; object-fit: contain; aspect-ratio: 1; height: auto; border-radius: 50%; }
+.site-header .brand { min-width: 0; width: auto; flex: 0 0 auto; }
+.site-header .site-logo-header { width: 102px; height: 102px; max-width: none; }
+.home-hero-logo-wrap .site-logo-hero { width: min(100%, 420px); height: auto; max-width: 100%; filter: drop-shadow(0 12px 30px #008cff20); }
+.home-hero-logo-wrap { justify-content: center; }
+.site-footer .footer-brand-lockup { max-width: 100%; justify-content: flex-start; }
+.site-footer .site-logo-footer { width: 190px; height: 190px; max-width: 100%; }
+@media (max-width: 900px) {
+  .site-header .site-logo-header { width: 82px; height: 82px; }
+  .home-hero-logo-wrap .site-logo-hero { width: min(100%, 330px); }
+}
+@media (max-width: 600px) {
+  .site-header .site-logo-header { width: 72px; height: 72px; }
+  .site-footer .site-logo-footer { width: 155px; height: 155px; }
+}
+
+.why-choose-banner .site-logo-image { width: 150px; height: 150px; object-fit: contain; }

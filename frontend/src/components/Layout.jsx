@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import headerSymbol from "../assets/trinexora-logo-symbol-source.png";
 import { siteConfig, socialLinks, whatsappNumber, whatsappMessage } from "../config/siteConfig";
 
 const socialIcons = {
@@ -150,13 +149,7 @@ export default function Layout() {
       <header className="site-header">
         <div className="container header-row">
           <NavLink className="brand" to="/">
-            <img className="brand-symbol" src={headerSymbol} alt="" aria-hidden="true" />
-            <span className="brand-copy" aria-label="Trinexora, IT Staffing, IT Solutions, IT Delivery">
-              <span className="brand-name" aria-hidden="true">
-                <span className="brand-name-gold">TR<span className="brand-accent-letter">I</span></span>NEXORA
-              </span>
-              <span className="brand-tagline">IT Staffing | IT Solutions | IT Delivery</span>
-            </span>
+            <img className="site-logo-image site-logo-header" src="/images/trinexora-logo.jpeg" alt="Trinexora — IT Staffing, IT Solutions, IT Delivery" width="1280" height="1280" />
           </NavLink>
 
           <button
@@ -253,13 +246,7 @@ export default function Layout() {
         <div className="container footer-grid">
           <div className="footer-section footer-brand">
             <div className="footer-brand-lockup" aria-label="Trinexora, IT Staffing, IT Solutions, IT Delivery">
-              <img className="footer-brand-symbol" src={headerSymbol} alt="Trinexora" />
-              <span className="footer-brand-copy">
-                <span className="footer-brand-name">
-                  <span className="footer-brand-name-gold">TR<span className="footer-brand-accent-letter">I</span></span>NEXORA
-                </span>
-                <span className="footer-brand-tagline">IT Staffing | IT Solutions | IT Delivery</span>
-              </span>
+              <img className="site-logo-image site-logo-footer" src="/images/trinexora-logo.jpeg" alt="Trinexora — IT Staffing, IT Solutions, IT Delivery" width="1280" height="1280" />
             </div>
             <p>
               Your partner for IT staffing and software delivery. We connect
