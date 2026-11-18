@@ -7345,9 +7345,18 @@ main .service-detail-card > a {
 /* Use the available desktop width with consistent, modest side gutters. */
 @media (min-width: 1181px) {
   .container,
-  .site-header .container.header-row { width: calc(100% - clamp(48px, 6vw, 128px)); max-width: none; }
-  .site-header .container.header-row { grid-template-columns: 90px max-content; justify-content: center; gap: 32px; }
-  .site-header .nav { width: auto; justify-content: flex-start; gap: clamp(8px, 1vw, 18px); }
+  .site-header .container.header-row { width: calc(100% - clamp(40px, 5vw, 96px)); max-width: none; }
+  .site-header .nav { justify-content: space-between; }
   .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 5vw, 96px); }
   .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: clamp(340px, 27vw, 440px); }
+}
+
+/* Slightly larger desktop navigation labels. */
+@media (min-width: 1351px) {
+  .site-header .nav-link { font-size: 1.1rem; }
+  .site-header .nav .button { font-size: 1.05rem; }
+}
+@media (min-width: 1181px) and (max-width: 1350px) {
+  .site-header .nav-link { font-size: 1rem; }
+  .site-header .nav .button { font-size: 1rem; }
 }
