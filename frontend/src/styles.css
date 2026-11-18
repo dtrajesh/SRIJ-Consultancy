@@ -7386,3 +7386,16 @@ main .service-detail-card > a {
   .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 60px; }
   .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: 360px; max-width: 100%; }
 }
+
+/* Compact footer branding and a small header logo offset. */
+@media (min-width: 1181px) {
+  .site-header .brand { transform: translateX(24px); }
+}
+.site-footer .site-logo-footer { width: 92px; height: 92px; }
+.site-footer .footer-brand-lockup { min-height: 0; margin: 0 0 10px; padding: 0; gap: 0; }
+.site-footer .footer-brand { gap: 8px; }
+.site-footer .footer-brand > p { margin: 0; max-width: 100%; line-height: 1.45; }
+.site-footer .footer-social-links { margin-top: 12px; }
+@media (min-width: 1001px) {
+  .site-footer .footer-grid { grid-template-columns: minmax(0, 1.65fr) minmax(0, .65fr) minmax(0, .95fr) minmax(0, 1.1fr); gap: 32px; align-items: start; }
+}
