@@ -7341,3 +7341,12 @@ main .service-detail-card > a {
   .site-header .nav-link { padding: 10px 8px; font-size: .92rem; white-space: nowrap; }
   .site-header .nav .button { white-space: nowrap; padding: 13px 20px; font-size: .92rem; }
 }
+
+/* Use the available desktop width with consistent, modest side gutters. */
+@media (min-width: 1181px) {
+  .container,
+  .site-header .container.header-row { width: calc(100% - clamp(40px, 5vw, 96px)); max-width: none; }
+  .site-header .nav { justify-content: space-between; }
+  .home-landing-hero .home-hero-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(40px, 5vw, 96px); }
+  .home-landing-hero .home-hero-logo-wrap .site-logo-hero { width: clamp(340px, 27vw, 440px); }
+}
