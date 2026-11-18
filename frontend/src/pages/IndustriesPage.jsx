@@ -36,14 +36,6 @@ const industries = [
   }
 ];
 
-const clientReasons = [
-  "Recruiters and engineers who understand your domain",
-  "Quick access to screened specialists",
-  "Onsite, hybrid and remote hiring options",
-  "Strong QA, automation, and performance engineering expertise",
-  "Confidential handling of your requirements and candidate data",
-  "Clear scope and regular updates"
-];
 
 export default function IndustriesPage() {
   usePageMeta({
@@ -77,16 +69,6 @@ export default function IndustriesPage() {
           ))}
         </div>
 
-        <section className="industries-why">
-          <div>
-            <h2>Why Clients Choose Us</h2>
-          </div>
-          <ul>
-            {clientReasons.map((reason) => (
-              <li key={reason}>{reason}</li>
-            ))}
-          </ul>
-        </section>
 
         <div className="industries-cta">
           <div>

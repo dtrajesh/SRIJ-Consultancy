@@ -7286,3 +7286,6 @@ main .service-detail-card > a {
 .industries-page .industry-card::before { display: none; }
 .industries-page .industry-card h3 { color: #183552; line-height: 1.35; }
 .industries-page .industry-card p { line-height: 1.75; color: #526176; }
+
+.required-marker { color: #b42335; font-weight: 700; }
+.required-fields-note { color: #526176; font-size: .85rem; margin: 0 0 16px; }

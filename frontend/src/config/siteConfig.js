@@ -23,9 +23,10 @@ export const siteConfig = {
 // Social links: paste a full https URL to show that icon in the footer. Leave "" to hide it.
 export const socialLinks = {
   linkedin: "https://www.linkedin.com/company/trinexora/",
-  facebook: "https://www.facebook.com/trinexora",
-  instagram: "https://www.instagram.com/trinexora/",
-  x: "https://x.com/trinexora"
+  facebook: "https://www.facebook.com/share/19hXMNVQKC/",
+  instagram: "https://www.instagram.com/trinexora_solutions?lqvp=MW95aGNnMnBsYzNmaQ==",
+  youtube: "https://youtube.com/@trinexora?si=glWNCdxXBHbeChKQ",
+  x: ""
 };
 
 export const whatsappNumber = "918522857333";
